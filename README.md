@@ -1,1 +1,1 @@
-# SuperSlide Videgame
+# SuperSlide Videogame
