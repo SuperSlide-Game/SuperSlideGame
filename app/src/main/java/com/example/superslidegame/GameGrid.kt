@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 
 class GameGrid(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     var fillPaint = Paint()
@@ -30,7 +31,7 @@ class GameGrid(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
         // fill
         fillPaint.style = Paint.Style.FILL
-        fillPaint.color = Color.parseColor("#E1E1E1E1")
+        fillPaint.color = (ContextCompat.getColor(context, R.color.light_white))
 
         // stroke
         strokePaint.style = Paint.Style.STROKE
