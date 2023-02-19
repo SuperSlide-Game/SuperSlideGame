@@ -3,7 +3,6 @@ package com.example.superslidegame
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         imageView.y= screenHeight/5f // setting margin from top
 
         // accessing our custom image which we added in drawable folder
-        val imgResId = R.drawable.mian_logo
+        val imgResId = R.drawable.main_logo
         var resId = imgResId
 
         // button onClick listener
@@ -40,8 +39,7 @@ class MainActivity : AppCompatActivity() {
         // Add ImageView to LinearLayout
         layout?.addView(imageView) // adding image to the layout
         button.setOnClickListener {
-            val intent = Intent(this, GameGrid::class.java)
-            startActivity(intent)
+            setContentView(R.layout.initial_screen)
         }
     }
 }

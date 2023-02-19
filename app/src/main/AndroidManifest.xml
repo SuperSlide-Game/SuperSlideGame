@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SuperSlideGame"
         tools:targetApi="31" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.superslidegame.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
                 android:value="" />
 
         </activity>
-        <activity android:name=".GameGrid"
+        <activity android:name="com.example.superslidegame.GameGrid"
             android:exported="true" />
     </application>
 

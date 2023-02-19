@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SuperSlideGame</string>
+    <string name="play">Play</string>
 </resources>
