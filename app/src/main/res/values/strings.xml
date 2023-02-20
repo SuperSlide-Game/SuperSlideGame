@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SuperSlideGame</string>
-    <string name="play">Play</string>
+    <string name="play_button">Play</string>
+    <string name="settings_button">Settings</string>
+    <string name="settings_title">Settings</string>
+    <string name="light_mode">Light Mode:</string>
 </resources>
