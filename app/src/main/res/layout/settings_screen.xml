@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
         android:rotationY="12"
-        android:text="Settings"
+        android:text="@string/settings_title"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
         android:rotationY="12"
-        android:text="Light Mode:"
+        android:text="@string/light_mode"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="20sp"
@@ -35,15 +35,15 @@
         android:translationX="100dp"
         android:translationY="98dp" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch1"
-        android:layout_width="300dp"
+        android:layout_width="316dp"
         android:layout_height="wrap_content"
-        android:textColorLink="#673AB7"
-        android:translationY="100dp"
         android:shadowColor="@color/light_white"
         android:shadowDx="0"
         android:shadowDy="0"
-        android:shadowRadius="5"/>
+        android:shadowRadius="5"
+        android:textColorLink="#673AB7"
+        android:translationY="100dp" />
 
 </RelativeLayout>
