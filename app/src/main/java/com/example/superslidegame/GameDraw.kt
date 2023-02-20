@@ -10,7 +10,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 
-class GameGrid(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+class GameDraw(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+
     var fillPaint = Paint()
     var strokePaint = Paint()
 
@@ -27,7 +28,7 @@ class GameGrid(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     // Calculate the origin of the grid based on the screen size
     private val originX = screenWidth / 2 - (cellSize * cols) / 2f
     private val originY = screenHeight / 2 - (cellSize * rows) / 2f - screenHeight / 10
-    fun initPaints() {
+    private fun initPaints() {
 
         // fill
         fillPaint.style = Paint.Style.FILL
