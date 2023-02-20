@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         // button onClick listener
         val button = findViewById<Button>(R.id.button)
-
+        val button2 = findViewById<Button>(R.id.button2)
         imageView.setImageResource(resId)
 
         // accessing our relative layout from activity_main.xml
@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         layout?.addView(imageView) // adding image to the layout
         button.setOnClickListener {
             setContentView(R.layout.initial_screen)
+        }
+
+        button2.setOnClickListener {
+            setContentView(R.layout.settings_screen)
         }
     }
 }
