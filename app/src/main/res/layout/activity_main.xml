@@ -17,8 +17,8 @@
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="5"
-        android:textSize="16dp"
-        android:text="@string/play" />
+        android:textSize="16sp"
+        android:text="@string/play_button" />
 
     <Button
         android:id="@+id/button2"
@@ -32,8 +32,8 @@
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="5"
-        android:text="Settings"
-        android:textSize="16dp"
+        android:text="@string/settings_button"
+        android:textSize="16sp"
         android:translationY="100dp"
         />
 </RelativeLayout>
