@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         // accessing our custom image which we added in drawable folder
         val imgResId = R.drawable.main_logo
-        var resId = imgResId
+        val resId = imgResId
 
         // button onClick listener
-        val button = findViewById<Button>(R.id.button)
-        val button2 = findViewById<Button>(R.id.button2)
+        val playButton = findViewById<Button>(R.id.play_button)
+        val settingsButton = findViewById<Button>(R.id.settings_button)
         imageView.setImageResource(resId)
 
         // accessing our relative layout from activity_main.xml
@@ -38,12 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         // Add ImageView to LinearLayout
         layout?.addView(imageView) // adding image to the layout
-        button.setOnClickListener {
-            setContentView(R.layout.initial_screen)
+
+        playButton.setOnClickListener {
+            val intent = Intent(this, GameScreen::class.java)
+            startActivity(intent)
         }
 
-        button2.setOnClickListener {
-            setContentView(R.layout.settings_screen)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsScreen::class.java)
+            startActivity(intent)
         }
     }
 }
