@@ -4,7 +4,6 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
     tools:context=".MainActivity">
     <Button
         android:id="@+id/play_button"
@@ -13,7 +12,6 @@
         android:layout_width="270dp"
         android:layout_height="60dp"
         android:background="@drawable/buttonshape"
-        android:shadowColor="@color/black"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="5"
@@ -28,7 +26,6 @@
         android:layout_width="270dp"
         android:layout_height="60dp"
         android:background="@drawable/buttonshape"
-        android:shadowColor="@color/black"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="5"

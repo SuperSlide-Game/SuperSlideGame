@@ -4,7 +4,6 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
     android:transitionName="20dp"
     tools:context=".SettingsScreen">
 
@@ -41,7 +40,6 @@
         android:id="@+id/light_mode_switch"
         android:layout_width="316dp"
         android:layout_height="wrap_content"
-        android:shadowColor="@color/light_white"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
