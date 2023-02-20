@@ -27,8 +27,8 @@
                 android:value="" />
 
         </activity>
-        <activity android:name="com.example.superslidegame.GameGrid"
-            android:exported="true" />
+        <activity android:name=".SettingsScreen" />
+        <activity android:name=".GameScreen" />
     </application>
 
 </manifest>
