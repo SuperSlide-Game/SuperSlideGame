@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_background_ssmain_backgro"
     tools:context=".MainActivity">
-    <Button
-        android:id="@+id/play_button"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
-        android:layout_width="270dp"
-        android:layout_height="60dp"
-        android:background="@drawable/buttonshape"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="5"
-        android:textSize="16sp"
-        android:text="@string/play_button" />
 
-    <Button
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toTopOf="@+id/play_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_ss_cyberpunk"
+        android:contentDescription="@string/logo_image_description" />
+
+    <ImageButton
+        android:id="@+id/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginBottom="260dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/settings_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/play_button"
+        android:contentDescription="@string/play_button_description" />
+
+    <ImageButton
         android:id="@+id/settings_button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:layout_width="270dp"
-        android:layout_height="60dp"
-        android:background="@drawable/buttonshape"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="5"
-        android:text="@string/settings_button"
-        android:textSize="16sp"
-        android:translationY="100dp"
-        />
-</RelativeLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play_button"
+        app:srcCompat="@drawable/settings_button"
+        android:contentDescription="@string/settings_button_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
