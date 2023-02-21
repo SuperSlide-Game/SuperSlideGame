@@ -5,6 +5,6 @@
     <string name="settings_title">Settings</string>
     <string name="light_mode">Light Mode:</string>
     <string name="logo_image_description">Logo image</string>
-    <string name="play_button_description">Play button</string>
-    <string name="settings_button_description">Settings button</string>
+    <string name="play_button_description">Play</string>
+    <string name="settings_button_description">Settings</string>
 </resources>
