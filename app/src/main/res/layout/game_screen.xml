@@ -10,7 +10,6 @@
     <com.example.superslidegame.GameDraw
         android:id="@+id/gameDraw"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:rotationX="3" />
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
