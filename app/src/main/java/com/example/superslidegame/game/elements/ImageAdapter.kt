@@ -26,9 +26,13 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,1),
         GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 2,1),
         GamePiece(PieceType.YELLOW),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
         GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,2),
         GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,2),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,3),
+        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,2),
         GamePiece(PieceType.YELLOW),
     )
     override fun getCount(): Int {
