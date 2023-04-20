@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.GameDraw
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.game.elements.ImageAdapter
 
 class GameScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +13,8 @@ class GameScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         // Run GameDraw
-        GameDraw(this, null)
+        //GameDraw(this, null)
+        binding.gridTiles.adapter = ImageAdapter(applicationContext)
     }
 
 }
