@@ -8,11 +8,10 @@ import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
 
 class ImageAdapter(private val context: Context) : BaseAdapter() {
-
-    fun getPiecesState() : Array<GamePiece> {
+    //Mutejada per testejar amb la classe CellGroup
+    /*fun getPiecesState() : Array<GamePiece> {
         return pieces
-    }
-
+    }*/
     // Board of 5x4
     private val pieces = arrayOf(
         GamePiece(PieceType.YELLOW),
@@ -24,19 +23,14 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.EMPTY),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 2),
+        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,1),
+        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 2,1),
         GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED),
-        GamePiece(PieceType.RED),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3),
+        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,2),
         GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED),
-        GamePiece(PieceType.RED),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3),
+        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,2),
         GamePiece(PieceType.YELLOW),
     )
-
     override fun getCount(): Int {
         return pieces.size
     }
