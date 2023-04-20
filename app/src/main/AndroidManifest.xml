@@ -27,7 +27,7 @@
 
         </activity>
         <activity android:name=".SettingsScreen" />
-        <activity android:name=".GameScreen" />
+        <activity android:name=".game.screen.GameScreen" />
     </application>
 
 </manifest>
