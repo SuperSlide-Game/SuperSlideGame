@@ -1,13 +1,10 @@
 package com.example.superslidegame.game.elements
 
-class CellGroup(val position: Int, val cells: List<GamePiece>) {
+class CellGroup(val id: Int, val pieces: List<GamePiece>) {
     fun getSize() : Int {
-        return cells.size
-    }
-    fun getPosition() : Int {
-        return position
+        return pieces.size
     }
     fun getCell(pos:Int) : GamePiece {
-        return cells[pos]
+        return pieces[pos]
     }
 }
