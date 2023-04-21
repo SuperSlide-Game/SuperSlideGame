@@ -1,6 +1,6 @@
 package com.example.superslidegame.game.elements
 
-class GamePiece (val type: PieceType, val orientation: Orientation?, val relativeOrder: Int, val group: Int) {
+class GamePiece (val type: PieceType, val orientation: Orientation?, val groupId: Int, val relativeOrder: Int) {
     val imgSrc = type.imgSrc
     val size = type.size
     constructor(type: PieceType) : this(type, null, 0, 0)
