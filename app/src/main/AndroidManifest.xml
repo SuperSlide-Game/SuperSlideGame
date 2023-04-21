@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SuperSlideGame"
         tools:targetApi="31" >
         <activity
-            android:name="com.example.superslidegame.MainActivity"
+            android:name="com.example.superslidegame.main.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
                 android:value="" />
 
         </activity>
-        <activity android:name=".SettingsScreen" />
+        <activity android:name=".settings.SettingsScreen" />
         <activity android:name=".game.screen.GameScreen" />
     </application>
 

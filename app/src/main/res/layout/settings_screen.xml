@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_settingsmain_backgro"
     android:transitionName="20dp"
-    tools:context=".SettingsScreen">
+    tools:context=".settings.SettingsScreen">
 
 
     <TextView

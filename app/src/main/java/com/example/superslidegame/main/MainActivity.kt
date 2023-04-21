@@ -1,10 +1,11 @@
-package com.example.superslidegame
+package com.example.superslidegame.main
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.ActivityMainBinding
 import com.example.superslidegame.game.screen.GameScreen
+import com.example.superslidegame.settings.SettingsScreen
 
 /**
  * Main activity for the game.

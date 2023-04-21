@@ -1,4 +1,4 @@
-package com.example.superslidegame
+package com.example.superslidegame.settings
 
 import android.content.res.Configuration
 import android.os.Bundle
