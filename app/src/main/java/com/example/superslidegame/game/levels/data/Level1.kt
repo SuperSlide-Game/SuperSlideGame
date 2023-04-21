@@ -17,16 +17,16 @@ class Level1 : Level {
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.EMPTY),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1),
+        GamePiece(PieceType.BLUE, 1),
+        GamePiece(PieceType.BLUE, 1),
         GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.BLUE, Orientation.VERTICAL, 2),
+        GamePiece(PieceType.RED, 3),
+        GamePiece(PieceType.RED, 3),
+        GamePiece(PieceType.BLUE, 2),
         GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.BLUE, Orientation.VERTICAL, 2),
+        GamePiece(PieceType.RED, 3),
+        GamePiece(PieceType.RED, 3),
+        GamePiece(PieceType.BLUE, 2),
         GamePiece(PieceType.YELLOW),
     )
 
@@ -34,11 +34,11 @@ class Level1 : Level {
 
     init {
 
-        val blueGroup1 = PieceGroup(1, listOf(
+        val blueGroup1 = PieceGroup(1, Orientation.HORIZONTAL, listOf(
             pieces[9],
             pieces[10],
         ))
-        val blueGroup2 = PieceGroup(2, listOf(
+        val blueGroup2 = PieceGroup(2, Orientation.VERTICAL, listOf(
             pieces[14],
             pieces[18],
         ))
