@@ -8,10 +8,6 @@ import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
 
 class ImageAdapter(private val context: Context) : BaseAdapter() {
-    //Mutejada per testejar amb la classe CellGroup
-    /*fun getPiecesState() : Array<GamePiece> {
-        return pieces
-    }*/
 
     // Board of 5x4
     private val pieces = arrayOf(
