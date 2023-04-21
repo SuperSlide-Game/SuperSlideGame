@@ -26,8 +26,7 @@ class ClickListener(private val context: Context, private val positionClicked: I
     }
 
     private fun canMove(positionClicked: Int, actualState: Array<GamePiece>): Boolean {
-        val typeOfTheClickedPiece = actualState[positionClicked].type
-        return when (typeOfTheClickedPiece) {
+        return when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
                 canMoveYellow(positionClicked, actualState)
             }
@@ -59,8 +58,8 @@ class ClickListener(private val context: Context, private val positionClicked: I
         val orientationOfTheClickedPiece = clickedPiece.orientation
         val piecesOfThePieceGroup = adapter.getGroup(clickedPiece.groupId).pieces
 
-        return isAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup.get(0)), actualState, orientationOfTheClickedPiece) ||
-                isAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup.get(1)), actualState, piecesOfThePieceGroup.get(1).orientation)
+        return isAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[0]), actualState, orientationOfTheClickedPiece) ||
+                isAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[1]), actualState, piecesOfThePieceGroup[1].orientation)
     }
 
     private fun canMoveYellow(positionClicked: Int, actualState: Array<GamePiece>): Boolean {
@@ -109,8 +108,7 @@ class ClickListener(private val context: Context, private val positionClicked: I
         )
 
         // Check if the surrounding pieces are inside the board
-        val surroundingPiecesInsideBoard = surroundingPieces.filter { it >= 0 && it < 20 }
-        return surroundingPiecesInsideBoard
+        return surroundingPieces.filter { it in 0..19 }
     }
 
 }
