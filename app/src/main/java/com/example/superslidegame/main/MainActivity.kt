@@ -8,8 +8,8 @@ import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.settings.SettingsScreen
 
 /**
- * Main activity for the game.
- * This activity is the first activity that is launched when the game is started.
+ * Main activity of the application.
+ * This activity is the first activity that is launched when the application is started.
  * It contains three buttons, one to start the game, one to go to the help screen, and one to go to the settings screen.
  * Every screen is started when the corresponding button is clicked.
  * @constructor Creates a new main activity.
