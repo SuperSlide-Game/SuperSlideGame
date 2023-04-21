@@ -5,10 +5,11 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 
-class ClickListener(private val context: Context, private val positionClicked: Int, private val actualState: Array<GamePiece>) : OnClickListener {
+class ClickListener(private val context: Context, private val positionClicked: Int, private val adapter: ImageAdapter) : OnClickListener {
     override fun onClick(view: View?) {
 
-        val pieceClicked = actualState[positionClicked]
+        val pieceClicked = adapter.getPiecesState()[positionClicked]
+        val actualState = adapter.getPiecesState()
 
         when (pieceClicked.type) {
             PieceType.EMPTY -> {
@@ -26,18 +27,21 @@ class ClickListener(private val context: Context, private val positionClicked: I
 
     private fun canMove(positionClicked: Int, actualState: Array<GamePiece>): Boolean {
         val typeOfTheClickedPiece = actualState[positionClicked].type
-        when (typeOfTheClickedPiece) {
+        return when (typeOfTheClickedPiece) {
             PieceType.YELLOW -> {
-                return canMoveYellow(positionClicked, actualState)
+                canMoveYellow(positionClicked, actualState)
             }
+
             PieceType.BLUE -> {
-                return canMoveBlue(positionClicked, actualState)
+                canMoveBlue(positionClicked, actualState)
             }
+
             PieceType.RED -> {
-                return canMoveRed(positionClicked, actualState)
+                canMoveRed(positionClicked, actualState)
             }
+
             else -> {
-                return false
+                false
             }
         }
     }
@@ -53,46 +57,10 @@ class ClickListener(private val context: Context, private val positionClicked: I
 
         val clickedPiece = actualState[positionClicked]
         val orientationOfTheClickedPiece = clickedPiece.orientation
-        val relativeOrderOfTheClickedPiece = clickedPiece.relativeOrder
+        val piecesOfThePieceGroup = adapter.getGroup(clickedPiece.groupId).pieces
 
-        // Get the positions of the other part of the piece
-        val otherPiecePositions = when (orientationOfTheClickedPiece) {
-            Orientation.HORIZONTAL -> {
-                when (relativeOrderOfTheClickedPiece) {
-                    1 -> {
-                        arrayOf(positionClicked + 1, positionClicked + 2)
-                    }
-                    2 -> {
-                        arrayOf(positionClicked - 1, positionClicked + 1)
-                    }
-                    else -> {
-                        arrayOf(positionClicked - 2, positionClicked - 1)
-                    }
-                }
-            }
-            Orientation.VERTICAL -> {
-                when (relativeOrderOfTheClickedPiece) {
-                    1 -> {
-                        arrayOf(positionClicked + 4, positionClicked + 8)
-                    }
-                    2 -> {
-                        arrayOf(positionClicked - 4, positionClicked + 4)
-                    }
-                    else -> {
-                        arrayOf(positionClicked - 8, positionClicked - 4)
-                    }
-                }
-            }
-            else -> {
-                arrayOf()
-            }
-        }
-
-        Toast.makeText(context, "Other piece positions: ${otherPiecePositions[0]}, ${otherPiecePositions[1]}", Toast.LENGTH_SHORT).show()
-
-        return isAnySurroundingPieceEmpty(positionClicked, actualState, orientationOfTheClickedPiece) ||
-                isAnySurroundingPieceEmpty(otherPiecePositions[0], actualState, orientationOfTheClickedPiece) ||
-                isAnySurroundingPieceEmpty(otherPiecePositions[1], actualState, orientationOfTheClickedPiece)
+        return isAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup.get(0)), actualState, orientationOfTheClickedPiece) ||
+                isAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup.get(1)), actualState, piecesOfThePieceGroup.get(1).orientation)
     }
 
     private fun canMoveYellow(positionClicked: Int, actualState: Array<GamePiece>): Boolean {
