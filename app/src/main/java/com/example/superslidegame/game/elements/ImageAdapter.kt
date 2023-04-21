@@ -38,16 +38,16 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
     )
 
     // Definition of the cell groups
-    val blueGroup1 = CellGroup(1, listOf(
+    private val blueGroup1 = PieceGroup(1, listOf(
         pieces[9],
         pieces[10],
     ))
-    val blueGroup2 = CellGroup(2, listOf(
+    private val blueGroup2 = PieceGroup(2, listOf(
         pieces[14],
         pieces[18],
     ))
 
-    val redGroup = CellGroup(3, listOf(
+    private val redGroup = PieceGroup(3, listOf(
         pieces[12],
         pieces[13],
         pieces[17],
@@ -85,7 +85,29 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         } else {
             imageButton = convertView as ImageButton
         }
-        imageButton.setOnClickListener(ClickListener(context, position, pieces))
+        imageButton.setOnClickListener(ClickListener(context, position, this))
         return imageButton
+    }
+
+    fun getPiecesState() : Array<GamePiece> {
+        return pieces
+    }
+
+    fun getPositionOfPiece(piece: GamePiece) : Int {
+        for (i in pieces.indices) {
+            if (pieces[i] == piece) {
+                return i
+            }
+        }
+        throw Exception("Piece not found")
+    }
+
+    fun getGroup(groupId: Int) : PieceGroup {
+        for (group in groups) {
+            if (group.id == groupId) {
+                return group
+            }
+        }
+        throw Exception("Group not found")
     }
 }
