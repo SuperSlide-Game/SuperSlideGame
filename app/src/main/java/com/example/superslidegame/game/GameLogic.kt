@@ -9,18 +9,18 @@ import com.example.superslidegame.game.elements.PieceType
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
-    fun canMove(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    fun whereToMove(positionClicked: Int, actualState: Array<GamePiece>): Int? {
         return when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
-                canMoveYellow(positionClicked, actualState)
+                whereToMoveYellow(positionClicked, actualState)
             }
 
             PieceType.BLUE -> {
-                canMoveBlue(positionClicked, actualState)
+                whereToMoveBlue(positionClicked, actualState)
             }
 
             PieceType.RED -> {
-                canMoveRed(positionClicked, actualState)
+                whereToMoveRed(positionClicked, actualState)
             }
 
             else -> {
@@ -33,11 +33,11 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         TODO()
     }
 
-    private fun canMoveRed(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun whereToMoveRed(positionClicked: Int, actualState: Array<GamePiece>): Int? {
         TODO("Not yet implemented")
     }
 
-    private fun canMoveBlue(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun whereToMoveBlue(positionClicked: Int, actualState: Array<GamePiece>): Int? {
         // Piece size is 2, so depending of the orientation, we have to check if the position that is able to be moved to is empty
         // If the piece is horizontal, we have to check if the positions to the right or left are empty
         // If the piece is vertical, we have to check if the positions below or above are empty
@@ -48,19 +48,19 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val orientationOfThePieceGroup = pieceGroup.orientation
         val piecesOfThePieceGroup = pieceGroup.pieces
 
-        val whereToMovePiece1 = anySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[0]), actualState, orientationOfThePieceGroup)
-        val whereToMovePiece2 = anySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[1]), actualState, orientationOfThePieceGroup)
+        val whereToMovePiece1 = getAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[0]), actualState, orientationOfThePieceGroup)
+        val whereToMovePiece2 = getAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[1]), actualState, orientationOfThePieceGroup)
 
-        // If any of the pieces can be moved, we return the position of the piece that can be moved
+        // If any of the pieces can be moved, we return the position of the piece that can be moved or null if none of them can be moved
         return whereToMovePiece1 ?: whereToMovePiece2
     }
 
-    private fun canMoveYellow(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun whereToMoveYellow(positionClicked: Int, actualState: Array<GamePiece>): Int? {
         // Piece size is 1, so we have to check if any of the surrounding pieces is empty
-        return anySurroundingPieceEmpty(positionClicked, actualState)
+        return getAnySurroundingPieceEmpty(positionClicked, actualState)
     }
 
-    private fun anySurroundingPieceEmpty(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: Array<GamePiece>): Int? {
         val surroundingPiecesInsideBoard = getSurroundingPositionsInsideBoard(positionClicked)
 
         // Return the first piece that is empty
@@ -68,7 +68,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return gamePiece?.let { adapter.getPositionOfPiece(it) }
     }
 
-    private fun anySurroundingPieceEmpty(positionClicked: Int, actualState: Array<GamePiece>, pieceOrientation: Orientation?): Int? {
+    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: Array<GamePiece>, pieceOrientation: Orientation?): Int? {
         // Checks if the piece of the direction we want to check is empty
 
         val surroundingPiecesInsideBoard = getSurroundingPositionsInsideBoard(positionClicked)
