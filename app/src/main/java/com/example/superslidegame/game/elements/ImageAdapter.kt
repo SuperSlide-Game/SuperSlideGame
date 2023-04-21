@@ -6,56 +6,15 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
+import com.example.superslidegame.game.levels.GameLevel
 
 class ImageAdapter(private val context: Context) : BaseAdapter() {
 
-    // Board of 5x4
-    private val pieces = arrayOf(
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.EMPTY),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.EMPTY),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.BLUE, Orientation.VERTICAL, 2),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3),
-        GamePiece(PieceType.BLUE, Orientation.VERTICAL, 2),
-        GamePiece(PieceType.YELLOW),
-    )
+    private val level = GameLevel()
 
-    // Definition of the cell groups
-    private val blueGroup1 = PieceGroup(1, listOf(
-        pieces[9],
-        pieces[10],
-    ))
-    private val blueGroup2 = PieceGroup(2, listOf(
-        pieces[14],
-        pieces[18],
-    ))
+    private val pieces = level.getPieces()
 
-    private val redGroup = PieceGroup(3, listOf(
-        pieces[12],
-        pieces[13],
-        pieces[17],
-        pieces[17],
-    ))
-
-
-    private val groups = arrayOf(
-        blueGroup1,
-        blueGroup2,
-        redGroup,
-    )
+    private val groups = level.getGroups()
 
     override fun getCount(): Int {
         return pieces.size
