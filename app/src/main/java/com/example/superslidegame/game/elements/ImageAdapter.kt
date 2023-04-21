@@ -12,6 +12,7 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
     /*fun getPiecesState() : Array<GamePiece> {
         return pieces
     }*/
+
     // Board of 5x4
     private val pieces = arrayOf(
         GamePiece(PieceType.YELLOW),
@@ -24,29 +25,40 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.EMPTY),
         GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,1),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 2,1),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
-        GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,2),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
-        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,3),
         GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,2),
         GamePiece(PieceType.YELLOW),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,1),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,2),
+        GamePiece(PieceType.BLUE, Orientation.VERTICAL, 2,3),
+        GamePiece(PieceType.YELLOW),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,3),
+        GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,4),
+        GamePiece(PieceType.BLUE, Orientation.VERTICAL, 2,1),
+        GamePiece(PieceType.YELLOW),
     )
-    private val groups = arrayOf(
-        CellGroup(13, listOf(
-            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
-            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,3),
-            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
-            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3))
-        ),
-        CellGroup(13, listOf(
-            GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,1),
-            GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,1))
-        ),
 
+    // Definition of the cell groups
+    val blueGroup1 = CellGroup(1, listOf(
+        pieces[9],
+        pieces[10],
+    ))
+    val blueGroup2 = CellGroup(2, listOf(
+        pieces[14],
+        pieces[18],
+    ))
+
+    val redGroup = CellGroup(3, listOf(
+        pieces[12],
+        pieces[13],
+        pieces[17],
+        pieces[17],
+    ))
+
+
+    private val groups = arrayOf(
+        blueGroup1,
+        blueGroup2,
+        redGroup,
     )
 
     override fun getCount(): Int {
