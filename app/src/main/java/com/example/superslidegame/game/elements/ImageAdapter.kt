@@ -35,6 +35,20 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,2),
         GamePiece(PieceType.YELLOW),
     )
+    private val groups = arrayOf(
+        CellGroup(13, listOf(
+            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
+            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 3,3),
+            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3),
+            GamePiece(PieceType.RED, Orientation.HORIZONTAL, 1,3))
+        ),
+        CellGroup(13, listOf(
+            GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 1,1),
+            GamePiece(PieceType.BLUE, Orientation.HORIZONTAL, 3,1))
+        ),
+
+    )
+
     override fun getCount(): Int {
         return pieces.size
     }
