@@ -1,11 +1,16 @@
 package com.example.superslidegame.game
 
+import android.R
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.GridView
 import android.widget.Toast
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
+
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
@@ -30,8 +35,11 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     fun move(positionClicked: Int, positionToMove: Int, actualState: Array<GamePiece>) {
-        adapter.movePiece(actualState[positionClicked], positionToMove)
+        if(actualState[positionClicked].type == PieceType.YELLOW){
+            adapter.moveYellowPiece(actualState[positionClicked], positionToMove)
+        }
         adapter.notifyDataSetChanged()
+        //Falta aconsegir la grid i executar grid.invalidateViews(); per a forçar la update gràfica.
     }
 
     private fun whereToMoveRed(positionClicked: Int, actualState: Array<GamePiece>): Int? {

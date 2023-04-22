@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
 import com.example.superslidegame.game.levels.GameLevel
@@ -65,10 +66,15 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         }
         throw Exception("Group not found")
     }
-    fun movePiece(piece : GamePiece, moveTo: Int) {
+    fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
+        Toast.makeText(context,
+            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
         val x = pieces[moveTo]
         pieces[moveTo] = pieces[getPositionOfPiece(piece)]
+
         pieces[getPositionOfPiece(piece)] = x
+        Toast.makeText(context,
+            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
 
     }
 }
