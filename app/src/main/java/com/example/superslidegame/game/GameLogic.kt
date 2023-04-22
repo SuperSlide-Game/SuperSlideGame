@@ -30,7 +30,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     fun move(positionClicked: Int, positionToMove: Int, actualState: Array<GamePiece>) {
-        TODO()
+        adapter.movePiece(actualState[positionClicked], positionToMove)
+        adapter.notifyDataSetChanged()
     }
 
     private fun whereToMoveRed(positionClicked: Int, actualState: Array<GamePiece>): Int? {
