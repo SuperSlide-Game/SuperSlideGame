@@ -6,7 +6,6 @@ import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
-import kotlin.math.max
 
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
@@ -168,9 +167,17 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>): Int? {
         val surroundingPiecesInsideBoard = getSurroundingPositionsInsideBoard(positionClicked)
 
-        // Return the first piece that is empty
+        // Return the first piece position that is empty
         val gamePiece = surroundingPiecesInsideBoard.map { actualState[it] }.firstOrNull { it.type == PieceType.EMPTY }
         return gamePiece?.let { adapter.getPositionOfPiece(it) }
+    }
+
+    private fun pieceIsInLastColumn(positionClicked: Int): Boolean {
+        return positionClicked % 4 == 3
+    }
+
+    private fun pieceIsInFirstColumn(positionClicked: Int): Boolean {
+        return positionClicked % 4 == 0
     }
 
     private fun filterGoodPieces(pieces : List<Int>, posClicked : Int) : List<Int>{
@@ -220,12 +227,22 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     private fun getSurroundingPositionsInsideBoard(positionClicked: Int): List<Int> {
         val row = positionClicked / 4
         val column = positionClicked % 4
-        val surroundingPieces = listOf(
+        val surroundingPieces = mutableListOf(
             (row - 1) * 4 + column,
             (row + 1) * 4 + column,
             row * 4 + column - 1,
             row * 4 + column + 1
         )
+
+        if (pieceIsInFirstColumn(positionClicked) || pieceIsInLastColumn(positionClicked)) {
+            if (pieceIsInFirstColumn(positionClicked)) {
+                // Remove the left piece
+                surroundingPieces.remove(positionClicked - 1)
+            } else {
+                // Remove the right piece
+                surroundingPieces.remove(positionClicked + 1)
+            }
+        }
 
         // Check if the surrounding pieces are inside the board
         return surroundingPieces.filter { it in 0..19 }
