@@ -68,8 +68,6 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
                 adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 1)
                 adapter.swapPositions(leftPiecePosition, leftPiecePosition + 1)
                 adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 1)
-
-
             }
 
             Direction.LEFT -> {
@@ -88,10 +86,12 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
                 val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
                 val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
                 val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
+                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 4)
+                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 4)
                 adapter.swapPositions(leftPiecePosition, leftPiecePosition + 4)
                 adapter.swapPositions(rightPiecePosition, rightPiecePosition + 4)
-                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 4)
-                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 4)
+
+
             }
 
             Direction.UP -> {
@@ -510,8 +510,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         actualState: List<GamePiece>,
         piecesOfThePieceGroup: List<GamePiece>
     ): Direction? {
-        val lowerPiece = piecesOfThePieceGroup[3]
-        val lowerPiece2 = piecesOfThePieceGroup[2]
+        val lowerPiece = piecesOfThePieceGroup[2]
+        val lowerPiece2 = piecesOfThePieceGroup[3]
         val lowerPiecePosition = adapter.getPositionOfPiece(lowerPiece)
         val lowerPiecePosition2 = adapter.getPositionOfPiece(lowerPiece2)
         val lowerPiecePositionIsInLastRow = pieceIsInLastRow(lowerPiecePosition)
@@ -525,7 +525,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
     }
     private fun pieceIsInLastRow(piecePosition: Int): Boolean {
-        return piecePosition > 11
+        return piecePosition > 15
     }
 
     private fun canMoveUpVertically(
