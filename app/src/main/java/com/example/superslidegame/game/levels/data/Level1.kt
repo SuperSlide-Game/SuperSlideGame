@@ -7,59 +7,35 @@ import com.example.superslidegame.game.elements.PieceType
 import com.example.superslidegame.game.levels.Level
 
 class Level1 : Level {
-    private var pieces: MutableList<GamePiece> = mutableListOf(
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.EMPTY),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.EMPTY),
-        GamePiece(PieceType.BLUE, 1),
-        GamePiece(PieceType.BLUE, 1),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, 3),
-        GamePiece(PieceType.RED, 3),
-        GamePiece(PieceType.BLUE, 2),
-        GamePiece(PieceType.YELLOW),
-        GamePiece(PieceType.RED, 3),
-        GamePiece(PieceType.RED, 3),
-        GamePiece(PieceType.BLUE, 2),
-        GamePiece(PieceType.YELLOW),
+
+    private val piece1 = GamePiece(PieceType.YELLOW)
+    private val piece2 = GamePiece(PieceType.YELLOW)
+    private val piece3 = GamePiece(PieceType.YELLOW)
+    private val piece4 = GamePiece(PieceType.EMPTY)
+    private val piece5 = GamePiece(PieceType.YELLOW)
+    private val piece6 = GamePiece(PieceType.YELLOW)
+    private val piece7 = GamePiece(PieceType.YELLOW)
+    private val piece8 = GamePiece(PieceType.YELLOW)
+    private val piece9 = GamePiece(PieceType.EMPTY)
+    private val piece10 = GamePiece(PieceType.BLUE, 1)
+    private val piece11 = GamePiece(PieceType.BLUE, 1)
+    private val piece12 = GamePiece(PieceType.YELLOW)
+    private val piece13 = GamePiece(PieceType.RED, 3)
+    private val piece14 = GamePiece(PieceType.RED, 3)
+    private val piece15 = GamePiece(PieceType.BLUE, 2)
+    private val piece16 = GamePiece(PieceType.YELLOW)
+    private val piece17 = GamePiece(PieceType.RED, 3)
+    private val piece18 = GamePiece(PieceType.RED, 3)
+    private val piece19 = GamePiece(PieceType.BLUE, 2)
+    private val piece20 = GamePiece(PieceType.YELLOW)
+
+    private var pieces = mutableListOf(piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15, piece16, piece17, piece18, piece19, piece20)
+
+    private var groups: MutableList<PieceGroup> = mutableListOf(
+        PieceGroup(1, Orientation.HORIZONTAL, mutableListOf(piece10, piece11)),
+        PieceGroup(2, Orientation.VERTICAL, mutableListOf(piece15, piece19)),
+        PieceGroup(3, mutableListOf(piece13, piece14, piece17, piece18))
     )
-
-    private var groups: MutableList<PieceGroup>
-
-    init {
-
-        val blueGroup1 = PieceGroup(1, Orientation.HORIZONTAL, mutableListOf(
-            pieces[9],
-            pieces[10],
-        )
-        )
-        val blueGroup2 = PieceGroup(2, Orientation.VERTICAL, mutableListOf(
-            pieces[14],
-            pieces[18],
-        )
-        )
-
-        val redGroup = PieceGroup(3, mutableListOf(
-            pieces[12],
-            pieces[13],
-            pieces[17],
-            pieces[17],
-        )
-        )
-
-
-        groups = mutableListOf(
-            blueGroup1,
-            blueGroup2,
-            redGroup,
-        )
-    }
 
     override fun getNumber(): Int {
         return 1
