@@ -151,12 +151,14 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val orientationOfThePieceGroup = pieceGroup.orientation
         val piecesOfThePieceGroup = pieceGroup.pieces
 
+        //falta mirar verticalment les horitzonals
         val whereToMovePiece1 = getAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[0]), actualState, orientationOfThePieceGroup)
         val whereToMovePiece2 = getAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[1]), actualState, orientationOfThePieceGroup)
 
         // If any of the pieces can be moved, we return the position of the piece that can be moved or null if none of them can be moved
-        return whereToMovePiece1 ?: whereToMovePiece2
+        return whereToMovePiece1 ?: whereToMovePiece2 //S'ha de retornar els dos valors, ja que és vertical
     }
+
 
     private fun whereToMoveYellow(positionClicked: Int, actualState: List<GamePiece>): Int? {
         // Piece size is 1, so we have to check if any of the surrounding pieces is empty
@@ -205,7 +207,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             }
 
             Orientation.VERTICAL -> {
-                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 4 || it == positionClicked + 4 }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
