@@ -53,7 +53,18 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun moveBluePiece(piece: GamePiece, moveTo: Int) {
-        TODO("Not yet implemented")
+        val pieces = adapter.getPiecesState()
+        val groups = adapter.getGroup(piece.groupId)
+        val piece1 = groups.pieces.get(0)
+        val piece2 = groups.pieces.get(1)
+
+        Toast.makeText(context,
+            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
+
+        adapter.swapPositions(adapter.getPositionOfPiece(piece2), moveTo)
+        adapter.swapPositions(adapter.getPositionOfPiece(piece1), moveTo)
+        Toast.makeText(context,
+            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
     }
 
     private fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
