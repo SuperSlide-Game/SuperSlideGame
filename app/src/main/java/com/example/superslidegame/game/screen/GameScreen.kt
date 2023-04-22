@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.game.elements.ImageAdapter
+import com.example.superslidegame.game.levels.GameLevel
 
 /**
  * GameScreen is the main screen of the game.
@@ -20,6 +21,8 @@ class GameScreen : AppCompatActivity() {
         val binding = GameScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.gridTiles.adapter = ImageAdapter(applicationContext)
+        val level = GameLevel()
+
+        binding.gridTiles.adapter = ImageAdapter(this, level)
     }
 }
