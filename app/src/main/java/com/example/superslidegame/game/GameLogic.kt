@@ -123,26 +123,48 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
 
     }
+    private fun canMoveH(positon : Int, desiredMove : Direction) : Boolean {
+        val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
+        var gRange = arrayOf(0,0)
+        for(ranges in existingRanges){
+            if(positon >= ranges[0] && positon <= ranges[1] ){
+                gRange = ranges
+            }
+        }
+        when(desiredMove) {
+            Direction.LEFT -> {
+                return positon > gRange[0]
+            }
 
+            Direction.RIGHT -> {
+                return positon < gRange[1]
+            }
+            else -> {return true}
+        }
+    }
     private fun moveBluePiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
+        val pieces = pieceGroup.pieces
         val orientationOfThePieceGroup = pieceGroup.orientation
-
+        val posP1 = adapter.getPositionOfPiece(pieces[0])
+        val posP2 = adapter.getPositionOfPiece(pieces[1])
+        val bigN = posP1.coerceAtLeast(posP2)
+        val minN = posP1.coerceAtMost(posP2)
         when (orientationOfThePieceGroup) {
             Orientation.HORIZONTAL -> {
                 when (moveTo) {
                     Direction.LEFT -> {
-                        val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
-                        val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                        adapter.swapPositions(leftPiecePosition, leftPiecePosition - 1)
-                        adapter.swapPositions(rightPiecePosition, rightPiecePosition - 1)
+                        if(canMoveH(minN, moveTo)){
+                            adapter.swapPositions(minN, minN - 1)
+                            adapter.swapPositions(bigN,bigN - 1)
+                        }
                     }
 
                     Direction.RIGHT -> {
-                        val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
-                        val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                        adapter.swapPositions(leftPiecePosition, leftPiecePosition + 1)
-                        adapter.swapPositions(rightPiecePosition, rightPiecePosition + 1)
+                        if(canMoveH(bigN, moveTo)) {
+                            adapter.swapPositions(bigN, bigN + 1)
+                            adapter.swapPositions(minN, minN + 1)
+                        }
                     }
 
                     Direction.DOWN -> {
