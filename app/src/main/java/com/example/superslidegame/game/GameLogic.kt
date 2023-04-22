@@ -123,6 +123,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
 
     }
+
     private fun canMoveH(positon : Int, desiredMove : Direction) : Boolean {
         val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
         var gRange = arrayOf(0,0)
@@ -226,8 +227,13 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
     }
 
-    private fun whereToMoveRed(positionClicked: Int, actualState: List<GamePiece>): Int? {
-        TODO("Not yet implemented")
+    private fun whereToMoveRed(positionClicked: Int, actualState: List<GamePiece>): Direction? {
+        val clickedPiece = actualState[positionClicked]
+
+        val pieceGroup = adapter.getGroup(clickedPiece.groupId)
+        val piecesOfThePieceGroup = pieceGroup.pieces
+
+        return directionToMove(actualState, piecesOfThePieceGroup)
     }
 
     private fun whereToMoveBlue(positionClicked: Int, actualState: List<GamePiece>): Direction? {
@@ -266,6 +272,17 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             }
             else -> return null
         }
+    }
+
+    private fun directionToMove(
+        actualState: List<GamePiece>,
+        piecesOfThePieceGroup: List<GamePiece>
+    ): Direction? {
+            val canMoveUpVertically = canMoveUpRed(actualState, piecesOfThePieceGroup)
+            val canMoveDownVertically = canMoveDownRed(actualState, piecesOfThePieceGroup)
+            val canMoveLeftVertically = canMoveLeftVertically(actualState, piecesOfThePieceGroup)
+            val canMoveRightVertically = canMoveRightVertically(actualState, piecesOfThePieceGroup)
+            return canMoveDownVertically ?: canMoveUpVertically ?: canMoveLeftVertically ?: canMoveRightVertically
     }
 
     private fun canMoveDownHorizontally(
@@ -398,7 +415,25 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             null
         }
     }
+    private fun canMoveDownRed(
+        actualState: List<GamePiece>,
+        piecesOfThePieceGroup: List<GamePiece>
+    ): Direction? {
+        val lowerPiece = piecesOfThePieceGroup[3]
+        val lowerPiece2 = piecesOfThePieceGroup[2]
+        val lowerPiecePosition = adapter.getPositionOfPiece(lowerPiece)
+        val lowerPiecePosition2 = adapter.getPositionOfPiece(lowerPiece2)
+        val lowerPiecePositionIsInLastRow = pieceIsInLastRow(lowerPiecePosition)
+        if (lowerPiecePositionIsInLastRow) {
+            return null
+        }
 
+        return if (actualState[lowerPiecePosition + 4].type == PieceType.EMPTY && actualState[lowerPiecePosition2 + 4].type == PieceType.EMPTY ) {
+            Direction.DOWN
+        } else {
+            null
+        }
+    }
     private fun pieceIsInLastRow(piecePosition: Int): Boolean {
         return piecePosition > 11
     }
@@ -420,7 +455,24 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             null
         }
     }
-
+    private fun canMoveUpRed(
+        actualState: List<GamePiece>,
+        piecesOfThePieceGroup: List<GamePiece>
+    ): Direction? {
+        val upperPiece = piecesOfThePieceGroup[0]
+        val upperPiece2 = piecesOfThePieceGroup[1]
+        val upperPiecePosition = adapter.getPositionOfPiece(upperPiece)
+        val upperPiecePosition2 = adapter.getPositionOfPiece(upperPiece2)
+        val upperPiecePositionIsInFirstRow = pieceIsInFirstRow(upperPiecePosition)
+        if (upperPiecePositionIsInFirstRow) {
+            return null
+        }
+        return if (actualState[upperPiecePosition - 4].type == PieceType.EMPTY && actualState[upperPiecePosition2 - 4].type == PieceType.EMPTY) {
+            Direction.UP
+        } else {
+            null
+        }
+    }
     private fun pieceIsInFirstRow(piecePosition: Int): Boolean {
         return piecePosition < 4
     }
