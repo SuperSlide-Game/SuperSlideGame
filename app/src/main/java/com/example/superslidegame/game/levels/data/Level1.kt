@@ -30,28 +30,31 @@ class Level1 : Level {
         GamePiece(PieceType.YELLOW),
     )
 
-    private var groups: List<PieceGroup>
+    private var groups: MutableList<PieceGroup>
 
     init {
 
-        val blueGroup1 = PieceGroup(1, Orientation.HORIZONTAL, listOf(
+        val blueGroup1 = PieceGroup(1, Orientation.HORIZONTAL, mutableListOf(
             pieces[9],
             pieces[10],
-        ))
-        val blueGroup2 = PieceGroup(2, Orientation.VERTICAL, listOf(
+        )
+        )
+        val blueGroup2 = PieceGroup(2, Orientation.VERTICAL, mutableListOf(
             pieces[14],
             pieces[18],
-        ))
+        )
+        )
 
-        val redGroup = PieceGroup(3, listOf(
+        val redGroup = PieceGroup(3, mutableListOf(
             pieces[12],
             pieces[13],
             pieces[17],
             pieces[17],
-        ))
+        )
+        )
 
 
-        groups = listOf(
+        groups = mutableListOf(
             blueGroup1,
             blueGroup2,
             redGroup,
@@ -66,7 +69,7 @@ class Level1 : Level {
         return pieces
     }
 
-    override fun getGroups(): List<PieceGroup> {
+    override fun getGroups(): MutableList<PieceGroup> {
         return groups
     }
 }
