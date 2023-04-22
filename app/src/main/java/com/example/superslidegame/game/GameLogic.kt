@@ -171,6 +171,23 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return gamePiece?.let { adapter.getPositionOfPiece(it) }
     }
 
+    private fun filterGoodPiecesH(pieces : List<Int>, posClicked : Int) : List<Int>{
+        val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
+        var gRange = arrayOf(0,0)
+        for(ranges in existingRanges){
+            if(posClicked >= ranges[0] && posClicked <= ranges[1] ){
+                gRange = ranges
+            }
+        }
+        val result = ArrayList<Int>()
+        for(piece in pieces){
+            if(piece <= gRange[1] && piece >= gRange[0]){
+                result.add(piece)
+            }
+        }
+        return result
+    }
+
     private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>, pieceOrientation: Orientation?): Int? {
         // Checks if the piece of the direction we want to check is empty
 
@@ -178,11 +195,12 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
         val emptySurroundingPieces = surroundingPiecesInsideBoard.filter { actualState[it].type == PieceType.EMPTY }
 
-        Toast.makeText(context, "Empty surrounding pieces: $emptySurroundingPieces of the piece $positionClicked", Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPiecesH(emptySurroundingPieces, positionClicked)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
 
         return when (pieceOrientation) {
             Orientation.HORIZONTAL -> {
-                val gamePiece = emptySurroundingPieces.firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
+                val gamePiece = filterGoodPiecesH(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
