@@ -154,17 +154,13 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             Orientation.HORIZONTAL -> {
                 when (moveTo) {
                     Direction.LEFT -> {
-                        if(canMoveH(minN, moveTo)){
-                            adapter.swapPositions(minN, minN - 1)
-                            adapter.swapPositions(bigN,bigN - 1)
-                        }
+                        adapter.swapPositions(minN, minN - 1)
+                        adapter.swapPositions(bigN,bigN - 1)
                     }
 
                     Direction.RIGHT -> {
-                        if(canMoveH(bigN, moveTo)) {
-                            adapter.swapPositions(bigN, bigN + 1)
-                            adapter.swapPositions(minN, minN + 1)
-                        }
+                        adapter.swapPositions(bigN, bigN + 1)
+                        adapter.swapPositions(minN, minN + 1)
                     }
 
                     Direction.DOWN -> {
