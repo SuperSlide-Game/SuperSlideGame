@@ -56,53 +56,72 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     private fun moveBluePiece(piece: GamePiece, moveTo: Int) {
         val groups = adapter.getGroup(piece.groupId)
         val BigPiece = groups.pieces
-
-        /*Toast.makeText(context,
-            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()*/
-        val posP1 = adapter.getPositionOfPiece(BigPiece[0])
-        val posP2 = adapter.getPositionOfPiece(BigPiece[1])
-        val bigN = posP1.coerceAtLeast(posP2)
-        val minN = posP1.coerceAtMost(posP2)
-        if(posP1 == adapter.getPositionOfPiece(piece)){
-            if(moveTo < posP1 && moveTo < posP2){
-                if(minN == posP1){
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+1)
+        if(groups.orientation == Orientation.HORIZONTAL){
+            val posP1 = adapter.getPositionOfPiece(BigPiece[0])
+            val posP2 = adapter.getPositionOfPiece(BigPiece[1])
+            val bigN = posP1.coerceAtLeast(posP2)
+            val minN = posP1.coerceAtMost(posP2)
+            if(posP1 == adapter.getPositionOfPiece(piece)){
+                if(moveTo < posP1 && moveTo < posP2){
+                    if(minN == posP1){
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+1)
+                    }else{
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
+                    }
                 }else{
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
+                    if(bigN == posP1){
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo-1)
+                    }else{
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
+                    }
                 }
             }else{
-                if(bigN == posP1){
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo-1)
+                if(moveTo < posP1 && moveTo < posP2){
+                    if(minN == posP1){
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo+1)
+                    }else{
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
+                    }
                 }else{
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
+                    if(bigN == posP1){
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo-1)
+                    }else{
+                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
+                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
+                    }
                 }
             }
         }else{
-            if(moveTo < posP1 && moveTo < posP2){
-                if(minN == posP1){
+            val posP1 = adapter.getPositionOfPiece(BigPiece[0])
+            val posP2 = adapter.getPositionOfPiece(BigPiece[1])
+            val bigN = posP1.coerceAtLeast(posP2)
+            val minN = posP1.coerceAtMost(posP2)
+            if(posP1 == adapter.getPositionOfPiece(piece)){
+                if(moveTo < posP1 && moveTo < posP2){
                     adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo+1)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+4)
                 }else{
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-4)
                 }
             }else{
-                if(bigN == posP1){
+                if(moveTo < posP1 && moveTo < posP2){
                     adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo-1)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+4)
                 }else{
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-4)
                 }
             }
         }
 
-        /*Toast.makeText(context,
-            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()*/
     }
 
     private fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
