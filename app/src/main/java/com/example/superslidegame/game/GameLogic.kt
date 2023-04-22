@@ -1,10 +1,6 @@
 package com.example.superslidegame.game
 
-import android.R
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.GridView
 import android.widget.Toast
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
@@ -14,7 +10,7 @@ import com.example.superslidegame.game.elements.PieceType
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
-    fun whereToMove(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    fun whereToMove(positionClicked: Int, actualState: List<GamePiece>): Int? {
         return when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
                 whereToMoveYellow(positionClicked, actualState)
@@ -34,19 +30,49 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
     }
 
-    fun move(positionClicked: Int, positionToMove: Int, actualState: Array<GamePiece>) {
-        if(actualState[positionClicked].type == PieceType.YELLOW){
-            adapter.moveYellowPiece(actualState[positionClicked], positionToMove)
+    fun move(positionClicked: Int, positionToMove: Int, actualState: List<GamePiece>) {
+        when (actualState[positionClicked].type) {
+            PieceType.YELLOW -> {
+                moveYellowPiece(actualState[positionClicked], positionToMove)
+            }
+
+            PieceType.BLUE -> {
+                moveBluePiece(actualState[positionClicked], positionToMove)
+            }
+
+            PieceType.RED -> {
+                moveRedPiece(actualState[positionClicked], positionToMove)
+            }
+
+            else -> {}
         }
-        adapter.notifyDataSetChanged()
-        //Falta aconsegir la grid i executar grid.invalidateViews(); per a forçar la update gràfica.
     }
 
-    private fun whereToMoveRed(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun moveRedPiece(piece: GamePiece, moveTo: Int) {
         TODO("Not yet implemented")
     }
 
-    private fun whereToMoveBlue(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun moveBluePiece(piece: GamePiece, moveTo: Int) {
+        TODO("Not yet implemented")
+    }
+
+    private fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
+        val pieces = adapter.getPiecesState()
+
+        Toast.makeText(context,
+            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
+
+        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+
+        Toast.makeText(context,
+            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun whereToMoveRed(positionClicked: Int, actualState: List<GamePiece>): Int? {
+        TODO("Not yet implemented")
+    }
+
+    private fun whereToMoveBlue(positionClicked: Int, actualState: List<GamePiece>): Int? {
         // Piece size is 2, so depending of the orientation, we have to check if the position that is able to be moved to is empty
         // If the piece is horizontal, we have to check if the positions to the right or left are empty
         // If the piece is vertical, we have to check if the positions below or above are empty
@@ -64,12 +90,12 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return whereToMovePiece1 ?: whereToMovePiece2
     }
 
-    private fun whereToMoveYellow(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun whereToMoveYellow(positionClicked: Int, actualState: List<GamePiece>): Int? {
         // Piece size is 1, so we have to check if any of the surrounding pieces is empty
         return getAnySurroundingPieceEmpty(positionClicked, actualState)
     }
 
-    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: Array<GamePiece>): Int? {
+    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>): Int? {
         val surroundingPiecesInsideBoard = getSurroundingPositionsInsideBoard(positionClicked)
 
         // Return the first piece that is empty
@@ -77,7 +103,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return gamePiece?.let { adapter.getPositionOfPiece(it) }
     }
 
-    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: Array<GamePiece>, pieceOrientation: Orientation?): Int? {
+    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>, pieceOrientation: Orientation?): Int? {
         // Checks if the piece of the direction we want to check is empty
 
         val surroundingPiecesInsideBoard = getSurroundingPositionsInsideBoard(positionClicked)
