@@ -153,8 +153,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         //falta mirar verticalment les horitzonals
         val whereToMovePiece1 = getAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[0]), actualState, orientationOfThePieceGroup)
         val whereToMovePiece2 = getAnySurroundingPieceEmpty(adapter.getPositionOfPiece(piecesOfThePieceGroup[1]), actualState, orientationOfThePieceGroup)
-        Toast.makeText(context,
-            "You can move this piece to position: $whereToMovePiece1 $whereToMovePiece2", Toast.LENGTH_SHORT).show()
+
         // If any of the pieces can be moved, we return the position of the piece that can be moved or null if none of them can be moved
         return whereToMovePiece1 ?: whereToMovePiece2 //S'ha de retornar els dos valors, ja que és vertical
     }
@@ -199,16 +198,14 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             }
         }
         val result = ArrayList<Int>()
-        if(actualState[posP1 + 4].type == PieceType.EMPTY && actualState[posP2 + 4].type == PieceType.EMPTY ){ //Check if there's space for vertical V
-            result.add(posP1 + 4)
-            result.add(posP2 + 4)
-        }
-        if(actualState[posP1 - 4].type == PieceType.EMPTY && actualState[posP2 - 4].type == PieceType.EMPTY){ //Check if there's space for vertical ^
-            result.add(posP1 - 4)
-            result.add(posP2 - 4)
-        }
         for(piece in pieces){
-            if(piece <= gRange[1] && piece >= gRange[0]){ //Checks horizontal movement, only adds empty pos in same row
+            if(pieces.contains(posP1 + 4) && pieces.contains(posP2 + 4)){ //Check if there's space for vertical V
+                result.add(piece)
+            }
+            if(pieces.contains(posP1 - 4) && pieces.contains(posP2 - 4)){ //Check if there's space for vertical ^
+                result.add(piece)
+            }
+            if(piece <= gRange[1] && piece >= gRange[0]){
                 result.add(piece)
             }
         }
@@ -222,18 +219,17 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
         val emptySurroundingPieces = surroundingPiecesInsideBoard.filter { actualState[it].type == PieceType.EMPTY }
 
-        val temp = filterGoodPieces(emptySurroundingPieces, positionClicked, actualState)
-        Toast.makeText(context, "Empty surrounding pieces: $temp of the piece $positionClicked", Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPieces(emptySurroundingPieces, positionClicked, actualState)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
 
         return when (pieceOrientation) {
             Orientation.HORIZONTAL -> {
-                val gamePiece = temp.firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 || it == positionClicked + 4 || it == positionClicked - 4}
-                gamePiece?.let { adapter.getPositionOfPiece(actualState[it])
-                }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked, actualState).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
+                gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
             Orientation.VERTICAL -> {
-                val gamePiece = temp.firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked, actualState).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
