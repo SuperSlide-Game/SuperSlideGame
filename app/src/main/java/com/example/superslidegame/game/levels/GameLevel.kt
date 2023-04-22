@@ -4,8 +4,27 @@ import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.PieceGroup
 import com.example.superslidegame.game.levels.data.Level1
 
-class GameLevel : Level {
-    private var activeLevel : Level = Level1()
+class GameLevel(levelNumber: Int) : Level {
+
+    private var activeLevel : Level
+
+    constructor() : this(1)
+
+    init {
+        activeLevel = when (levelNumber) {
+            1 -> Level1()
+            //2 -> Level2()
+            //3 -> Level3()
+            //4 -> Level4()
+            //5 -> Level5()
+            //6 -> Level6()
+            //7 -> Level7()
+            //8 -> Level8()
+            //9 -> Level9()
+            //10 -> Level10()
+            else -> throw NumberFormatException("Maximum level implemented is 10")
+        }
+    }
 
     fun nextLevel() {
         when (activeLevel.getNumber() + 1) {
@@ -25,11 +44,11 @@ class GameLevel : Level {
         return activeLevel.getNumber()
     }
 
-    override fun getPieces() : Array<GamePiece> {
+    override fun getPieces(): MutableList<GamePiece> {
         return activeLevel.getPieces()
     }
 
-    override fun getGroups() : Array<PieceGroup> {
+    override fun getGroups(): List<PieceGroup> {
         return activeLevel.getGroups()
     }
 }

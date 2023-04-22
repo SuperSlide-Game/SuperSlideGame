@@ -7,7 +7,7 @@ import com.example.superslidegame.game.elements.PieceType
 import com.example.superslidegame.game.levels.Level
 
 class Level1 : Level {
-    private var pieces: Array<GamePiece> = arrayOf(
+    private var pieces: MutableList<GamePiece> = mutableListOf(
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.YELLOW),
         GamePiece(PieceType.YELLOW),
@@ -30,7 +30,7 @@ class Level1 : Level {
         GamePiece(PieceType.YELLOW),
     )
 
-    private var groups: Array<PieceGroup>
+    private var groups: List<PieceGroup>
 
     init {
 
@@ -51,7 +51,7 @@ class Level1 : Level {
         ))
 
 
-        groups = arrayOf(
+        groups = listOf(
             blueGroup1,
             blueGroup2,
             redGroup,
@@ -62,11 +62,11 @@ class Level1 : Level {
         return 1
     }
 
-    override fun getPieces(): Array<GamePiece> {
+    override fun getPieces(): MutableList<GamePiece> {
         return pieces
     }
 
-    override fun getGroups(): Array<PieceGroup> {
+    override fun getGroups(): List<PieceGroup> {
         return groups
     }
 }
