@@ -59,14 +59,28 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val minN = posP1.coerceAtMost(posP2)
 
         when (moveTo) {
-            Direction.LEFT -> {
-                adapter.swapPositions(minN, minN - 1)
-                adapter.swapPositions(bigN,bigN - 1)
+            Direction.RIGHT -> {
+                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
+                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
+                adapter.swapPositions(rightPiecePosition, rightPiecePosition + 1)
+                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 1)
+                adapter.swapPositions(leftPiecePosition, leftPiecePosition + 1)
+                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 1)
+
+
             }
 
-            Direction.RIGHT -> {
-                adapter.swapPositions(bigN, bigN + 1)
-                adapter.swapPositions(minN, minN + 1)
+            Direction.LEFT -> {
+                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
+                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
+                adapter.swapPositions(leftPiecePosition, leftPiecePosition - 1)
+                adapter.swapPositions(rightPiecePosition, rightPiecePosition - 1)
+                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD - 1)
+                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD - 1)
             }
 
             Direction.DOWN -> {
@@ -274,7 +288,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val pieceGroup = adapter.getGroup(clickedPiece.groupId)
         val piecesOfThePieceGroup = pieceGroup.pieces
 
-        return directionToMove(actualState, piecesOfThePieceGroup)
+        return directionToMoveRed(actualState, piecesOfThePieceGroup)
     }
 
     private fun whereToMoveBlue(positionClicked: Int, actualState: List<GamePiece>): Direction? {
@@ -315,7 +329,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
     }
 
-    private fun directionToMove(
+    private fun directionToMoveRed(
         actualState: List<GamePiece>,
         piecesOfThePieceGroup: List<GamePiece>
     ): Direction? {
