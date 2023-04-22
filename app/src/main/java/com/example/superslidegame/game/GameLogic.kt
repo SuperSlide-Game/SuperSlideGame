@@ -187,7 +187,9 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
         return result
     }
-
+    private fun filterGoodPiecesV(pieces : List<Int>, posClicked : Int) : List<Int>{
+        TODO("La implemento quan les blaves verticals detectin be les pos buides")
+    }
     private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>, pieceOrientation: Orientation?): Int? {
         // Checks if the piece of the direction we want to check is empty
 
