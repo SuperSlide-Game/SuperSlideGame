@@ -68,7 +68,6 @@ class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAda
         pieces[fromPosition] = pieces[toPosition]
         pieces[toPosition] = temp
     }
-
     fun updateBoard() {
         screenActivity.runOnUiThread {
             notifyDataSetChanged()

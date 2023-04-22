@@ -6,6 +6,7 @@ import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
+import kotlin.math.max
 
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
@@ -53,18 +54,55 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun moveBluePiece(piece: GamePiece, moveTo: Int) {
-        val pieces = adapter.getPiecesState()
         val groups = adapter.getGroup(piece.groupId)
-        val piece1 = groups.pieces.get(0)
-        val piece2 = groups.pieces.get(1)
+        val BigPiece = groups.pieces
 
-        Toast.makeText(context,
-            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
+        /*Toast.makeText(context,
+            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()*/
+        val posP1 = adapter.getPositionOfPiece(BigPiece[0])
+        val posP2 = adapter.getPositionOfPiece(BigPiece[1])
+        val bigN = posP1.coerceAtLeast(posP2)
+        val minN = posP1.coerceAtMost(posP2)
+        if(posP1 == adapter.getPositionOfPiece(piece)){
+            if(moveTo < posP1 && moveTo < posP2){
+                if(minN == posP1){
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+1)
+                }else{
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
+                }
+            }else{
+                if(bigN == posP1){
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo-1)
+                }else{
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
+                }
+            }
+        }else{
+            if(moveTo < posP1 && moveTo < posP2){
+                if(minN == posP1){
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo+1)
+                }else{
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
+                }
+            }else{
+                if(bigN == posP1){
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo-1)
+                }else{
+                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
+                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
+                }
+            }
+        }
 
-        adapter.swapPositions(adapter.getPositionOfPiece(piece2), moveTo)
-        adapter.swapPositions(adapter.getPositionOfPiece(piece1), moveTo)
-        Toast.makeText(context,
-            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
+        /*Toast.makeText(context,
+            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()*/
     }
 
     private fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
