@@ -5,6 +5,6 @@ package com.example.superslidegame.game.elements
  * @param id the id of the group
  * @param pieces the pieces that form the group
  */
-data class PieceGroup(val id: Int, val orientation: Orientation?, val pieces: List<GamePiece>) {
-    constructor(id: Int, pieces: List<GamePiece>) : this(id, null, pieces)
+data class PieceGroup(val id: Int, val orientation: Orientation?, val pieces: MutableList<GamePiece>) {
+    constructor(id: Int, pieces: MutableList<GamePiece>) : this(id, null, pieces)
 }
