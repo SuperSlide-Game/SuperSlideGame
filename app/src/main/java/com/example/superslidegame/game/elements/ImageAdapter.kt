@@ -13,7 +13,7 @@ class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAda
 
     private val pieces: MutableList<GamePiece> = level.getPieces()
 
-    private val groups: List<PieceGroup> = level.getGroups()
+    private val groups: MutableList<PieceGroup> = level.getGroups()
 
     private val context : Context = screenActivity.baseContext
 

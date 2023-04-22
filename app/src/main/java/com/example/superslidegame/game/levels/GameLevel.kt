@@ -48,7 +48,7 @@ class GameLevel(levelNumber: Int) : Level {
         return activeLevel.getPieces()
     }
 
-    override fun getGroups(): List<PieceGroup> {
+    override fun getGroups(): MutableList<PieceGroup> {
         return activeLevel.getGroups()
     }
 }
