@@ -171,7 +171,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return gamePiece?.let { adapter.getPositionOfPiece(it) }
     }
 
-    private fun filterGoodPiecesH(pieces : List<Int>, posClicked : Int) : List<Int>{
+    private fun filterGoodPieces(pieces : List<Int>, posClicked : Int) : List<Int>{
         val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
         var gRange = arrayOf(0,0)
         for(ranges in existingRanges){
@@ -187,9 +187,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
         return result
     }
-    private fun filterGoodPiecesV(pieces : List<Int>, posClicked : Int) : List<Int>{
-        TODO("La implemento quan les blaves verticals detectin be les pos buides")
-    }
+
     private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>, pieceOrientation: Orientation?): Int? {
         // Checks if the piece of the direction we want to check is empty
 
@@ -198,16 +196,16 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val emptySurroundingPieces = surroundingPiecesInsideBoard.filter { actualState[it].type == PieceType.EMPTY }
 
 
-        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPiecesH(emptySurroundingPieces, positionClicked)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPieces(emptySurroundingPieces, positionClicked)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
 
         return when (pieceOrientation) {
             Orientation.HORIZONTAL -> {
-                val gamePiece = filterGoodPiecesH(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
             Orientation.VERTICAL -> {
-                val gamePiece = emptySurroundingPieces.firstOrNull { it == positionClicked - 4 || it == positionClicked + 4 }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 4 || it == positionClicked + 4 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
