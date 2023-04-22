@@ -50,7 +50,48 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun moveRedPiece(piece: GamePiece, moveTo: Direction) {
-        TODO("Not yet implemented")
+        val pieceGroup = adapter.getGroup(piece.groupId)
+        val pieces = pieceGroup.pieces
+        val orientationOfThePieceGroup = pieceGroup.orientation
+        val posP1 = adapter.getPositionOfPiece(pieces[0])
+        val posP2 = adapter.getPositionOfPiece(pieces[1])
+        val bigN = posP1.coerceAtLeast(posP2)
+        val minN = posP1.coerceAtMost(posP2)
+
+        when (moveTo) {
+            Direction.LEFT -> {
+                adapter.swapPositions(minN, minN - 1)
+                adapter.swapPositions(bigN,bigN - 1)
+            }
+
+            Direction.RIGHT -> {
+                adapter.swapPositions(bigN, bigN + 1)
+                adapter.swapPositions(minN, minN + 1)
+            }
+
+            Direction.DOWN -> {
+                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
+                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
+                adapter.swapPositions(leftPiecePosition, leftPiecePosition + 4)
+                adapter.swapPositions(rightPiecePosition, rightPiecePosition + 4)
+                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 4)
+                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 4)
+            }
+
+            Direction.UP -> {
+                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
+                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
+                adapter.swapPositions(leftPiecePosition, leftPiecePosition - 4)
+                adapter.swapPositions(rightPiecePosition, rightPiecePosition - 4)
+                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD - 4)
+                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD - 4)
+            }
+        }
+
     }
 
     private fun moveBluePiece(piece: GamePiece, moveTo: Int) {
@@ -280,8 +321,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     ): Direction? {
             val canMoveUpVertically = canMoveUpRed(actualState, piecesOfThePieceGroup)
             val canMoveDownVertically = canMoveDownRed(actualState, piecesOfThePieceGroup)
-            val canMoveLeftVertically = canMoveLeftVertically(actualState, piecesOfThePieceGroup)
-            val canMoveRightVertically = canMoveRightVertically(actualState, piecesOfThePieceGroup)
+            val canMoveLeftVertically = canMoveLeftRed(actualState, piecesOfThePieceGroup)
+            val canMoveRightVertically = canMoveRightRed(actualState, piecesOfThePieceGroup)
             return canMoveDownVertically ?: canMoveUpVertically ?: canMoveLeftVertically ?: canMoveRightVertically
     }
 
@@ -341,7 +382,24 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             null
         }
     }
-
+    private fun canMoveRightRed(
+        actualState: List<GamePiece>,
+        piecesOfThePieceGroup: List<GamePiece>
+    ): Direction? {
+        val lowerPiece = piecesOfThePieceGroup[1]
+        val lowerPiecePosition = adapter.getPositionOfPiece(lowerPiece)
+        val lowerPiecePositionIsInLastColumn = pieceIsInLastColumn(lowerPiecePosition)
+        if (lowerPiecePositionIsInLastColumn) {
+            return null
+        }
+        val upperPiece = piecesOfThePieceGroup[3]
+        val upperPiecePosition = adapter.getPositionOfPiece(upperPiece)
+        return if (actualState[upperPiecePosition + 1].type == PieceType.EMPTY && actualState[lowerPiecePosition + 1].type == PieceType.EMPTY) {
+            Direction.RIGHT
+        } else {
+            null
+        }
+    }
     private fun canMoveLeftVertically(
         actualState: List<GamePiece>,
         piecesOfThePieceGroup: List<GamePiece>
@@ -353,6 +411,25 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
             return null
         }
         val lowerPiece = piecesOfThePieceGroup[1]
+        val lowerPiecePosition = adapter.getPositionOfPiece(lowerPiece)
+
+        return if (actualState[upperPiecePosition - 1].type == PieceType.EMPTY && actualState[lowerPiecePosition - 1].type == PieceType.EMPTY) {
+            Direction.LEFT
+        } else {
+            null
+        }
+    }
+    private fun canMoveLeftRed(
+        actualState: List<GamePiece>,
+        piecesOfThePieceGroup: List<GamePiece>
+    ): Direction? {
+        val upperPiece = piecesOfThePieceGroup[0]
+        val upperPiecePosition = adapter.getPositionOfPiece(upperPiece)
+        val upperPiecePositionIsInFirstColumn = pieceIsInFirstColumn(upperPiecePosition)
+        if (upperPiecePositionIsInFirstColumn) {
+            return null
+        }
+        val lowerPiece = piecesOfThePieceGroup[2]
         val lowerPiecePosition = adapter.getPositionOfPiece(lowerPiece)
 
         return if (actualState[upperPiecePosition - 1].type == PieceType.EMPTY && actualState[lowerPiecePosition - 1].type == PieceType.EMPTY) {
@@ -427,7 +504,6 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         if (lowerPiecePositionIsInLastRow) {
             return null
         }
-
         return if (actualState[lowerPiecePosition + 4].type == PieceType.EMPTY && actualState[lowerPiecePosition2 + 4].type == PieceType.EMPTY ) {
             Direction.DOWN
         } else {
