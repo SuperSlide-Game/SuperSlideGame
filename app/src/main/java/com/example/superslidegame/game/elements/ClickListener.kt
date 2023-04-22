@@ -21,11 +21,10 @@ class ClickListener(private val context: Context, private val positionClicked: I
             else -> {
                 val positionToMove = gameLogic.whereToMove(positionClicked, actualState)
                 if (positionToMove != null) {
-                    //adapter.movePiece(actualState[positionClicked])
                     Toast.makeText(context,
                         "You can move this piece to position: $positionToMove", Toast.LENGTH_SHORT).show()
                     gameLogic.move(positionClicked, positionToMove, actualState)
-                    adapter.notifyDataSetChanged()
+                    adapter.updateBoard()
                     //
                 } else {
                     Toast.makeText(context, "You cannot move this piece", Toast.LENGTH_SHORT).show()
@@ -33,7 +32,4 @@ class ClickListener(private val context: Context, private val positionClicked: I
             }
         }
     }
-
-
-
 }

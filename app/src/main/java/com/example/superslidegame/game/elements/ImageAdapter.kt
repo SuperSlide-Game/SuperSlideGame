@@ -1,28 +1,28 @@
 package com.example.superslidegame.game.elements
 
+import android.app.Activity
 import android.content.Context
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
-import com.example.superslidegame.game.levels.GameLevel
+import com.example.superslidegame.game.levels.Level
 
-class ImageAdapter(private val context: Context) : BaseAdapter() {
+class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAdapter() {
 
-    private val level = GameLevel()
+    private val pieces: MutableList<GamePiece> = level.getPieces()
 
-    private val pieces = level.getPieces()
+    private val groups: List<PieceGroup> = level.getGroups()
 
-    private val groups = level.getGroups()
+    private val context : Context = screenActivity.baseContext
 
     override fun getCount(): Int {
         return pieces.size
     }
 
-    override fun getItem(position: Int): Any {
-        return pieces[position]
+    override fun getItem(position: Int): Any? {
+        return null
     }
 
     override fun getItemId(position: Int): Long {
@@ -30,22 +30,17 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
     }
 
     override fun getView(position: Int, convertView: android.view.View?, parent: android.view.ViewGroup?): android.view.View {
-        val imageButton : ImageButton
-        if (convertView == null) {
-            imageButton = ImageButton(context)
-            imageButton.setImageResource(pieces[position].imgSrc)
-            imageButton.setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
-            imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
-            imageButton.adjustViewBounds = true
-            imageButton.setPadding(0, 0, 0, 0)
-        } else {
-            imageButton = convertView as ImageButton
-        }
+        val imageButton = ImageButton(context)
+        imageButton.setImageResource(pieces[position].imgSrc)
+        imageButton.setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
+        imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
+        imageButton.adjustViewBounds = true
+        imageButton.setPadding(0, 0, 0, 0)
         imageButton.setOnClickListener(ClickListener(context, position, this))
         return imageButton
     }
 
-    fun getPiecesState() : Array<GamePiece> {
+    fun getPiecesState() : MutableList<GamePiece> {
         return pieces
     }
 
@@ -66,15 +61,17 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         }
         throw Exception("Group not found")
     }
-    fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
-        Toast.makeText(context,
-            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
-        val x = pieces[moveTo]
-        pieces[moveTo] = pieces[getPositionOfPiece(piece)]
 
-        pieces[getPositionOfPiece(piece)] = x
-        Toast.makeText(context,
-            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
+    fun swapPositions(fromPosition: Int, toPosition: Int) {
+        // Swap the positions of the pieces list
+        val temp = pieces[fromPosition]
+        pieces[fromPosition] = pieces[toPosition]
+        pieces[toPosition] = temp
+    }
 
+    fun updateBoard() {
+        screenActivity.runOnUiThread {
+            notifyDataSetChanged()
+        }
     }
 }
