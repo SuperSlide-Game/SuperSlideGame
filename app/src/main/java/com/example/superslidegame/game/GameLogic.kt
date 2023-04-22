@@ -180,18 +180,9 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return positionClicked % 4 == 0
     }
 
-    private fun filterGoodPieces(pieces : List<Int>, posClicked : Int, actualState: List<GamePiece>) : List<Int>{
+    private fun filterGoodPieces(pieces : List<Int>, posClicked : Int) : List<Int>{
         val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
         var gRange = arrayOf(0,0)
-        var group = actualState[posClicked].groupId
-        var posP1 = posClicked
-        var posP2 = 0 //the other piece of the blue
-        if(actualState[posClicked].groupId == actualState[posClicked+1].groupId){
-            posP2 = posClicked + 1
-        }else{
-            posP2 = posClicked - 1
-        }
-
         for(ranges in existingRanges){
             if(posClicked >= ranges[0] && posClicked <= ranges[1] ){
                 gRange = ranges
@@ -199,12 +190,6 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
         val result = ArrayList<Int>()
         for(piece in pieces){
-            if(pieces.contains(posP1 + 4) && pieces.contains(posP2 + 4)){ //Check if there's space for vertical V
-                result.add(piece)
-            }
-            if(pieces.contains(posP1 - 4) && pieces.contains(posP2 - 4)){ //Check if there's space for vertical ^
-                result.add(piece)
-            }
             if(piece <= gRange[1] && piece >= gRange[0]){
                 result.add(piece)
             }
@@ -220,16 +205,16 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val emptySurroundingPieces = surroundingPiecesInsideBoard.filter { actualState[it].type == PieceType.EMPTY }
 
 
-        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPieces(emptySurroundingPieces, positionClicked, actualState)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPieces(emptySurroundingPieces, positionClicked)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
 
         return when (pieceOrientation) {
             Orientation.HORIZONTAL -> {
-                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked, actualState).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
             Orientation.VERTICAL -> {
-                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked, actualState).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
+                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
                 gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
             }
 
