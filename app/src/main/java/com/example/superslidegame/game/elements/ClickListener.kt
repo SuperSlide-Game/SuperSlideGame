@@ -21,10 +21,15 @@ class ClickListener(private val context: Context, private val positionClicked: I
             else -> {
                 val positionToMove = gameLogic.whereToMove(positionClicked, actualState)
                 if (positionToMove != null) {
-                    
+                    Toast.makeText(context,
+                        "Now the piece of that position is: " + actualState[positionClicked].type, Toast.LENGTH_SHORT).show()
+                    //adapter.movePiece(actualState[positionClicked])
+                    gameLogic.move(positionClicked, positionToMove, actualState)
+                    Toast.makeText(context,
+                        "Now the piece of that position is: " + actualState[positionClicked].type, Toast.LENGTH_SHORT).show()
                     Toast.makeText(context,
                         "You can move this piece to position: $positionToMove", Toast.LENGTH_SHORT).show()
-                    //gameLogic.move(positionClicked, positionToMove, actualState)
+                    //
                 } else {
                     Toast.makeText(context, "You cannot move this piece", Toast.LENGTH_SHORT).show()
                 }

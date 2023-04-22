@@ -7,4 +7,5 @@ interface Level {
     fun getNumber(): Int
     fun getPieces(): Array<GamePiece>
     fun getGroups(): Array<PieceGroup>
+
 }

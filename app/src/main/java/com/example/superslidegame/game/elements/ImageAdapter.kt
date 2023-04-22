@@ -65,4 +65,11 @@ class ImageAdapter(private val context: Context) : BaseAdapter() {
         }
         throw Exception("Group not found")
     }
+    /*fun movePiece(piece : GamePiece) {
+        val pos = getPositionOfPiece(piece)
+        pieces[pos] = GamePiece(PieceType.EMPTY, 0)
+
+        //Agafar la posicio on es pot moure
+        //moure la peça
+    }*/
 }
