@@ -197,8 +197,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
                     Direction.DOWN -> {
                         val upperPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
                         val lowerPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                        adapter.swapPositions(upperPiecePosition, upperPiecePosition + 4)
                         adapter.swapPositions(lowerPiecePosition, lowerPiecePosition + 4)
+                        adapter.swapPositions(upperPiecePosition, upperPiecePosition + 4)
                     }
 
                     Direction.UP -> {
