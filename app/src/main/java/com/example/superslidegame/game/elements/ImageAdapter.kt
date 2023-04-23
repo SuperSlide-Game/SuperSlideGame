@@ -37,7 +37,10 @@ class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAda
             imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
+            // Listener for the 1-cell movement
             imageButton.setOnClickListener(ClickListener(context, position, this))
+            // Listener for the 2-cell movement
+            imageButton.setOnLongClickListener(LongClickListener(context, position, this))
         } else {
             imageButton = convertView as ImageButton
         }
