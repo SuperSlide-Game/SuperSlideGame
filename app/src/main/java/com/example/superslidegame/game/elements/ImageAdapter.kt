@@ -30,13 +30,19 @@ class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAda
     }
 
     override fun getView(position: Int, convertView: android.view.View?, parent: android.view.ViewGroup?): android.view.View {
-        val imageButton = ImageButton(context)
+        val imageButton : ImageButton
+        if (convertView == null) {
+            imageButton = ImageButton(context)
+            imageButton.setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
+            imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
+            imageButton.adjustViewBounds = true
+            imageButton.setPadding(0, 0, 0, 0)
+            imageButton.setOnClickListener(ClickListener(context, position, this))
+        } else {
+            imageButton = convertView as ImageButton
+        }
+
         imageButton.setImageResource(pieces[position].imgSrc)
-        imageButton.setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
-        imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
-        imageButton.adjustViewBounds = true
-        imageButton.setPadding(0, 0, 0, 0)
-        imageButton.setOnClickListener(ClickListener(context, position, this))
         return imageButton
     }
 
