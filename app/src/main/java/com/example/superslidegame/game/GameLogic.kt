@@ -656,4 +656,64 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return surroundingPieces.filter { it in 0..19 }
     }
 
+    fun whereToMove2Cells(positionClicked: Int, actualState: MutableList<GamePiece>): Any? {
+        val pieceClicked = actualState[positionClicked]
+        return when (pieceClicked.type) {
+            PieceType.YELLOW -> {
+                whereToMove2CellsYellow(positionClicked, actualState)
+            }
+
+            PieceType.BLUE -> {
+                whereToMove2CellsBlue(positionClicked, actualState)
+            }
+
+            else -> {
+                null
+            }
+        }
+    }
+
+    private fun whereToMove2CellsBlue(
+        positionClicked: Int,
+        actualState: MutableList<GamePiece>
+    ): Direction? {
+        TODO("Not yet implemented")
+    }
+
+    private fun whereToMove2CellsYellow(
+        positionClicked: Int,
+        actualState: MutableList<GamePiece>
+    ): Int? {
+        val positionToMove = getAnySurroundingPieceEmpty(getAnySurroundingPieceEmpty(positionClicked, actualState)!!, actualState)
+        return if (positionClicked != positionToMove) {
+            positionToMove
+        } else {
+            null
+        }
+    }
+
+    fun move2Cells(
+        positionClicked: Int,
+        whereToMove: Any,
+        actualState: MutableList<GamePiece>
+    ) {
+        val pieceClicked = actualState[positionClicked]
+        when (pieceClicked.type) {
+            PieceType.YELLOW -> {
+                moveYellowPiece(pieceClicked, whereToMove as Int)
+            }
+
+            PieceType.BLUE -> {
+                moveBluePiece2Cells(pieceClicked, whereToMove as Direction)
+            }
+
+            else -> {}
+        }
+    }
+
+    private fun moveBluePiece2Cells(pieceClicked: GamePiece, directionToMove: Direction) {
+        moveBluePiece(pieceClicked, directionToMove)
+        moveBluePiece(pieceClicked, directionToMove)
+    }
+
 }
