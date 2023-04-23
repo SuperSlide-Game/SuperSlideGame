@@ -12,6 +12,7 @@ class LongClickListener(private val context: Context, private val positionClicke
 
     override fun onLongClick(view: View?): Boolean {
 
+        val animationHelper = adapter.animationHelper
         val pieceClicked = adapter.getPiecesState()[positionClicked]
         val actualState = adapter.getPiecesState()
 
@@ -26,6 +27,7 @@ class LongClickListener(private val context: Context, private val positionClicke
                 if (whereToMove != null) {
                     Toast.makeText(context,
                         "You can move this piece to position: $whereToMove", Toast.LENGTH_SHORT).show()
+                    animationHelper.playMoveSound()
                     gameLogic.move2Cells(positionClicked, whereToMove, actualState)
                     adapter.updateBoard()
                     gameLogic.checkWin(actualState)

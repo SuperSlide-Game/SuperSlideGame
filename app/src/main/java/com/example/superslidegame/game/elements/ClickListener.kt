@@ -11,6 +11,7 @@ class ClickListener(private val context: Context, private val positionClicked: I
     private val gameLogic : GameLogic = GameLogic(context, adapter)
     override fun onClick(view: View?) {
 
+        val animationHelper = adapter.animationHelper
         val pieceClicked = adapter.getPiecesState()[positionClicked]
         val actualState = adapter.getPiecesState()
 
@@ -23,6 +24,7 @@ class ClickListener(private val context: Context, private val positionClicked: I
                 if (positionToMove != null) {
                     Toast.makeText(context,
                         "You can move this piece to position: $positionToMove", Toast.LENGTH_SHORT).show()
+                    animationHelper.playMoveSound()
                     gameLogic.move(positionClicked, positionToMove, actualState)
                     adapter.updateBoard()
                     gameLogic.checkWin(actualState)

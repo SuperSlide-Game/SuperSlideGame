@@ -3,6 +3,7 @@ package com.example.superslidegame.game.screen
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.levels.GameLevel
 
@@ -22,7 +23,8 @@ class GameScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         val level = GameLevel()
+        val animationHelper = AnimationHelper(this)
 
-        binding.gridTiles.adapter = ImageAdapter(this, level)
+        binding.gridTiles.adapter = ImageAdapter(this, level, animationHelper)
     }
 }

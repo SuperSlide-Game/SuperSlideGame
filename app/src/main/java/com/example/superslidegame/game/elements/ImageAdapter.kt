@@ -2,14 +2,17 @@ package com.example.superslidegame.game.elements
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
+import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
+import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.levels.Level
 
-class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAdapter() {
+class ImageAdapter(private val screenActivity: Activity, private val level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
 
     private val pieces: MutableList<GamePiece> = level.getPieces()
 
@@ -29,7 +32,7 @@ class ImageAdapter(private val screenActivity: Activity, level: Level) : BaseAda
         return 0
     }
 
-    override fun getView(position: Int, convertView: android.view.View?, parent: android.view.ViewGroup?): android.view.View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val imageButton : ImageButton
         if (convertView == null) {
             imageButton = ImageButton(context)
