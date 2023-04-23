@@ -677,19 +677,95 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         positionClicked: Int,
         actualState: MutableList<GamePiece>
     ): Direction? {
-        TODO("Not yet implemented")
+
+        val pieceGroup = adapter.getGroup(actualState[positionClicked].groupId)
+        val piece1Position = adapter.getPositionOfPiece(pieceGroup.pieces[0]) // The upper/leftest one
+        val piece2Position = adapter.getPositionOfPiece(pieceGroup.pieces[1]) // The lower/rightest one
+
+        val firstMovementDirection = whereToMoveBlue(positionClicked, actualState) ?: return null
+        val firstAfterMovementPiece1Position = getPositionAfterDirectionMovement(piece1Position, firstMovementDirection)
+        val firstAfterMovementPiece2Position = getPositionAfterDirectionMovement(piece2Position, firstMovementDirection)
+
+        when (firstMovementDirection) {
+            Direction.UP -> {
+                return if (pieceIsInFirstRow(firstAfterMovementPiece1Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece1Position, Direction.UP)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.UP
+                    } else {
+                        null
+                    }
+                }
+            }
+            Direction.DOWN -> {
+                return if (pieceIsInLastRow(firstAfterMovementPiece2Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece2Position, Direction.DOWN)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.DOWN
+                    } else {
+                        null
+                    }
+                }
+            }
+            Direction.LEFT -> {
+                return if (pieceIsInFirstColumn(firstAfterMovementPiece1Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece1Position, Direction.LEFT)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.LEFT
+                    } else {
+                        null
+                    }
+                }
+            }
+            Direction.RIGHT -> {
+                return if (pieceIsInLastColumn(firstAfterMovementPiece2Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece2Position, Direction.RIGHT)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.RIGHT
+                    } else {
+                        null
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getPositionAfterDirectionMovement(
+        positionClicked: Int,
+        movementDirection: Direction
+    ): Int {
+        when (movementDirection) {
+            Direction.UP -> {
+                return positionClicked - 4
+            }
+
+            Direction.DOWN -> {
+                return positionClicked + 4
+            }
+
+            Direction.LEFT -> {
+                return positionClicked - 1
+            }
+
+            Direction.RIGHT -> {
+                return positionClicked + 1
+            }
+        }
     }
 
     private fun whereToMove2CellsYellow(
         positionClicked: Int,
         actualState: MutableList<GamePiece>
     ): Int? {
-        val positionToMove = getAnySurroundingPieceEmpty(getAnySurroundingPieceEmpty(positionClicked, actualState)!!, actualState)
-        return if (positionClicked != positionToMove) {
-            positionToMove
-        } else {
-            null
-        }
+        return getAnySurroundingPieceEmpty(getAnySurroundingPieceEmpty(positionClicked, actualState)!!, actualState)
     }
 
     fun move2Cells(
