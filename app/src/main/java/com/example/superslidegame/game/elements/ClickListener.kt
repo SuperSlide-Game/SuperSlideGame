@@ -25,7 +25,7 @@ class ClickListener(private val context: Context, private val positionClicked: I
                         "You can move this piece to position: $positionToMove", Toast.LENGTH_SHORT).show()
                     gameLogic.move(positionClicked, positionToMove, actualState)
                     adapter.updateBoard()
-                    //
+                    gameLogic.checkWin(actualState)
                 } else {
                     Toast.makeText(context, "You cannot move this piece", Toast.LENGTH_SHORT).show()
                 }

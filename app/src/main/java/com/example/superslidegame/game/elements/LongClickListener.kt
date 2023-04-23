@@ -28,7 +28,7 @@ class LongClickListener(private val context: Context, private val positionClicke
                         "You can move this piece to position: $whereToMove", Toast.LENGTH_SHORT).show()
                     gameLogic.move2Cells(positionClicked, whereToMove, actualState)
                     adapter.updateBoard()
-                    //
+                    gameLogic.checkWin(actualState)
                 } else {
                     Toast.makeText(context, "You cannot move this piece", Toast.LENGTH_SHORT).show()
                 }

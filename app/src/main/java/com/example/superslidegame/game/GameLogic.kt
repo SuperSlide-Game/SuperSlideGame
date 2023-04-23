@@ -8,6 +8,7 @@ import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
 
+val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
@@ -640,6 +641,16 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     private fun moveBluePiece2Cells(pieceClicked: GamePiece, directionToMove: Direction) {
         moveBluePiece(pieceClicked, directionToMove)
         moveBluePiece(pieceClicked, directionToMove)
+    }
+
+    fun checkWin(actualState: MutableList<GamePiece>) {
+        if (WINNING_POSITIONS.all { actualState[it].type == PieceType.RED }) {
+            gameWon()
+        }
+    }
+
+    private fun gameWon() {
+        TODO("Not yet implemented")
     }
 
 }
