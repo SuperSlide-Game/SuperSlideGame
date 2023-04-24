@@ -12,8 +12,7 @@ import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.levels.GameLevel
 
 /**
- * GameScreen is the main screen of the game.
- * It contains the grid of tiles and the buttons to control the game.
+ * GameScreen is the level selector screen of the game
  */
 
 class SelectLevel : AppCompatActivity() {

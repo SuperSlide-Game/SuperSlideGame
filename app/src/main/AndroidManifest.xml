@@ -27,6 +27,7 @@
 
         </activity>
         <activity android:name=".settings.SettingsScreen" />
+        <activity android:name=".game.screen.SelectLevel" />
         <activity android:name=".game.screen.GameScreen" />
     </application>
 
