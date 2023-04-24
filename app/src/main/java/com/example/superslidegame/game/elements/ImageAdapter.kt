@@ -19,7 +19,9 @@ class ImageAdapter(private val screenActivity: Activity, private val level: Leve
     private val groups: MutableList<PieceGroup> = level.getGroups()
 
     private val context : Context = screenActivity.baseContext
-
+    private var bN = 0
+    private var bNv = 0
+    private var rN = 0
     override fun getCount(): Int {
         return pieces.size
     }
@@ -49,6 +51,37 @@ class ImageAdapter(private val screenActivity: Activity, private val level: Leve
         }
 
         imageButton.setImageResource(pieces[position].imgSrc)
+        if(pieces[position].type == PieceType.BLUE){
+            if(getGroup(pieces[position].groupId).orientation == Orientation.VERTICAL){
+                imageButton.rotation = 90.0F
+                if(bNv == 1){
+                    imageButton.rotation = 270.0F
+                    bNv = 0
+                }else{
+                    bNv+=1
+                }
+            }else{
+                if(bN == 1){
+                    imageButton.setImageResource(R.drawable.blue_piece)
+                    imageButton.rotation = 180.0F
+                    bN = 0
+                }else{
+                    bN+=1
+                }
+            }
+        }
+        if(pieces[position].type == PieceType.RED){
+            if(rN == 1){
+                imageButton.rotation = 90F
+            }
+            if(rN == 2){
+                imageButton.rotation = 270F
+            }
+            if(rN == 3){
+                imageButton.rotation = 180F
+            }
+            rN +=1
+        }
         return imageButton
     }
 
