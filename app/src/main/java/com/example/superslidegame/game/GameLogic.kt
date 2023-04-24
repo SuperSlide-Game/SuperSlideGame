@@ -1,8 +1,10 @@
 package com.example.superslidegame.game
 
+import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
@@ -11,7 +13,7 @@ import com.example.superslidegame.game.elements.PieceType
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
-class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
+class GameLogic(private val context: Context, private val adapter: ImageAdapter) : Fragment() {
 
     fun whereToMove(positionClicked: Int, actualState: List<GamePiece>): Any? {
         return when (actualState[positionClicked].type) {
@@ -652,7 +654,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     private fun gameWon() {
         val showPopUp = PopUpFragment()
-        showPopUp.show((context as AppCompatActivity).supportFragmentManager, "showPopUp")
+        showPopUp.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
     }
 
 }
