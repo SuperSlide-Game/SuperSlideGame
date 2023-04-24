@@ -7,7 +7,11 @@
     <string name="logo_image_description">Logo image</string>
     <string name="play_button_description">Play</string>
     <string name="settings_button_description">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="popup_win_message">Well done!</string>
+    <string name="popup_lose_message">You lost!</string>
+    <string name="popup_win_button">Next Level</string>
+    <string name="popup_lose_button">Try Again</string>
+    <string name="popup_exit">Exit</string>
+    <string name="levelButtonText">Level %d</string>
+    <string name="play_button_level_selector">Play!</string>
 </resources>
