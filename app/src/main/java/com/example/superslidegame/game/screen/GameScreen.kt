@@ -22,7 +22,7 @@ class GameScreen : AppCompatActivity() {
         val binding = GameScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val levelSel = intent.getStringExtra("level")?.toInt()
+        val levelSel = intent.getIntExtra("level", 1)
         val level = GameLevel(levelSel)
         val animationHelper = AnimationHelper(this)
 
