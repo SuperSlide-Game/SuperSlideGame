@@ -4,7 +4,7 @@ import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.PieceGroup
 import com.example.superslidegame.game.levels.data.Level1
 
-class GameLevel(levelNumber: Int) : Level {
+class GameLevel(levelNumber: Int?) : Level {
 
     private var activeLevel : Level
 

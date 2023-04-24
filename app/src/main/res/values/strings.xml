@@ -7,4 +7,7 @@
     <string name="logo_image_description">Logo image</string>
     <string name="play_button_description">Play</string>
     <string name="settings_button_description">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popup_win_message">Well done!</string>
 </resources>

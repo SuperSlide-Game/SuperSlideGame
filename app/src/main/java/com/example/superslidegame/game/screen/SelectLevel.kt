@@ -1,9 +1,12 @@
 package com.example.superslidegame.game.screen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.superslidegame.databinding.ActivityMainBinding
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.databinding.SelLevelBinding
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.levels.GameLevel
@@ -13,20 +16,20 @@ import com.example.superslidegame.game.levels.GameLevel
  * It contains the grid of tiles and the buttons to control the game.
  */
 
-class GameScreen : AppCompatActivity() {
-    /**
-     * onCreate is called when the activity is starting.
-     * It inflates the layout and sets the adapter for the grid of tiles.
-     */
+class SelectLevel : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = GameScreenBinding.inflate(layoutInflater)
+        val binding = SelLevelBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val levelSel = intent.getStringExtra("sel_level")?.toInt()
-        val level = GameLevel(levelSel)
-        val animationHelper = AnimationHelper(this)
-
-        binding.gridTiles.adapter = ImageAdapter(this, level, animationHelper)
+        val intent = Intent(this, GameScreen::class.java)
+        binding.button3.setOnClickListener {
+            intent.putExtra("sel_level", "1")
+            startActivity(intent)
+        }
+        binding.button4.setOnClickListener {
+            intent.putExtra("sel_level", "2")
+            startActivity(intent)
+        }
     }
 }
