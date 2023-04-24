@@ -650,7 +650,10 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun gameWon() {
-        TODO("Not yet implemented")
+        popUpFragment()
+    }
+    private fun popUpFragment(){
+        
     }
 
 }
