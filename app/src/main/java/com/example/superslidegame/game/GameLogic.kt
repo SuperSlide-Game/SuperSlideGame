@@ -3,8 +3,11 @@ package com.example.superslidegame.game
 import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
-import com.example.superslidegame.game.elements.*
+import com.example.superslidegame.game.elements.Direction
+import com.example.superslidegame.game.elements.GamePiece
+import com.example.superslidegame.game.elements.ImageAdapter
+import com.example.superslidegame.game.elements.Orientation
+import com.example.superslidegame.game.elements.PieceType
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
@@ -51,63 +54,63 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     private fun moveRedPiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
         val pieces = pieceGroup.pieces
-        val posP1 = adapter.getPositionOfPiece(pieces[0])
-        val posP2 = adapter.getPositionOfPiece(pieces[1])
-        val posP3 = adapter.getPositionOfPiece(pieces[2])
-        val posP4 = adapter.getPositionOfPiece(pieces[3])
+        val leftUpperCornerPosition = adapter.getPositionOfPiece(pieces[0])
+        val rightUpperCornerPosition = adapter.getPositionOfPiece(pieces[1])
+        val leftLowerCornerPosition = adapter.getPositionOfPiece(pieces[2])
+        val rightLowerCornerPosition = adapter.getPositionOfPiece(pieces[3])
 
         when (moveTo) {
             Direction.RIGHT -> {
-                adapter.swapPositions(posP2, posP2 + 1)
-                adapter.swapPositions(posP4, posP4 + 1)
-                adapter.swapPositions(posP1, posP1 + 1)
-                adapter.swapPositions(posP3, posP3 + 1)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition + 1)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition + 1)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition + 1)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition + 1)
             }
 
             Direction.LEFT -> {
-                adapter.swapPositions(posP1, posP1 - 1)
-                adapter.swapPositions(posP2, posP2 - 1)
-                adapter.swapPositions(posP3, posP3 - 1)
-                adapter.swapPositions(posP4, posP4 - 1)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition - 1)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition - 1)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition - 1)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition - 1)
             }
 
             Direction.DOWN -> {
-                adapter.swapPositions(posP4, posP4 + 4)
-                adapter.swapPositions(posP3, posP3 + 4)
-                adapter.swapPositions(posP1, posP1 + 4)
-                adapter.swapPositions(posP2, posP2 + 4)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition + 4)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition + 4)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition + 4)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition + 4)
 
 
             }
 
             Direction.UP -> {
-                adapter.swapPositions(posP1, posP1 - 4)
-                adapter.swapPositions(posP2, posP2 - 4)
-                adapter.swapPositions(posP3, posP3 - 4)
-                adapter.swapPositions(posP4, posP4 - 4)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition - 4)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition - 4)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition - 4)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition - 4)
             }
         }
     }
 
     private fun moveBluePiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
-        val pieces = pieceGroup.pieces
         val orientationOfThePieceGroup = pieceGroup.orientation
-        val posP1 = adapter.getPositionOfPiece(pieces[0])
-        val posP2 = adapter.getPositionOfPiece(pieces[1])
-        val bigN = posP1.coerceAtLeast(posP2)
-        val minN = posP1.coerceAtMost(posP2)
+
         when (orientationOfThePieceGroup) {
             Orientation.HORIZONTAL -> {
                 when (moveTo) {
                     Direction.LEFT -> {
-                        adapter.swapPositions(minN, minN - 1)
-                        adapter.swapPositions(bigN,bigN - 1)
+                        val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                        val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                        adapter.swapPositions(leftPiecePosition, leftPiecePosition - 1)
+                        adapter.swapPositions(rightPiecePosition, rightPiecePosition - 1)
                     }
 
                     Direction.RIGHT -> {
-                        adapter.swapPositions(bigN, bigN + 1)
-                        adapter.swapPositions(minN, minN + 1)
+                        val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                        val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                        adapter.swapPositions(rightPiecePosition, rightPiecePosition + 1)
+                        adapter.swapPositions(leftPiecePosition, leftPiecePosition + 1)
                     }
 
                     Direction.DOWN -> {
