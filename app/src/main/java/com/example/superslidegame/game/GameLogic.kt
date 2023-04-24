@@ -2,6 +2,7 @@ package com.example.superslidegame.game
 
 import android.content.Context
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
@@ -650,10 +651,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun gameWon() {
-        popUpFragment()
-    }
-    private fun popUpFragment(){
-        
+        val showPopUp = PopUpFragment()
+        showPopUp.show((context as AppCompatActivity).supportFragmentManager, "showPopUp")
     }
 
 }
