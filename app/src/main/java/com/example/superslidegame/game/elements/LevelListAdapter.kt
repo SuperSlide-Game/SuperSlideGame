@@ -1,6 +1,7 @@
 package com.example.superslidegame.game.elements
 
 import android.app.Activity
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
@@ -29,6 +30,8 @@ class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
         val button : Button
         if (convertView == null) {
             button = Button(activity.baseContext)
+            button.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            button.gravity = Gravity.CENTER
             button.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             button.setOnClickListener(LevelSelectorClickListener(position, activity as SelectLevel))
         } else {
