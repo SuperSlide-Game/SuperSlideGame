@@ -25,6 +25,8 @@ class SelectLevel : AppCompatActivity() {
 
         binding.playButtonLevelSelector.setOnClickListener {
             if (selectedLevel != null) {
+                intent.putExtra("nickname", binding.nicknameEditText.text.toString())
+                intent.putExtra("difficulty", binding.difficultySpinner.selectedItem.toString())
                 intent.putExtra("level", selectedLevel)
                 startActivity(intent)
             }
