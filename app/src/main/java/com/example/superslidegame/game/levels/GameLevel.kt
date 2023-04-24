@@ -7,6 +7,10 @@ import com.example.superslidegame.game.levels.data.Level2
 
 class GameLevel(levelNumber: Int?) : Level {
 
+    companion object {
+        const val MAX_LEVEL = 10
+    }
+
     private var activeLevel : Level
 
     constructor() : this(1)
