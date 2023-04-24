@@ -8,7 +8,10 @@
     android:background="@drawable/background_settingsmain_backgro"
     tools:context=".game.screen.GameScreen">
 
-
+    <FrameLayout
+        android:id="@+id/fragment_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <GridView
         android:id="@+id/gridTiles"
         android:layout_width="0dp"

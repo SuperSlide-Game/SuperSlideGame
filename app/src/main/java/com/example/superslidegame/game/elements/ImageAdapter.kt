@@ -41,7 +41,7 @@ class ImageAdapter(private val screenActivity: Activity, private val level: Leve
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
             // Listener for the 1-cell movement
-            imageButton.setOnClickListener(ClickListener(context, position, this))
+            imageButton.setOnClickListener(ClickListener(screenActivity, position, this))
             // Listener for the 2-cell movement
             imageButton.setOnLongClickListener(LongClickListener(context, position, this))
         } else {

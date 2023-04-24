@@ -2,6 +2,7 @@ package com.example.superslidegame.game.screen
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.ImageAdapter
