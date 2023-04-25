@@ -18,4 +18,5 @@ class MainFragment : DialogFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(com.example.superslidegame.R.layout.fragment_pop_up, container, false)
     }
+
 }
