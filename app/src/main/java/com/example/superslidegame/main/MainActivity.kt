@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.ActivityMainBinding
 import com.example.superslidegame.game.screen.GameScreen
+import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.settings.SettingsScreen
 
 /**
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.playButton.setOnClickListener {
-            val intent = Intent(this, GameScreen::class.java)
+            val intent = Intent(this, SelectLevel::class.java)
             startActivity(intent)
         }
 

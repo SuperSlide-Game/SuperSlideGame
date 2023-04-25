@@ -2,12 +2,14 @@ package com.example.superslidegame.game
 
 import android.content.Context
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
 
+val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
@@ -52,171 +54,63 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     private fun moveRedPiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
         val pieces = pieceGroup.pieces
-        val orientationOfThePieceGroup = pieceGroup.orientation
-        val posP1 = adapter.getPositionOfPiece(pieces[0])
-        val posP2 = adapter.getPositionOfPiece(pieces[1])
-        val bigN = posP1.coerceAtLeast(posP2)
-        val minN = posP1.coerceAtMost(posP2)
+        val leftUpperCornerPosition = adapter.getPositionOfPiece(pieces[0])
+        val rightUpperCornerPosition = adapter.getPositionOfPiece(pieces[1])
+        val leftLowerCornerPosition = adapter.getPositionOfPiece(pieces[2])
+        val rightLowerCornerPosition = adapter.getPositionOfPiece(pieces[3])
 
         when (moveTo) {
             Direction.RIGHT -> {
-                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
-                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
-                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
-                adapter.swapPositions(rightPiecePosition, rightPiecePosition + 1)
-                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 1)
-                adapter.swapPositions(leftPiecePosition, leftPiecePosition + 1)
-                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 1)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition + 1)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition + 1)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition + 1)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition + 1)
             }
 
             Direction.LEFT -> {
-                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
-                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
-                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
-                adapter.swapPositions(leftPiecePosition, leftPiecePosition - 1)
-                adapter.swapPositions(rightPiecePosition, rightPiecePosition - 1)
-                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD - 1)
-                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD - 1)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition - 1)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition - 1)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition - 1)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition - 1)
             }
 
             Direction.DOWN -> {
-                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
-                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
-                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
-                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD + 4)
-                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD + 4)
-                adapter.swapPositions(leftPiecePosition, leftPiecePosition + 4)
-                adapter.swapPositions(rightPiecePosition, rightPiecePosition + 4)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition + 4)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition + 4)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition + 4)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition + 4)
 
 
             }
 
             Direction.UP -> {
-                val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
-                val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
-                val leftPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[2])
-                val rightPiecePositionD = adapter.getPositionOfPiece(pieceGroup.pieces[3])
-                adapter.swapPositions(leftPiecePosition, leftPiecePosition - 4)
-                adapter.swapPositions(rightPiecePosition, rightPiecePosition - 4)
-                adapter.swapPositions(leftPiecePositionD, leftPiecePositionD - 4)
-                adapter.swapPositions(rightPiecePositionD, rightPiecePositionD - 4)
+                adapter.swapPositions(leftUpperCornerPosition, leftUpperCornerPosition - 4)
+                adapter.swapPositions(rightUpperCornerPosition, rightUpperCornerPosition - 4)
+                adapter.swapPositions(leftLowerCornerPosition, leftLowerCornerPosition - 4)
+                adapter.swapPositions(rightLowerCornerPosition, rightLowerCornerPosition - 4)
             }
         }
-
     }
 
-    private fun moveBluePiece(piece: GamePiece, moveTo: Int) {
-        val groups = adapter.getGroup(piece.groupId)
-        val BigPiece = groups.pieces
-        if(groups.orientation == Orientation.HORIZONTAL){
-            val posP1 = adapter.getPositionOfPiece(BigPiece[0])
-            val posP2 = adapter.getPositionOfPiece(BigPiece[1])
-            val bigN = posP1.coerceAtLeast(posP2)
-            val minN = posP1.coerceAtMost(posP2)
-            if(posP1 == adapter.getPositionOfPiece(piece)){
-                if(moveTo < posP1 && moveTo < posP2){
-                    if(minN == posP1){
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+1)
-                    }else{
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
-                    }
-                }else{
-                    if(bigN == posP1){
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo-1)
-                    }else{
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
-                    }
-                }
-            }else{
-                if(moveTo < posP1 && moveTo < posP2){
-                    if(minN == posP1){
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo+1)
-                    }else{
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo+1)
-                    }
-                }else{
-                    if(bigN == posP1){
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo-1)
-                    }else{
-                        adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[0]), moveTo)
-                        adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-1)
-                    }
-                }
-            }
-        }else{
-            val posP1 = adapter.getPositionOfPiece(BigPiece[0])
-            val posP2 = adapter.getPositionOfPiece(BigPiece[1])
-            val bigN = posP1.coerceAtLeast(posP2)
-            val minN = posP1.coerceAtMost(posP2)
-            if(posP1 == adapter.getPositionOfPiece(piece)){
-                if(moveTo < posP1 && moveTo < posP2){
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+4)
-                }else{
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-4)
-                }
-            }else{
-                if(moveTo < posP1 && moveTo < posP2){
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo+4)
-                }else{
-                    adapter.swapPositions(adapter.getPositionOfPiece(BigPiece[1]), moveTo)
-                    adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo-4)
-                }
-            }
-        }
-
-    }
-
-    private fun canMoveH(positon : Int, desiredMove : Direction) : Boolean {
-        val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
-        var gRange = arrayOf(0,0)
-        for(ranges in existingRanges){
-            if(positon >= ranges[0] && positon <= ranges[1] ){
-                gRange = ranges
-            }
-        }
-        when(desiredMove) {
-            Direction.LEFT -> {
-                return positon > gRange[0]
-            }
-
-            Direction.RIGHT -> {
-                return positon < gRange[1]
-            }
-            else -> {return true}
-        }
-    }
     private fun moveBluePiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
-        val pieces = pieceGroup.pieces
         val orientationOfThePieceGroup = pieceGroup.orientation
-        val posP1 = adapter.getPositionOfPiece(pieces[0])
-        val posP2 = adapter.getPositionOfPiece(pieces[1])
-        val bigN = posP1.coerceAtLeast(posP2)
-        val minN = posP1.coerceAtMost(posP2)
+
         when (orientationOfThePieceGroup) {
             Orientation.HORIZONTAL -> {
                 when (moveTo) {
                     Direction.LEFT -> {
-                        adapter.swapPositions(minN, minN - 1)
-                        adapter.swapPositions(bigN,bigN - 1)
+                        val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                        val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                        adapter.swapPositions(leftPiecePosition, leftPiecePosition - 1)
+                        adapter.swapPositions(rightPiecePosition, rightPiecePosition - 1)
                     }
 
                     Direction.RIGHT -> {
-                        adapter.swapPositions(bigN, bigN + 1)
-                        adapter.swapPositions(minN, minN + 1)
+                        val leftPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[0])
+                        val rightPiecePosition = adapter.getPositionOfPiece(pieceGroup.pieces[1])
+                        adapter.swapPositions(rightPiecePosition, rightPiecePosition + 1)
+                        adapter.swapPositions(leftPiecePosition, leftPiecePosition + 1)
                     }
 
                     Direction.DOWN -> {
@@ -589,49 +483,6 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         return positionClicked % 4 == 0
     }
 
-    private fun filterGoodPieces(pieces : List<Int>, posClicked : Int) : List<Int>{
-        val existingRanges = listOf<Array<Int>>(arrayOf(0,3), arrayOf(4,7), arrayOf(8,11), arrayOf(12,15), arrayOf(16,19))
-        var gRange = arrayOf(0,0)
-        for(ranges in existingRanges){
-            if(posClicked >= ranges[0] && posClicked <= ranges[1] ){
-                gRange = ranges
-            }
-        }
-        val result = ArrayList<Int>()
-        for(piece in pieces){
-            if(piece <= gRange[1] && piece >= gRange[0]){
-                result.add(piece)
-            }
-        }
-        return result
-    }
-
-    private fun getAnySurroundingPieceEmpty(positionClicked: Int, actualState: List<GamePiece>, pieceOrientation: Orientation?): Int? {
-        // Checks if the piece of the direction we want to check is empty
-
-        val surroundingPiecesInsideBoard = getSurroundingPositionsInsideBoard(positionClicked)
-
-        val emptySurroundingPieces = surroundingPiecesInsideBoard.filter { actualState[it].type == PieceType.EMPTY }
-
-        Toast.makeText(context, "Empty surrounding pieces: ${filterGoodPieces(emptySurroundingPieces, positionClicked)} of the piece $positionClicked", Toast.LENGTH_SHORT).show()
-
-        return when (pieceOrientation) {
-            Orientation.HORIZONTAL -> {
-                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
-                gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
-            }
-
-            Orientation.VERTICAL -> {
-                val gamePiece = filterGoodPieces(emptySurroundingPieces, positionClicked).firstOrNull { it == positionClicked - 1 || it == positionClicked + 1 }
-                gamePiece?.let { adapter.getPositionOfPiece(actualState[it]) }
-            }
-
-            else -> {
-                null
-            }
-        }
-    }
-
     private fun getSurroundingPositionsInsideBoard(positionClicked: Int): List<Int> {
         val row = positionClicked / 4
         val column = positionClicked % 4
@@ -654,6 +505,153 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
         // Check if the surrounding pieces are inside the board
         return surroundingPieces.filter { it in 0..19 }
+    }
+
+    fun whereToMove2Cells(positionClicked: Int, actualState: MutableList<GamePiece>): Any? {
+        val pieceClicked = actualState[positionClicked]
+        return when (pieceClicked.type) {
+            PieceType.YELLOW -> {
+                whereToMove2CellsYellow(positionClicked, actualState)
+            }
+
+            PieceType.BLUE -> {
+                whereToMove2CellsBlue(positionClicked, actualState)
+            }
+
+            else -> {
+                null
+            }
+        }
+    }
+
+    private fun whereToMove2CellsBlue(
+        positionClicked: Int,
+        actualState: MutableList<GamePiece>
+    ): Direction? {
+
+        val pieceGroup = adapter.getGroup(actualState[positionClicked].groupId)
+        val piece1Position = adapter.getPositionOfPiece(pieceGroup.pieces[0]) // The upper/leftest one
+        val piece2Position = adapter.getPositionOfPiece(pieceGroup.pieces[1]) // The lower/rightest one
+
+        val firstMovementDirection = whereToMoveBlue(positionClicked, actualState) ?: return null
+        val firstAfterMovementPiece1Position = getPositionAfterDirectionMovement(piece1Position, firstMovementDirection)
+        val firstAfterMovementPiece2Position = getPositionAfterDirectionMovement(piece2Position, firstMovementDirection)
+
+        when (firstMovementDirection) {
+            Direction.UP -> {
+                return if (pieceIsInFirstRow(firstAfterMovementPiece1Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece1Position, Direction.UP)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.UP
+                    } else {
+                        null
+                    }
+                }
+            }
+            Direction.DOWN -> {
+                return if (pieceIsInLastRow(firstAfterMovementPiece2Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece2Position, Direction.DOWN)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.DOWN
+                    } else {
+                        null
+                    }
+                }
+            }
+            Direction.LEFT -> {
+                return if (pieceIsInFirstColumn(firstAfterMovementPiece1Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece1Position, Direction.LEFT)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.LEFT
+                    } else {
+                        null
+                    }
+                }
+            }
+            Direction.RIGHT -> {
+                return if (pieceIsInLastColumn(firstAfterMovementPiece2Position)) {
+                    null
+                } else {
+                    val positionAfterSecondMovement = getPositionAfterDirectionMovement(firstAfterMovementPiece2Position, Direction.RIGHT)
+                    if (actualState[positionAfterSecondMovement].type == PieceType.EMPTY) {
+                        Direction.RIGHT
+                    } else {
+                        null
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getPositionAfterDirectionMovement(
+        positionClicked: Int,
+        movementDirection: Direction
+    ): Int {
+        when (movementDirection) {
+            Direction.UP -> {
+                return positionClicked - 4
+            }
+
+            Direction.DOWN -> {
+                return positionClicked + 4
+            }
+
+            Direction.LEFT -> {
+                return positionClicked - 1
+            }
+
+            Direction.RIGHT -> {
+                return positionClicked + 1
+            }
+        }
+    }
+
+    private fun whereToMove2CellsYellow(
+        positionClicked: Int,
+        actualState: MutableList<GamePiece>
+    ): Int? {
+        return getAnySurroundingPieceEmpty(getAnySurroundingPieceEmpty(positionClicked, actualState)!!, actualState)
+    }
+
+    fun move2Cells(
+        positionClicked: Int,
+        whereToMove: Any,
+        actualState: MutableList<GamePiece>
+    ) {
+        val pieceClicked = actualState[positionClicked]
+        when (pieceClicked.type) {
+            PieceType.YELLOW -> {
+                moveYellowPiece(pieceClicked, whereToMove as Int)
+            }
+
+            PieceType.BLUE -> {
+                moveBluePiece2Cells(pieceClicked, whereToMove as Direction)
+            }
+
+            else -> {}
+        }
+    }
+
+    private fun moveBluePiece2Cells(pieceClicked: GamePiece, directionToMove: Direction) {
+        moveBluePiece(pieceClicked, directionToMove)
+        moveBluePiece(pieceClicked, directionToMove)
+    }
+
+    fun checkWin(actualState: MutableList<GamePiece>) {
+        if (WINNING_POSITIONS.all { actualState[it].type == PieceType.RED }) {
+            gameWon()
+        }
+    }
+
+    private fun gameWon() {
+        val dialogFragment = MainFragment()
+        dialogFragment.show((context as AppCompatActivity).supportFragmentManager, "My  Fragment")
     }
 
 }

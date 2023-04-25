@@ -3,8 +3,13 @@ package com.example.superslidegame.game.levels
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.PieceGroup
 import com.example.superslidegame.game.levels.data.Level1
+import com.example.superslidegame.game.levels.data.Level2
 
-class GameLevel(levelNumber: Int) : Level {
+class GameLevel(levelNumber: Int?) : Level {
+
+    companion object {
+        const val MAX_LEVEL = 10
+    }
 
     private var activeLevel : Level
 
@@ -13,7 +18,7 @@ class GameLevel(levelNumber: Int) : Level {
     init {
         activeLevel = when (levelNumber) {
             1 -> Level1()
-            //2 -> Level2()
+            2 -> Level2()
             //3 -> Level3()
             //4 -> Level4()
             //5 -> Level5()

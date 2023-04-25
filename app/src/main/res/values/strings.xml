@@ -7,4 +7,14 @@
     <string name="logo_image_description">Logo image</string>
     <string name="play_button_description">Play</string>
     <string name="settings_button_description">Settings</string>
+    <string name="popup_win_message">Well done!</string>
+    <string name="popup_lose_message">You lost!</string>
+    <string name="popup_win_button">Next Level</string>
+    <string name="popup_lose_button">Try Again</string>
+    <string name="popup_exit">Exit</string>
+    <string name="levelButtonText">Level %d</string>
+    <string name="play_button_level_selector">Play!</string>
+    <string name="level_selector_title">Settings for starting the game</string>
+    <string name="nicknameTextViewText">Enter your nickname:</string>
+    <string name="difficultyTextView">Select the game difficulty</string>
 </resources>
