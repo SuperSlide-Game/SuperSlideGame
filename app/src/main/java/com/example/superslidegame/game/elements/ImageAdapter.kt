@@ -12,7 +12,7 @@ import com.example.superslidegame.R
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.levels.Level
 
-class ImageAdapter(private val screenActivity: Activity, private val level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
+class ImageAdapter(private val screenActivity: Activity, level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
 
     private val pieces: MutableList<GamePiece> = level.getPieces()
 
@@ -42,13 +42,14 @@ class ImageAdapter(private val screenActivity: Activity, private val level: Leve
             imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
-            // Listener for the 1-cell movement
-            imageButton.setOnClickListener(ClickListener(screenActivity, position, this))
-            // Listener for the 2-cell movement
-            imageButton.setOnLongClickListener(LongClickListener(context, position, this))
         } else {
             imageButton = convertView as ImageButton
         }
+
+        // Listener for the 1-cell movement
+        imageButton.setOnClickListener(ClickListener(screenActivity, position, this))
+        // Listener for the 2-cell movement
+        imageButton.setOnLongClickListener(LongClickListener(context, position, this))
 
         imageButton.setImageResource(pieces[position].imgSrc)
         if(pieces[position].type == PieceType.BLUE){

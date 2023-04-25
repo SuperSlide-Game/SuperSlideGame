@@ -33,11 +33,11 @@ class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
             button.textAlignment = View.TEXT_ALIGNMENT_CENTER
             button.gravity = Gravity.CENTER
             button.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-            button.setOnClickListener(LevelSelectorClickListener(position, activity as SelectLevel))
         } else {
             button = convertView as Button
         }
         button.text = String.format("Level %d", position + 1)
+        button.setOnClickListener(LevelSelectorClickListener(position, activity as SelectLevel))
         return button
     }
 }
