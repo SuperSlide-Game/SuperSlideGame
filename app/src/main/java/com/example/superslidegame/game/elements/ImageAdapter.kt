@@ -82,6 +82,11 @@ class ImageAdapter(private val screenActivity: Activity, private val level: Leve
             }
             rN +=1
         }
+        if(pieces[position].type == PieceType.EMPTY){
+            if(position == 13 || position == 14 || position == 17 || position ==18){
+                imageButton.setImageResource(R.drawable.empty_piece_yes)
+            }
+        }
         return imageButton
     }
 

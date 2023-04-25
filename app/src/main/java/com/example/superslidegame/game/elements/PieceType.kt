@@ -10,5 +10,5 @@ enum class PieceType(val imgSrc: Int) {
     YELLOW(R.drawable.yellow_piece),
     BLUE(R.drawable.blue_piece),
     RED(R.drawable.red_piece),
-    EMPTY(R.drawable.empty_piece);
+    EMPTY(R.drawable.empty_piece_no);
 }
