@@ -18,17 +18,34 @@ class GameScreen : AppCompatActivity() {
      * onCreate is called when the activity is starting.
      * It inflates the layout and sets the adapter for the grid of tiles.
      */
+
+    private lateinit var gameState : GameState
+    private lateinit var level : GameLevel
+    private lateinit var adapter: ImageAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = GameScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val gameState = GameState.fromBundle(intent.extras!!)
-        val levelSel = gameState.level
+        if (savedInstanceState != null) {
+            gameState = GameState.fromBundle(savedInstanceState.getBundle("gameState")!!)
+            level = GameLevel(gameState.level)
+            gameState.board?.let { level.setPieces(it) }
+        } else {
+            gameState = GameState.fromBundle(intent.extras!!)
+            level = GameLevel(gameState.level)
+        }
 
-        val level = GameLevel(levelSel)
         val animationHelper = AnimationHelper(this)
 
-        binding.gridTiles.adapter = ImageAdapter(this, level, animationHelper)
+        adapter = ImageAdapter(this, level, animationHelper)
+        binding.gridTiles.adapter = adapter
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        gameState.board = adapter.getPiecesState()
+        outState.putBundle("gameState", gameState.toBundle())
     }
 }
