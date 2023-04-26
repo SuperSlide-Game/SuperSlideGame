@@ -13,7 +13,6 @@ import com.example.superslidegame.game.screen.SelectLevel
 class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
 
     private val maxLevel = GameLevel.MAX_LEVEL
-    private val lastClicked = null
 
     override fun getCount(): Int {
         return maxLevel
