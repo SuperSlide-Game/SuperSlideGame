@@ -13,12 +13,11 @@
         android:id="@+id/levelList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="110dp"
         android:layout_marginTop="344dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="110dp"
         android:layout_marginBottom="200dp"
         android:foregroundGravity="center_vertical"
-        android:listSelector="#5B4DB6AC"
         android:smoothScrollbar="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/levelList"
@@ -59,12 +58,12 @@
             android:text="@string/level_selector_title"
             android:textAlignment="center"
             android:textColor="@color/light_white"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nicknameTextViewText"
-                android:textColor="@color/light_white" />
+                android:textColor="@color/light_white"
+                android:textSize="15sp" />
 
             <Space
                 android:layout_width="15dp"
@@ -109,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/difficultyTextView"
-                android:textColor="@color/light_white" />
+                android:textColor="@color/light_white"
+                android:textSize="15sp" />
 
             <Space
                 android:layout_width="15dp"

@@ -13,6 +13,7 @@ import com.example.superslidegame.game.screen.SelectLevel
 class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
 
     private val maxLevel = GameLevel.MAX_LEVEL
+    private val lastClicked = null
 
     override fun getCount(): Int {
         return maxLevel
@@ -32,7 +33,8 @@ class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
             button = Button(activity.baseContext)
             button.textAlignment = View.TEXT_ALIGNMENT_CENTER
             button.gravity = Gravity.CENTER
-            button.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+            button.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+            button.textSize = 15f
         } else {
             button = convertView as Button
         }
