@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.game.animations.AnimationHelper
+import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.levels.GameLevel
 
@@ -22,7 +23,9 @@ class GameScreen : AppCompatActivity() {
         val binding = GameScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val levelSel = intent.getIntExtra("level", 1)
+        val gameState = GameState.fromBundle(intent.extras!!)
+        val levelSel = gameState.level
+
         val level = GameLevel(levelSel)
         val animationHelper = AnimationHelper(this)
 
