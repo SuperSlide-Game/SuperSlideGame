@@ -13,8 +13,6 @@ class GameLevel(levelNumber: Int?) : Level {
 
     private var activeLevel : Level
 
-    constructor() : this(1)
-
     init {
         activeLevel = when (levelNumber) {
             1 -> Level1()
@@ -33,7 +31,7 @@ class GameLevel(levelNumber: Int?) : Level {
 
     fun nextLevel() {
         when (activeLevel.getNumber() + 1) {
-            //2 -> activeLevel = Level2()
+            2 -> activeLevel = Level2()
             //3 -> activeLevel = Level3()
             //4 -> activeLevel = Level4()
             //5 -> activeLevel = Level5()
@@ -47,6 +45,10 @@ class GameLevel(levelNumber: Int?) : Level {
 
     override fun getNumber(): Int {
         return activeLevel.getNumber()
+    }
+
+    override fun setPieces(pieces: MutableList<GamePiece>) {
+        activeLevel.setPieces(pieces)
     }
 
     override fun getPieces(): MutableList<GamePiece> {

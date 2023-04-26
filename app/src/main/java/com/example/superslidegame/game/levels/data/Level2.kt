@@ -40,6 +40,10 @@ class Level2 : Level {
         return 1
     }
 
+    override fun setPieces(pieces: MutableList<GamePiece>) {
+        this.pieces = pieces
+    }
+
     override fun getPieces(): MutableList<GamePiece> {
         return pieces
     }
