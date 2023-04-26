@@ -42,6 +42,7 @@ class ImageAdapter(private val screenActivity: Activity, level: Level, val anima
             imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
+
         } else {
             imageButton = convertView as ImageButton
         }
@@ -52,12 +53,12 @@ class ImageAdapter(private val screenActivity: Activity, level: Level, val anima
         imageButton.setOnLongClickListener(LongClickListener(context, position, this))
 
         imageButton.setImageResource(pieces[position].imgSrc)
+
         if(pieces[position].type == PieceType.BLUE){
             if(getGroup(pieces[position].groupId).orientation == Orientation.VERTICAL){
                 imageButton.rotation = 90.0F
                 if(bNv == 1){
                     imageButton.rotation = 270.0F
-                    bNv = 0
                 }else{
                     bNv+=1
                 }
@@ -65,7 +66,6 @@ class ImageAdapter(private val screenActivity: Activity, level: Level, val anima
                 if(bN == 1){
                     imageButton.setImageResource(R.drawable.blue_piece)
                     imageButton.rotation = 180.0F
-                    bN = 0
                 }else{
                     bN+=1
                 }
