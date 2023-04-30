@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.game.MainFragment
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
@@ -47,7 +48,7 @@ class GameScreen : AppCompatActivity() {
         binding.gridTiles.adapter = adapter
         timerTextView = findViewById(R.id.timerTextView)
 
-        timer = object : CountDownTimer(60000, 1000) {
+        timer = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
                 timerTextView.text = "Time left: $seconds seconds"
@@ -55,7 +56,8 @@ class GameScreen : AppCompatActivity() {
 
             override fun onFinish() {
                 timerTextView.text = "Time's up!"
-                // do something when the timer finishes
+                val dialogFragment = Tim()
+                dialogFragment.show(supportFragmentManager, "My  Fragment")
             }
         }
 
