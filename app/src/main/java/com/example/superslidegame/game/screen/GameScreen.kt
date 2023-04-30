@@ -56,7 +56,7 @@ class GameScreen : AppCompatActivity() {
 
             override fun onFinish() {
                 timerTextView.text = "Time's up!"
-                val dialogFragment = Tim()
+                val dialogFragment = TimeUpFragment()
                 dialogFragment.show(supportFragmentManager, "My  Fragment")
             }
         }
