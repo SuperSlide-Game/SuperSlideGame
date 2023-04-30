@@ -1,6 +1,8 @@
 package com.example.superslidegame.game.screen
 
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.game.animations.AnimationHelper
@@ -22,7 +24,8 @@ class GameScreen : AppCompatActivity() {
     private lateinit var gameState : GameState
     private lateinit var level : GameLevel
     private lateinit var adapter: ImageAdapter
-
+    private lateinit var timerTextView: TextView
+    private lateinit var timer: CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = GameScreenBinding.inflate(layoutInflater)
