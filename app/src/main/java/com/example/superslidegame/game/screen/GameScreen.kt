@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState
@@ -44,6 +45,21 @@ class GameScreen : AppCompatActivity() {
 
         adapter = ImageAdapter(this, level, animationHelper)
         binding.gridTiles.adapter = adapter
+        timerTextView = findViewById(R.id.timerTextView)
+
+        timer = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val seconds = millisUntilFinished / 1000
+                timerTextView.text = "Time left: $seconds seconds"
+            }
+
+            override fun onFinish() {
+                timerTextView.text = "Time's up!"
+                // do something when the timer finishes
+            }
+        }
+
+        timer.start()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
