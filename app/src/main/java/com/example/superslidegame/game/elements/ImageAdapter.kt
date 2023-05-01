@@ -1,6 +1,5 @@
 package com.example.superslidegame.game.elements
 
-import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,9 @@ import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.levels.Level
+import com.example.superslidegame.game.screen.GameScreen
 
-class ImageAdapter(private val screenActivity: Activity, level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
+class ImageAdapter(private val screenActivity: GameScreen, level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
 
     private val pieces: MutableList<GamePiece> = level.getPieces()
 
@@ -123,5 +123,9 @@ class ImageAdapter(private val screenActivity: Activity, level: Level, val anima
         screenActivity.runOnUiThread {
             notifyDataSetChanged()
         }
+    }
+
+    fun getGameTimer() : StoppableCountDownTimer {
+        return screenActivity.getGameTimer()
     }
 }

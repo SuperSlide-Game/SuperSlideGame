@@ -9,6 +9,7 @@ import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
+import com.example.superslidegame.log.Logger
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
@@ -19,6 +20,15 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
     companion object {
         lateinit var GAME_STATE : GameState.Type
+        private var moves = 0
+        private val logger = Logger.getLogger()
+
+        fun onLose(seconds : Long) {
+            GAME_STATE = GameState.Type.LOSE
+            logger.setMoves(moves)
+            logger.setResult(false)
+            logger.setTime(seconds)
+        }
     }
 
     fun whereToMove(positionClicked: Int, actualState: List<GamePiece>): Any? {
@@ -42,6 +52,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     fun move(positionClicked: Int, positionToMove: Any, actualState: List<GamePiece>) {
+        moves++
         when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
                 moveYellowPiece(actualState[positionClicked], positionToMove as Int)
@@ -653,12 +664,14 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     fun checkWin(actualState: MutableList<GamePiece>) {
         if (WINNING_POSITIONS.all { actualState[it].type == PieceType.RED }) {
-            GAME_STATE = GameState.Type.WIN
             gameWon()
         }
     }
 
     private fun gameWon() {
+        val timer = adapter.getGameTimer()
+        logger.setResult(true); logger.setMoves(moves); logger.setTime(timer.cancelAndReturnTimeLeft())
+        GAME_STATE = GameState.Type.WIN
         val dialogFragment = MainFragment()
         dialogFragment.show((context as AppCompatActivity).supportFragmentManager, "My  Fragment")
     }

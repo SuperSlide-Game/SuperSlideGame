@@ -1,7 +1,6 @@
 package com.example.superslidegame.game.screen
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
@@ -10,6 +9,7 @@ import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
+import com.example.superslidegame.game.elements.StoppableCountDownTimer
 import com.example.superslidegame.game.levels.GameLevel
 
 /**
@@ -27,7 +27,7 @@ class GameScreen : AppCompatActivity() {
     private lateinit var level : GameLevel
     private lateinit var adapter: ImageAdapter
     private lateinit var timerTextView: TextView
-    private lateinit var timer: CountDownTimer
+    private lateinit var timer: StoppableCountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = GameScreenBinding.inflate(layoutInflater)
@@ -48,19 +48,7 @@ class GameScreen : AppCompatActivity() {
         binding.gridTiles.adapter = adapter
         timerTextView = findViewById(R.id.timerTextView)
 
-        timer = object : CountDownTimer(5000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val seconds = millisUntilFinished / 1000
-                timerTextView.text = String.format("Time left: %d seconds", seconds)
-            }
-
-            override fun onFinish() {
-                timerTextView.text = getString(R.string.time_up)
-                val dialogFragment = TimeUpFragment()
-                dialogFragment.show(supportFragmentManager, "My  Fragment")
-                GameLogic.GAME_STATE = GameState.Type.LOSE
-            }
-        }
+        timer = StoppableCountDownTimer(5000, 1000, this, timerTextView)
 
         timer.start()
     }
@@ -69,5 +57,16 @@ class GameScreen : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         gameState.board = adapter.getPiecesState()
         outState.putBundle("gameState", gameState.toBundle())
+    }
+
+    fun onGameFinished(seconds : Long) {
+        timerTextView.text = getString(R.string.time_up)
+        val dialogFragment = TimeUpFragment()
+        dialogFragment.show(supportFragmentManager, "My  Fragment")
+        GameLogic.onLose(seconds)
+    }
+
+    fun getGameTimer() : StoppableCountDownTimer {
+        return timer
     }
 }
