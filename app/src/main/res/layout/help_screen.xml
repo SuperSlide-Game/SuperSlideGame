@@ -8,123 +8,15 @@
     android:layout_gravity="center"
     tools:context=".game.screen.HelpScreen">
 
-    <ListView
-        android:id="@+id/levelList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="344dp"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="200dp"
-        android:foregroundGravity="center_vertical"
-        android:smoothScrollbar="true"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/play_button_level_selector"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#009688"
-        android:text="@string/play_button_level_selector"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="50dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/levelList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/levelSelectorScreenTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/level_selector_title"
-            android:textAlignment="center"
-            android:textColor="@color/light_white"
-            android:textSize="23sp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/nicknameTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nicknameTextViewText"
-                android:textColor="@color/light_white"
-                android:textSize="15sp" />
-
-            <Space
-                android:layout_width="15dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <EditText
-                android:id="@+id/nicknameEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:autofillHints="James Bond"
-                android:ems="6"
-                android:inputType="text" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/difficultyTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/difficultyTextView"
-                android:textColor="@color/light_white"
-                android:textSize="15sp" />
-
-            <Space
-                android:layout_width="15dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
-
-            <Spinner
-                android:id="@+id/difficultySpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:entries="@array/difficulties"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
-
-    </LinearLayout>
+        tools:ignore="ExtraText">
+        android:text="@string/help_screen_title"
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
