@@ -15,11 +15,8 @@ val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
-    init {
-        GAME_STATE = GameState.Type.IN_PROGRESS
-    }
     companion object {
-        lateinit var GAME_STATE : GameState.Type
+        var GAME_STATE : GameState.Type = GameState.Type.IN_PROGRESS
         private var moves = 0
         private val logger = Logger.getLogger()
 
