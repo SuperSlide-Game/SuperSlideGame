@@ -26,8 +26,10 @@
         android:textColor="@color/neon_purple"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/gridTiles"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <GridView
         android:id="@+id/gridTiles"
         android:layout_width="0dp"
