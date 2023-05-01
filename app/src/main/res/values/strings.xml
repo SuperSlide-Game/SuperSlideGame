@@ -12,9 +12,10 @@
     <string name="popup_win_button">Next Level</string>
     <string name="popup_lose_button">Try Again</string>
     <string name="popup_exit">Exit</string>
-    <string name="levelButtonText">Level %d</string>
     <string name="play_button_level_selector">Play!</string>
     <string name="level_selector_title">Settings for starting the game</string>
     <string name="nicknameTextViewText">Enter your nickname:</string>
     <string name="difficultyTextView">Select the game difficulty</string>
+    <string name="time_up">Time\'s up!</string>
+    <string name="timerTextViewText">Time left: %d seconds</string>
 </resources>

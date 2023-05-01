@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
-import com.example.superslidegame.game.MainFragment
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
@@ -51,11 +50,11 @@ class GameScreen : AppCompatActivity() {
         timer = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val seconds = millisUntilFinished / 1000
-                timerTextView.text = "Time left: $seconds seconds"
+                timerTextView.text = String.format("Time left: %d seconds", seconds)
             }
 
             override fun onFinish() {
-                timerTextView.text = "Time's up!"
+                timerTextView.text = getString(R.string.time_up)
                 val dialogFragment = TimeUpFragment()
                 dialogFragment.show(supportFragmentManager, "My  Fragment")
             }
