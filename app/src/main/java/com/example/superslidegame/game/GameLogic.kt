@@ -113,9 +113,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     private fun moveBluePiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
-        val orientationOfThePieceGroup = pieceGroup.orientation
 
-        when (orientationOfThePieceGroup) {
+        when (pieceGroup.orientation) {
             Orientation.HORIZONTAL -> {
                 when (moveTo) {
                     Direction.LEFT -> {
@@ -670,7 +669,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     private fun gameWon() {
         val timer = adapter.getGameTimer()
-        logger.setResult(true); logger.setMoves(moves); logger.setTime(timer.cancelAndReturnTimeLeft())
+        logger.setResult(true); logger.setMoves(moves); logger.setTime(timer.cancelAndReturnTimeLeft()); logger.addWonLevel(adapter.getLevelNumber())
         GAME_STATE = GameState.Type.WIN
         val dialogFragment = MainFragment()
         dialogFragment.show((context as AppCompatActivity).supportFragmentManager, "My  Fragment")
