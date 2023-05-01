@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.example.superslidegame.R
+import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.log.screen.LogScreen
 
 class PopUpFragment : DialogFragment() {
@@ -25,16 +26,20 @@ class PopUpFragment : DialogFragment() {
 
         menuButton.setOnClickListener {
             activity?.finish()
+            dismiss()
         }
 
         nextLevelButton.setOnClickListener {
-            //
+            activity?.finish()
+            SelectLevel.instance?.nextLevel()
+            dismiss()
         }
 
         logButton.setOnClickListener {
             val intent = Intent(activity, LogScreen::class.java)
             startActivity(intent)
             activity?.finish()
+            dismiss()
         }
 
         return view

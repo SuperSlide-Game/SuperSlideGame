@@ -25,12 +25,14 @@ class TimeUpFragment : DialogFragment() {
 
         menuButton.setOnClickListener {
             activity?.finish()
+            dismiss()
         }
 
         logButton.setOnClickListener {
             val intent = Intent(activity, LogScreen::class.java)
             startActivity(intent)
             activity?.finish()
+            dismiss()
         }
 
         return view
