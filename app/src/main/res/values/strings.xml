@@ -28,4 +28,6 @@
     <string name="next_level_button">Next Level</string>
     <string name="log_button">Send log</string>
     <string name="help_screen_title">How does the game work?</string>
+    <string name="help_screen_text1">The game consists on moving a set of pieces through the game board with the objective of getting the red piece into the bottom-center of the board.</string>
+    <string name="help_screen_text2">To move a game piece, all you need to do Is touch on it. In case, the piece can go into two different positions, firstly you need to move it into one position and then hold a long click for the piece to go into the other possible position.</string>
 </resources>

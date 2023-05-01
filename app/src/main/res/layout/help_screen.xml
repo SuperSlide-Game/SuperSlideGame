@@ -4,19 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_settingsmain_backgro"
     android:layout_gravity="center"
+    android:background="@drawable/background_settingsmain_backgro"
     tools:context=".game.screen.HelpScreen">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="85dp"
+        android:padding="5dp"
+        android:shadowColor="#21DF00"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:text="@string/help_screen_title"
+        android:textColor="#21DF00"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"></TextView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="333dp"
+        android:layout_height="60dp"
+        android:text="@string/help_screen_text1"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ExtraText">
-        android:text="@string/help_screen_title"
-    </TextView>
+        app:layout_constraintVertical_bias="0.143"></TextView>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="336dp"
+        android:layout_height="207dp"
+        android:text="@string/help_screen_text2"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.205"></TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
