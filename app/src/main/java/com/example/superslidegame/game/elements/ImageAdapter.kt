@@ -42,6 +42,7 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
             imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
+            //
 
         } else {
             imageButton = convertView as ImageButton
@@ -54,35 +55,7 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
 
         imageButton.setImageResource(pieces[position].imgSrc)
 
-        if(pieces[position].type == PieceType.BLUE){
-            if(getGroup(pieces[position].groupId).orientation == Orientation.VERTICAL){
-                imageButton.rotation = 90.0F
-                if(bNv == 1){
-                    imageButton.rotation = 270.0F
-                }else{
-                    bNv+=1
-                }
-            }else{
-                if(bN == 1){
-                    imageButton.setImageResource(R.drawable.blue_piece)
-                    imageButton.rotation = 180.0F
-                }else{
-                    bN+=1
-                }
-            }
-        }
-        if(pieces[position].type == PieceType.RED){
-            if(rN == 1){
-                imageButton.rotation = 90F
-            }
-            if(rN == 2){
-                imageButton.rotation = 270F
-            }
-            if(rN == 3){
-                imageButton.rotation = 180F
-            }
-            rN +=1
-        }
+        imageButton.rotation = pieces[position].rotation.toFloat()
         if(pieces[position].type == PieceType.EMPTY){
             if(position == 13 || position == 14 || position == 17 || position ==18){
                 imageButton.setImageResource(R.drawable.empty_piece_yes)
