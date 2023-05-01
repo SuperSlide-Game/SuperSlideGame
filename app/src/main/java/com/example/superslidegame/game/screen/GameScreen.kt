@@ -46,9 +46,8 @@ class GameScreen : AppCompatActivity() {
 
         adapter = ImageAdapter(this, level, animationHelper)
         binding.gridTiles.adapter = adapter
-        timerTextView = findViewById(R.id.timerTextView)
 
-        timer = StoppableCountDownTimer(5000, 1000, this, timerTextView)
+        timer = StoppableCountDownTimer(5000, 1000, this, binding.timerTextView)
 
         timer.start()
     }
