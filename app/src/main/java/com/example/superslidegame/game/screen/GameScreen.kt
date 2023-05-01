@@ -1,7 +1,6 @@
 package com.example.superslidegame.game.screen
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
@@ -26,11 +25,10 @@ class GameScreen : AppCompatActivity() {
     private lateinit var gameState : GameState
     private lateinit var level : GameLevel
     private lateinit var adapter: ImageAdapter
-    private lateinit var timerTextView: TextView
     private lateinit var timer: StoppableCountDownTimer
+    private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = GameScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (savedInstanceState != null) {
@@ -59,7 +57,7 @@ class GameScreen : AppCompatActivity() {
     }
 
     fun onGameFinished(seconds : Long) {
-        timerTextView.text = getString(R.string.time_up)
+        binding.timerTextView.text = getString(R.string.time_up)
         val dialogFragment = TimeUpFragment()
         dialogFragment.show(supportFragmentManager, "My  Fragment")
         GameLogic.onLose(seconds)
