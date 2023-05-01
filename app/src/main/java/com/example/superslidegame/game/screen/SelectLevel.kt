@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.SelLevelBinding
-import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.LevelListAdapter
 import com.example.superslidegame.log.Logger
@@ -36,8 +35,6 @@ class SelectLevel : AppCompatActivity() {
         val intent = Intent(this, GameScreen::class.java)
 
         binding.playButtonLevelSelector.setOnClickListener {
-
-            GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
 
             if (allNecessaryInfoFilled()) {
 

@@ -48,6 +48,8 @@ class GameScreen : AppCompatActivity() {
         timer = StoppableCountDownTimer(5000, 1000, this, binding.timerTextView)
 
         timer.start()
+
+        GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
