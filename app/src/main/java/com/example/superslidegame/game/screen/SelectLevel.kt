@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.SelLevelBinding
+import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.LevelListAdapter
 import com.example.superslidegame.log.Logger
@@ -18,6 +19,14 @@ class SelectLevel : AppCompatActivity() {
     var selectedLevel : Int? = null
     private val binding by lazy { SelLevelBinding.inflate(layoutInflater) }
 
+    companion object {
+        var instance : SelectLevel? = null
+    }
+
+    init {
+        instance = this
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -27,6 +36,8 @@ class SelectLevel : AppCompatActivity() {
         val intent = Intent(this, GameScreen::class.java)
 
         binding.playButtonLevelSelector.setOnClickListener {
+
+            GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
 
             if (allNecessaryInfoFilled()) {
 
@@ -53,6 +64,19 @@ class SelectLevel : AppCompatActivity() {
 
     fun setLevel(level: Int) {
         selectedLevel = level
+    }
+
+    fun nextLevel() {
+        selectedLevel = selectedLevel?.plus(1)
+
+        val gameStateBundle : Bundle = GameState(
+            binding.nicknameEditText.text.toString(),
+            binding.difficultySpinner.selectedItem.toString(),
+            selectedLevel!!
+        ).toBundle()
+
+        intent.putExtras(gameStateBundle)
+        startActivity(intent)
     }
 
 }
