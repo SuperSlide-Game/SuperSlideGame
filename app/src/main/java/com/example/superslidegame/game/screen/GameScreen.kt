@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
@@ -57,6 +58,7 @@ class GameScreen : AppCompatActivity() {
                 timerTextView.text = getString(R.string.time_up)
                 val dialogFragment = TimeUpFragment()
                 dialogFragment.show(supportFragmentManager, "My  Fragment")
+                GameLogic.GAME_STATE = GameState.Type.LOSE
             }
         }
 

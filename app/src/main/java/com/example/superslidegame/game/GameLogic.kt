@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
+import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
@@ -12,6 +13,13 @@ import com.example.superslidegame.game.elements.PieceType
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
+
+    init {
+        GAME_STATE = GameState.Type.IN_PROGRESS
+    }
+    companion object {
+        lateinit var GAME_STATE : GameState.Type
+    }
 
     fun whereToMove(positionClicked: Int, actualState: List<GamePiece>): Any? {
         return when (actualState[positionClicked].type) {
@@ -645,6 +653,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     fun checkWin(actualState: MutableList<GamePiece>) {
         if (WINNING_POSITIONS.all { actualState[it].type == PieceType.RED }) {
+            GAME_STATE = GameState.Type.WIN
             gameWon()
         }
     }
