@@ -24,4 +24,7 @@
     <string name="send_email_button">Send email</string>
     <string name="new_game_button">Start a new game</string>
     <string name="exit_button">Exit the game</string>
+    <string name="menu_button">Menu</string>
+    <string name="next_level_button">Next Level</string>
+    <string name="log_button">Send log</string>
 </resources>
