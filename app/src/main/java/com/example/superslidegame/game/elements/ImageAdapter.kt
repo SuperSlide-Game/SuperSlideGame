@@ -12,7 +12,7 @@ import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.levels.Level
 import com.example.superslidegame.game.screen.GameScreen
 
-class ImageAdapter(private val screenActivity: GameScreen, level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
+class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
 
     private val pieces: MutableList<GamePiece> = level.getPieces()
 
@@ -127,5 +127,9 @@ class ImageAdapter(private val screenActivity: GameScreen, level: Level, val ani
 
     fun getGameTimer() : StoppableCountDownTimer {
         return screenActivity.getGameTimer()
+    }
+
+    fun getLevelNumber() : Int {
+        return level.getNumber()
     }
 }
