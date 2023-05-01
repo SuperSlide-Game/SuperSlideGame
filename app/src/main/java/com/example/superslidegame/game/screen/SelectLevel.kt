@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.SelLevelBinding
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.LevelListAdapter
+import com.example.superslidegame.log.Logger
 
 /**
  * GameScreen is the level selector screen of the game
@@ -27,13 +28,14 @@ class SelectLevel : AppCompatActivity() {
 
         binding.playButtonLevelSelector.setOnClickListener {
 
-            if (alNecessaryInfoFilled()) {
+            if (allNecessaryInfoFilled()) {
 
                 val gameStateBundle : Bundle = GameState(
                     binding.nicknameEditText.text.toString(),
                     binding.difficultySpinner.selectedItem.toString(),
                     selectedLevel!!
                 ).toBundle()
+                Logger(GameState.fromBundle(gameStateBundle))
                 intent.putExtras(gameStateBundle)
                 startActivity(intent)
 
@@ -45,7 +47,7 @@ class SelectLevel : AppCompatActivity() {
         }
     }
 
-    private fun alNecessaryInfoFilled(): Boolean {
+    private fun allNecessaryInfoFilled(): Boolean {
         return selectedLevel != null && binding.nicknameEditText.text.isBlank().not()
     }
 
