@@ -6,6 +6,7 @@ class Logger(initialState: GameState) {
     private val nickname : String = initialState.nickname
     private val difficulty : String = initialState.difficulty
     private val level : Int = initialState.level
+    private val wonLevels : MutableList<Int> = mutableListOf()
     private var moves : Int = 0
     private var time : Long = 0
     private var result : Boolean = false
@@ -34,11 +35,15 @@ class Logger(initialState: GameState) {
         this.result = result
     }
 
+    fun addWonLevel(level: Int) {
+        wonLevels.add(level)
+    }
+
     fun getLog() : String {
         return if (result) {
-            "Nickname: $nickname\nDifficulty: $difficulty\nLevel: $level\nMoves: $moves\nTime: $time\nResult: Win !!"
+            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on level $level: $time\nResult: Win !!"
         } else {
-            "Nickname: $nickname\nDifficulty: $difficulty\nLevel: $level\nMoves: $moves\nTime: $time\nResult: Lose :("
+            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on level $level: $time\nResult: Lose :("
         }
     }
 }
