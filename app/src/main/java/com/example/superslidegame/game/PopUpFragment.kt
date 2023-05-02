@@ -7,22 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
-import com.example.superslidegame.R
+import com.example.superslidegame.databinding.FragmentPopUpBinding
 import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.log.screen.LogScreen
 
 class PopUpFragment : DialogFragment() {
 
+    private lateinit var binding : FragmentPopUpBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        val view = inflater.inflate(R.layout.fragment_pop_up, container, false)
-        val menuButton : Button = view.findViewById(R.id.menu_button_win)
-        val nextLevelButton : Button = view.findViewById(R.id.next_level_button_win)
-        val logButton : Button = view.findViewById(R.id.log_button_win)
+        binding = FragmentPopUpBinding.inflate(inflater, container, false)
+        val menuButton : Button = binding.menuButtonWin
+        val nextLevelButton : Button = binding.nextLevelButtonWin
+        val logButton : Button = binding.logButtonWin
 
         menuButton.setOnClickListener {
             activity?.finish()
@@ -42,6 +44,6 @@ class PopUpFragment : DialogFragment() {
             dismiss()
         }
 
-        return view
+        return binding.root
     }
 }
