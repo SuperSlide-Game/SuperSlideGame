@@ -7,7 +7,6 @@ class Logger(initialState: GameState) {
     private val difficulty : String = initialState.difficulty
     private val level : Int = initialState.level
     private val wonLevels : MutableList<Int> = mutableListOf()
-    private var moves : Int = 0
     private var time : Long = 0
     private var result : Boolean = false
 
@@ -16,15 +15,12 @@ class Logger(initialState: GameState) {
     }
 
     companion object {
+        var moves : Int = 0
         lateinit var instance : Logger
 
         fun getLogger() : Logger {
             return instance
         }
-    }
-
-    fun setMoves(moves: Int) {
-        this.moves = moves
     }
 
     fun setTime(time: Long) {

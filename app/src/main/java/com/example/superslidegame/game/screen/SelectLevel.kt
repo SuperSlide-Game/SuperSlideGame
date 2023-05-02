@@ -44,6 +44,7 @@ class SelectLevel : AppCompatActivity() {
                     selectedLevel!!
                 ).toBundle()
                 Logger(GameState.fromBundle(gameStateBundle))
+                Logger.moves = 0
                 intent.putExtras(gameStateBundle)
                 startActivity(intent)
 
