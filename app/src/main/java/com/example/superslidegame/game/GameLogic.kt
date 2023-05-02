@@ -668,7 +668,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         val timer = adapter.getGameTimer()
         logger.setResult(true); logger.setMoves(moves); logger.setTime(timer.cancelAndReturnTimeLeft()); logger.addWonLevel(adapter.getLevelNumber())
         GAME_STATE = GameState.Type.WIN
-        val dialogFragment = MainFragment()
+        val dialogFragment = PopUpFragment()
         dialogFragment.show((context as AppCompatActivity).supportFragmentManager, "My  Fragment")
     }
 
