@@ -37,9 +37,9 @@ class Logger(initialState: GameState) {
 
     fun getLog() : String {
         return if (result) {
-            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on level $level: $time\nResult: Win !!"
+            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on last level: $time seconds\nResult: Win !!"
         } else {
-            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on level $level: $time\nResult: Lose :("
+            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on last level: $time seconds \nResult: Lose :("
         }
     }
 }
