@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.fragments.TimeUpFragment
 import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState

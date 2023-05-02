@@ -3,6 +3,7 @@ package com.example.superslidegame.game
 import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.superslidegame.fragments.PopUpFragment
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.GameState

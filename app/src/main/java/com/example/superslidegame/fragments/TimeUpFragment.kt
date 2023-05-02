@@ -1,4 +1,4 @@
-package com.example.superslidegame.game.screen
+package com.example.superslidegame.fragments
 
 import android.content.Intent
 import android.os.Bundle
