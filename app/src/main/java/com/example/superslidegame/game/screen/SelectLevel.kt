@@ -64,6 +64,8 @@ class SelectLevel : AppCompatActivity() {
     }
 
     fun nextLevel() {
+        val intent = Intent(this, GameScreen::class.java)
+
         selectedLevel = selectedLevel?.plus(1)
 
         val gameStateBundle : Bundle = GameState(
