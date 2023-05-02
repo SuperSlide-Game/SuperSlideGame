@@ -75,4 +75,8 @@ class GameScreen : AppCompatActivity() {
     fun getGameTimer() : StoppableCountDownTimer {
         return timer
     }
+
+    fun getPlayingLevel() : Int {
+        return gameState.level
+    }
 }

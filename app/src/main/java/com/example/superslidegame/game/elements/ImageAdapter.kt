@@ -19,9 +19,6 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
     private val groups: MutableList<PieceGroup> = level.getGroups()
 
     private val context : Context = screenActivity.baseContext
-    private var bN = 0
-    private var bNv = 0
-    private var rN = 0
     override fun getCount(): Int {
         return pieces.size
     }
@@ -55,7 +52,7 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
 
         imageButton.setImageResource(pieces[position].imgSrc)
 
-        imageButton.rotation = pieces[position].rotation.toFloat()
+        imageButton.rotation = pieces[position].rotation
         if(pieces[position].type == PieceType.EMPTY){
             if(position == 13 || position == 14 || position == 17 || position ==18){
                 imageButton.setImageResource(R.drawable.empty_piece_yes)
@@ -103,6 +100,6 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
     }
 
     fun getLevelNumber() : Int {
-        return level.getNumber()
+        return screenActivity.getPlayingLevel()
     }
 }
