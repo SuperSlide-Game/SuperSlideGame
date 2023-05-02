@@ -46,7 +46,13 @@ class GameScreen : AppCompatActivity() {
         adapter = ImageAdapter(this, level, animationHelper)
         binding.gridTiles.adapter = adapter
 
-        timer = StoppableCountDownTimer(5000, 1000, this, binding.timerTextView)
+        var timerTime : Long = 0
+        when (gameState.difficulty) {
+            getString(R.string.Easy) -> timerTime = 60000
+            getString(R.string.Hard) -> timerTime = 30000
+            getString(R.string.Extreme) -> timerTime = 15000
+        }
+        timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
 
         timer.start()
 
