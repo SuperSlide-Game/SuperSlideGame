@@ -10,30 +10,30 @@ class Level3 : Level {
 
     private val piece1 = GamePiece(PieceType.YELLOW)
     private val piece2 = GamePiece(PieceType.YELLOW)
-    private val piece10 = GamePiece(PieceType.RED, 3)
-    private val piece11 = GamePiece(PieceType.RED, 3, 90F)
-    private val piece3 = GamePiece(PieceType.YELLOW)
-    private val piece13 = GamePiece(PieceType.EMPTY)
-    private val piece6 = GamePiece(PieceType.RED, 3, 270F)
-    private val piece7 = GamePiece(PieceType.RED, 3, 180F)
-    private val piece4 = GamePiece(PieceType.YELLOW)
+    private val piece3 = GamePiece(PieceType.RED, 3)
+    private val piece4 = GamePiece(PieceType.RED, 3, 90F)
     private val piece5 = GamePiece(PieceType.YELLOW)
-    private val piece8 = GamePiece(PieceType.YELLOW)
-    private val piece14 = GamePiece(PieceType.BLUE, 1, 90F)
+    private val piece6 = GamePiece(PieceType.EMPTY)
+    private val piece7 = GamePiece(PieceType.RED, 3, 270F)
+    private val piece8 = GamePiece(PieceType.RED, 3, 180F)
     private val piece9 = GamePiece(PieceType.YELLOW)
-    private val piece12 = GamePiece(PieceType.YELLOW)
-    private val piece16 = GamePiece(PieceType.YELLOW)
-    private val piece18 = GamePiece(PieceType.BLUE, 1, 270F)
+    private val piece10 = GamePiece(PieceType.YELLOW)
+    private val piece11 = GamePiece(PieceType.YELLOW)
+    private val piece12 = GamePiece(PieceType.BLUE, 1, 90F)
+    private val piece13 = GamePiece(PieceType.YELLOW)
+    private val piece14 = GamePiece(PieceType.YELLOW)
+    private val piece15 = GamePiece(PieceType.YELLOW)
+    private val piece16 = GamePiece(PieceType.BLUE, 1, 270F)
     private val piece17 = GamePiece(PieceType.YELLOW)
-    private val piece15 = GamePiece(PieceType.EMPTY)
+    private val piece18 = GamePiece(PieceType.EMPTY)
     private val piece19 = GamePiece(PieceType.YELLOW)
     private val piece20 = GamePiece(PieceType.YELLOW)
 
     private var pieces = mutableListOf(piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15, piece16, piece17, piece18, piece19, piece20)
 
     private var groups: MutableList<PieceGroup> = mutableListOf(
-        PieceGroup(1, Orientation.VERTICAL, mutableListOf(piece14, piece18)),
-        PieceGroup(3, mutableListOf(piece10, piece11, piece6, piece7))
+        PieceGroup(1, Orientation.VERTICAL, mutableListOf(piece12, piece16)),
+        PieceGroup(3, mutableListOf(piece3, piece4, piece7, piece8))
     )
 
     override fun getNumber(): Int {
