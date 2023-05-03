@@ -14,7 +14,11 @@ import com.example.superslidegame.log.screen.LogScreen
 class TimeUpFragment : DialogFragment() {
 
     private lateinit var binding : FragmentTimeUpBinding
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth)
+        isCancelable = false
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -15,6 +15,11 @@ class PopUpFragment : DialogFragment() {
 
     private lateinit var binding : FragmentPopUpBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth)
+        isCancelable = false
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
