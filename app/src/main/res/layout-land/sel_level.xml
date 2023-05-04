@@ -51,7 +51,12 @@
             android:layout_height="wrap_content"
             android:text="@string/level_selector_title"
             android:textAlignment="center"
-            android:textColor="@color/light_white"
+            android:textColor="#21DF00"
+            android:padding="5dp"
+            android:shadowColor="#21DF00"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="10"
             android:textSize="23sp"
             android:textStyle="bold" />
 
