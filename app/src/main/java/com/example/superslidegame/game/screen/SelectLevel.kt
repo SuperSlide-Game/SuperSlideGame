@@ -10,7 +10,7 @@ import com.example.superslidegame.game.elements.LevelListAdapter
 import com.example.superslidegame.log.Logger
 
 /**
- * GameScreen is the level selector screen of the game
+ * SelectLevel is the level selector screen of the game
  */
 
 class SelectLevel : AppCompatActivity() {
