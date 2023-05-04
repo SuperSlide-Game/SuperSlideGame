@@ -59,6 +59,11 @@ class GameScreen : AppCompatActivity() {
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         gameState.board = adapter.getPiecesState()
