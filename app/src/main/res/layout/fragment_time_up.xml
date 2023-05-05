@@ -13,7 +13,6 @@
         android:background="@drawable/bckg_popup"
         app:circularflow_radiusInDP="10dp"
         android:orientation="vertical"
-        android:gravity="center"
         tools:ignore="MissingConstraints">
 
         <Space
@@ -24,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/popup_win_message"
+            android:text="@string/popup_lose_message"
             android:textSize="40sp"
             android:textStyle="bold" />
 
@@ -39,7 +38,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/menu_button_win"
+                android:id="@+id/menu_button_lost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/menu_button" />
@@ -49,18 +48,14 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/next_level_button_win"
+                android:id="@+id/log_button_lost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/next_level_button" />
+                android:text="@string/log_button" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/log_button_win"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_button" />
+
 
     </LinearLayout>
 

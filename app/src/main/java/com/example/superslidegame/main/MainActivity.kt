@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.databinding.ActivityMainBinding
 import com.example.superslidegame.game.screen.GameScreen
+import com.example.superslidegame.game.screen.HelpScreen
 import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.settings.SettingsScreen
 
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsScreen::class.java)
+            startActivity(intent)
+        }
+        binding.helpButton?.setOnClickListener {
+            val intent = Intent(this, HelpScreen::class.java)
             startActivity(intent)
         }
     }

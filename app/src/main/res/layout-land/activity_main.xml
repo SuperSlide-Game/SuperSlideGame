@@ -22,6 +22,20 @@
         app:srcCompat="@drawable/logo_ss_cyberpunk" />
 
     <ImageButton
+        android:id="@+id/help_button"
+        android:layout_width="169dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="9dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/settings_button_description"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/play_button"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/help_button" />
+
+    <ImageButton
         android:id="@+id/play_button"
         android:layout_width="211dp"
         android:layout_height="92dp"

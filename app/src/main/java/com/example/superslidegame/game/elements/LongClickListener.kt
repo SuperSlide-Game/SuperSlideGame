@@ -24,7 +24,7 @@ class LongClickListener(private val context: Context, private val positionClicke
                 Toast.makeText(context, "You cannot move a red piece 2 cells", Toast.LENGTH_SHORT).show()
             } else -> {
                 val whereToMove = gameLogic.whereToMove2Cells(positionClicked, actualState)
-                if (whereToMove != null) {
+                if (whereToMove != null && GameLogic.GAME_STATE == GameState.Type.IN_PROGRESS) {
                     Toast.makeText(context,
                         "You can move this piece to position: $whereToMove", Toast.LENGTH_SHORT).show()
                     animationHelper.playMoveSound()

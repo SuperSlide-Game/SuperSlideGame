@@ -6,7 +6,7 @@ import com.example.superslidegame.game.elements.PieceGroup
 import com.example.superslidegame.game.elements.PieceType
 import com.example.superslidegame.game.levels.Level
 
-class Level2 : Level {
+class Level5 : Level {
 
     private val piece1 = GamePiece(PieceType.YELLOW)
     private val piece2 = GamePiece(PieceType.YELLOW)

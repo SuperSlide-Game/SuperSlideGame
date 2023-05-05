@@ -3,15 +3,29 @@ package com.example.superslidegame.game
 import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.superslidegame.fragments.PopUpFragment
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
+import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
+import com.example.superslidegame.log.Logger
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
+
+    companion object {
+        var GAME_STATE : GameState.Type = GameState.Type.IN_PROGRESS
+        private val logger = Logger.getLogger()
+
+        fun onLose(seconds : Long) {
+            GAME_STATE = GameState.Type.LOSE
+            logger.setResult(false)
+            logger.setTime(seconds)
+        }
+    }
 
     fun whereToMove(positionClicked: Int, actualState: List<GamePiece>): Any? {
         return when (actualState[positionClicked].type) {
@@ -34,6 +48,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     fun move(positionClicked: Int, positionToMove: Any, actualState: List<GamePiece>) {
+        Logger.moves++
         when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
                 moveYellowPiece(actualState[positionClicked], positionToMove as Int)
@@ -94,9 +109,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     private fun moveBluePiece(piece: GamePiece, moveTo: Direction) {
         val pieceGroup = adapter.getGroup(piece.groupId)
-        val orientationOfThePieceGroup = pieceGroup.orientation
 
-        when (orientationOfThePieceGroup) {
+        when (pieceGroup.orientation) {
             Orientation.HORIZONTAL -> {
                 when (moveTo) {
                     Direction.LEFT -> {
@@ -650,7 +664,10 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun gameWon() {
-        val dialogFragment = MainFragment()
+        val timer = adapter.getGameTimer()
+        logger.setResult(true); logger.setTime(timer.cancelAndReturnTimeLeft()); logger.addWonLevel(adapter.getLevelNumber())
+        GAME_STATE = GameState.Type.WIN
+        val dialogFragment = PopUpFragment()
         dialogFragment.show((context as AppCompatActivity).supportFragmentManager, "My  Fragment")
     }
 

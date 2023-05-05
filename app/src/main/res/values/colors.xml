@@ -13,4 +13,5 @@
     <color name="background_color_dark">#191C1E</color>
     <color name="background_color_light">#6B6BFF</color>
     <color name="transparent">#00000000</color>
+    <color name="neon_purple">#FF00FF</color>
 </resources>

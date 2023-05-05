@@ -5,23 +5,19 @@
     android:id="@+id/levelLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_settingsmain_backgro"
     android:layout_gravity="center"
+    android:background="@drawable/background_settingsmain_backgro"
     tools:context=".game.screen.SelectLevel">
 
     <ListView
         android:id="@+id/levelList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="344dp"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="200dp"
+        android:layout_width="215dp"
+        android:layout_height="247dp"
+        android:layout_marginEnd="40dp"
         android:foregroundGravity="center_vertical"
         android:smoothScrollbar="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -40,14 +36,12 @@
         app:layout_constraintVertical_bias="0.907" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="50dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="370dp"
+        android:layout_height="191dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/levelList"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/levelList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
