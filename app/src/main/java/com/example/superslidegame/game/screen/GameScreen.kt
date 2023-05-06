@@ -38,6 +38,7 @@ class GameScreen : AppCompatActivity() {
             gameState = GameState.fromBundle(savedInstanceState.getBundle("gameState")!!)
             level = GameLevel(gameState.level)
             gameState.board?.let { level.setPieces(it) }
+            gameState.pieceGroups?.let { level.setGroups(it) }
             timerTime = gameState.timeLeft!!
         } else {
             gameState = GameState.fromBundle(intent.extras!!)
@@ -65,6 +66,7 @@ class GameScreen : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         gameState.board = adapter.getPiecesState()
+        gameState.pieceGroups = level.getGroups()
         gameState.timeLeft = timer.cancelAndGetTimeLeft() * 1000
         outState.putBundle("gameState", gameState.toBundle())
     }
