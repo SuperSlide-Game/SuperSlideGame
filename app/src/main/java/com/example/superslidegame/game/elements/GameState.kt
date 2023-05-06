@@ -2,7 +2,8 @@ package com.example.superslidegame.game.elements
 
 import android.os.Bundle
 
-data class GameState(val nickname : String, val difficulty : String, val level : Int, var board : MutableList<GamePiece>? = null) {
+data class GameState(val nickname : String, val difficulty : String, val level : Int, var board : MutableList<GamePiece>? = null, var timeLeft : Long? = null) {
+
     enum class Type {
         WIN, LOSE, IN_PROGRESS
     }
@@ -12,7 +13,8 @@ data class GameState(val nickname : String, val difficulty : String, val level :
                 bundle.getString("nickname")!!,
                 bundle.getString("difficulty")!!,
                 bundle.getInt("level"),
-                bundle.getParcelableArray("board")?.map { it as GamePiece }?.toMutableList()
+                bundle.getParcelableArray("board")?.map { it as GamePiece }?.toMutableList(),
+                bundle.getLong("timeLeft")
             )
         }
     }
@@ -22,6 +24,7 @@ data class GameState(val nickname : String, val difficulty : String, val level :
         bundle.putString("difficulty", difficulty)
         bundle.putInt("level", level)
         bundle.putParcelableArray("board", board?.toTypedArray())
+        timeLeft?.let { bundle.putLong("timeLeft", it) }
         return bundle
     }
 }

@@ -32,13 +32,22 @@ class GameScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        var timerTime : Long = 0
+
         if (savedInstanceState != null) {
             gameState = GameState.fromBundle(savedInstanceState.getBundle("gameState")!!)
             level = GameLevel(gameState.level)
             gameState.board?.let { level.setPieces(it) }
+            timerTime = gameState.timeLeft!!
         } else {
             gameState = GameState.fromBundle(intent.extras!!)
             level = GameLevel(gameState.level)
+
+            when (gameState.difficulty) {
+                getString(R.string.Easy) -> timerTime = 60000
+                getString(R.string.Hard) -> timerTime = 30000
+                getString(R.string.Extreme) -> timerTime = 15000
+            }
         }
 
         val animationHelper = AnimationHelper(this)
@@ -46,12 +55,6 @@ class GameScreen : AppCompatActivity() {
         adapter = ImageAdapter(this, level, animationHelper)
         binding.gridTiles.adapter = adapter
 
-        var timerTime : Long = 0
-        when (gameState.difficulty) {
-            getString(R.string.Easy) -> timerTime = 60000
-            getString(R.string.Hard) -> timerTime = 30000
-            getString(R.string.Extreme) -> timerTime = 15000
-        }
         timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
 
         timer.start()
@@ -59,14 +62,10 @@ class GameScreen : AppCompatActivity() {
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        timer.cancel()
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         gameState.board = adapter.getPiecesState()
+        gameState.timeLeft = timer.cancelAndGetTimeLeft() * 1000
         outState.putBundle("gameState", gameState.toBundle())
     }
 
