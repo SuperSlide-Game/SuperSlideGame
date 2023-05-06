@@ -44,6 +44,10 @@ class Level3 : Level {
         this.pieces = pieces
     }
 
+    override fun setGroups(groups: MutableList<PieceGroup>) {
+        this.groups = groups
+    }
+
     override fun getPieces(): MutableList<GamePiece> {
         return pieces
     }

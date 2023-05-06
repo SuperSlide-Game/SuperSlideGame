@@ -7,6 +7,7 @@ interface Level {
     fun getNumber(): Int
     fun getPieces(): MutableList<GamePiece>
     fun setPieces(pieces: MutableList<GamePiece>)
+    fun setGroups(groups: MutableList<PieceGroup>)
     fun getGroups(): MutableList<PieceGroup>
 
 }

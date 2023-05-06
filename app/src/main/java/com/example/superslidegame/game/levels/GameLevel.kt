@@ -52,6 +52,10 @@ class GameLevel(levelNumber: Int?) : Level {
         activeLevel.setPieces(pieces)
     }
 
+    override fun setGroups(groups: MutableList<PieceGroup>) {
+        activeLevel.setGroups(groups)
+    }
+
     override fun getPieces(): MutableList<GamePiece> {
         return activeLevel.getPieces()
     }
