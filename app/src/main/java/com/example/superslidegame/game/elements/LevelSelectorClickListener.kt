@@ -1,20 +1,22 @@
 package com.example.superslidegame.game.elements
 
+import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.SparseBooleanArray
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.Button
 import com.example.superslidegame.game.screen.SelectLevel
 
-class LevelSelectorClickListener(private val levelClicked: Int, private val activity: SelectLevel, private val button : Button, private val buttonStateArray : SparseBooleanArray) : OnClickListener {
+class LevelSelectorClickListener(
+    private val levelClicked: Int,
+    private val activity: SelectLevel,
+    private val adapter: LevelListAdapter
+) : OnClickListener {
 
     override fun onClick(position: View?) {
-        if (buttonStateArray.get(levelClicked, false)) {
-            button.setBackgroundColor(Color.GREEN); // Change to the color you want when clicked
-        } else {
-            button.setBackgroundColor(Color.TRANSPARENT); // Change to the default color
-        }
+        // Set the level to the level clicked
         activity.setLevel(levelClicked + 1)
+        // Set the background tint list of the button clicked to green
+        position?.backgroundTintList = ColorStateList.valueOf(Color.GREEN)
+        adapter.notifyDataSetChanged()
     }
 }
