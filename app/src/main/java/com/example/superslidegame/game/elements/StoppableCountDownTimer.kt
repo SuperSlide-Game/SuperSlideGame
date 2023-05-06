@@ -17,7 +17,7 @@ class StoppableCountDownTimer(millisInFuture : Long, countDownInterval : Long, p
         gameScreen.onGameFinished(secondsRemaining)
     }
 
-    fun cancelAndReturnTimeLeft() : Long {
+    fun cancelAndGetTimeLeft() : Long {
         cancel()
         return secondsRemaining
     }
