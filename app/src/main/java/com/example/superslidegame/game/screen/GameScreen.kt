@@ -49,9 +49,9 @@ class GameScreen : AppCompatActivity() {
             level = GameLevel(gameState.level)
 
             when (gameState.difficulty) {
-                getString(R.string.Easy) -> timerTime = 60000
-                getString(R.string.Hard) -> timerTime = 30000
-                getString(R.string.Extreme) -> timerTime = 15000
+                getString(R.string.Easy) -> timerTime = 80000
+                getString(R.string.Hard) -> timerTime = 40000
+                getString(R.string.Extreme) -> timerTime = 30000
             }
         }
 
@@ -93,5 +93,9 @@ class GameScreen : AppCompatActivity() {
 
     fun updateMoves(moves: Int) {
         binding.moveCounterTextView?.text = String.format("Moves: %d", moves)
+    }
+
+    fun isExtremeModeGame(): Boolean {
+        return gameState.difficulty == getString(R.string.Extreme)
     }
 }

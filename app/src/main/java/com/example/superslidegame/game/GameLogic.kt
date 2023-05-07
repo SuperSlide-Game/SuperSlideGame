@@ -13,6 +13,7 @@ import com.example.superslidegame.game.elements.PieceType
 import com.example.superslidegame.log.Logger
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
+const val EXTREME_MAX_MOVES = 35
 
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
 
@@ -50,6 +51,10 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     fun move(positionClicked: Int, positionToMove: Any, actualState: List<GamePiece>) {
         Logger.moves++
         adapter.updateMoves(Logger.moves)
+        if (adapter.isExtremeModeGame() && Logger.moves > EXTREME_MAX_MOVES) {
+            adapter.onGameFinished()
+            return
+        }
         when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
                 moveYellowPiece(actualState[positionClicked], positionToMove as Int)

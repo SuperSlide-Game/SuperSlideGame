@@ -106,4 +106,13 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
     fun updateMoves(moves: Int) {
         screenActivity.updateMoves(moves)
     }
+
+    fun onGameFinished() {
+        val seconds = screenActivity.getGameTimer().cancelAndGetTimeLeft()
+        screenActivity.onGameFinished(seconds)
+    }
+
+    fun isExtremeModeGame(): Boolean {
+        return screenActivity.isExtremeModeGame()
+    }
 }
