@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.example.superslidegame.databinding.FragmentPopUpBinding
+import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.log.screen.LogScreen
 
@@ -32,6 +33,12 @@ class PopUpFragment : DialogFragment() {
         val menuButton : Button = binding.menuButtonWin
         val nextLevelButton : Button = binding.nextLevelButtonWin
         val logButton : Button = binding.logButtonWin
+
+        if ((activity as GameScreen).isLastLevel()) {
+            nextLevelButton.visibility = View.GONE
+        } else {
+            nextLevelButton.visibility = View.VISIBLE
+        }
 
         menuButton.setOnClickListener {
             activity?.finish()
