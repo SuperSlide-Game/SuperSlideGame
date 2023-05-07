@@ -11,13 +11,15 @@ import com.example.superslidegame.databinding.FragmentPopUpBinding
 import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.log.screen.LogScreen
 
+/**
+ * Fragment for the pop up menu, which appears when the player wins the game
+ */
 class PopUpFragment : DialogFragment() {
 
     private lateinit var binding : FragmentPopUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth)
         isCancelable = false
     }
     override fun onCreateView(

@@ -29,5 +29,13 @@
     <string name="log_button">Send log</string>
     <string name="help_screen_title">How does the game work?</string>
     <string name="help_screen_text1">The game consists on moving a set of pieces through the game board with the objective of getting the red piece into the bottom-center of the board.</string>
-    <string name="help_screen_text2">To move a game piece, all you need to do Is touch on it. In case, the piece can go into two different positions, firstly you need to move it into one position and then hold a long click for the piece to go into the other possible position.</string>
+    <string name="help_screen_text2">To move a game piece, all you need to do Is touch on it, and It will move to the position she\'s able to. In case, the piece can go into two different positions, firstly you need to move it into one position and then hold a long click for the piece to go into the other possible position.</string>
+    <string name="go_back">GO BACK</string>
+    <string name="help_screen_difficulties">There are 3 different difficulties: Easy -> 80 seconds, Hard -> 40 seconds and Extreme -> 30 seconds and a maximum of 35 moves.</string>
+    <string name="help_screen_for_example">For example:</string>
+    <string name="help_screen_move_explanation1">If you click you\'ll go to the position 1.</string>
+    <string name="help_screen_move_explanation2">But If you wanted to go to the position 2. You need to hold click from position 1.</string>
+    <string name="help_screen_desc_img1">Three cells, the two of the sides are empty and the middle one is containing a piece</string>
+    <string name="help_screen_desc_img2">Three cells, the rightest two are empty and the leftest one is containing a piece</string>
+    <string name="help_screen_desc_img3">Three cells, the leftest two are empty and the rightest one is containing a piece</string>
 </resources>

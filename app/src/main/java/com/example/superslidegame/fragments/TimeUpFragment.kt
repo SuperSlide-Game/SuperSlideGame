@@ -10,13 +10,14 @@ import androidx.fragment.app.DialogFragment
 import com.example.superslidegame.databinding.FragmentTimeUpBinding
 import com.example.superslidegame.log.screen.LogScreen
 
-
+/**
+ * Fragment for the time up pop up, which appears when the player runs out of time or moves
+ */
 class TimeUpFragment : DialogFragment() {
 
     private lateinit var binding : FragmentTimeUpBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setStyle(STYLE_NO_TITLE, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth)
         isCancelable = false
     }
     override fun onCreateView(

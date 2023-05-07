@@ -8,11 +8,20 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.example.superslidegame.R
-import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.levels.Level
 import com.example.superslidegame.game.screen.GameScreen
 
-class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val animationHelper: AnimationHelper) : BaseAdapter() {
+/**
+ * Adapter for the GridView that contains the pieces of the game
+ * @param screenActivity The activity that contains the GridView
+ * @param level The level that is being played
+ * @property pieces The list of pieces that are being played
+ * @property groups The list of groups that are being played
+ * @property context The context of the activity
+ * @constructor Creates an adapter for the GridView
+ * @see BaseAdapter
+ */
+class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : BaseAdapter() {
 
     private val pieces: MutableList<GamePiece> = level.getPieces()
 
@@ -39,7 +48,11 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
             imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
-            //
+            // If the device is in landscape mode, the width of the buttons is reduced in size
+            if (screenActivity.resources.configuration.orientation == 2) {
+                imageButton.layoutParams = ViewGroup.LayoutParams(150, 150)
+                imageButton.adjustViewBounds = false
+            }
 
         } else {
             imageButton = convertView as ImageButton
@@ -60,6 +73,8 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
         }
         return imageButton
     }
+
+    // Auxiliary functions
 
     fun getPiecesState() : MutableList<GamePiece> {
         return pieces
@@ -84,7 +99,6 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
     }
 
     fun swapPositions(fromPosition: Int, toPosition: Int) {
-        // Swap the positions of the pieces list
         val temp = pieces[fromPosition]
         pieces[fromPosition] = pieces[toPosition]
         pieces[toPosition] = temp
@@ -101,5 +115,18 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
 
     fun getLevelNumber() : Int {
         return screenActivity.getPlayingLevel()
+    }
+
+    fun updateMoves(moves: Int) {
+        screenActivity.updateMoves(moves)
+    }
+
+    fun onGameFinished() {
+        val seconds = screenActivity.getGameTimer().cancelAndGetTimeLeft()
+        screenActivity.onGameFinished(seconds)
+    }
+
+    fun isExtremeModeGame(): Boolean {
+        return screenActivity.isExtremeModeGame()
     }
 }

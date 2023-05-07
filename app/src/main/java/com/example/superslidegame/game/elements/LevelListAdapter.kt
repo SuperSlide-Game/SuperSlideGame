@@ -1,8 +1,7 @@
 package com.example.superslidegame.game.elements
 
-import android.app.Activity
+import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.SparseBooleanArray
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,15 @@ import android.view.ViewGroup.LayoutParams
 import android.widget.BaseAdapter
 import android.widget.Button
 import com.example.superslidegame.game.levels.GameLevel
+import com.example.superslidegame.game.screen.SelectLevel
 
-
-class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
-    private val buttonStateArray = SparseBooleanArray()
+/**
+ * Adapter for the level list displayed in the level selection screen.
+ * @param activity The activity that contains the level list.
+ * @constructor Creates a new adapter for the level list.
+ * @property maxLevel The maximum level that can be selected.
+ */
+class LevelListAdapter(private val activity: SelectLevel) : BaseAdapter() {
     private val maxLevel = GameLevel.MAX_LEVEL
 
     override fun getCount(): Int {
@@ -36,30 +40,23 @@ class LevelListAdapter(private val activity: Activity) : BaseAdapter() {
             button.gravity = Gravity.CENTER
             button.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             button.textSize = 15f
-
         } else {
             button = convertView as Button
         }
         button.text = String.format("Level %d", position + 1)
-        if (buttonStateArray[position, false]) {
-            button.setBackgroundColor(Color.GREEN) // Change to the color you want when clicked
+
+        button.setOnClickListener(LevelSelectorClickListener(
+            position,
+            activity,
+            this
+        ))
+        val selectedLevel = activity.selectedLevel
+        val buttonText = button.text.toString()
+        val levelNumber = buttonText.substring(buttonText.length - 1).toInt()
+        if (levelNumber == selectedLevel) {
+            button.backgroundTintList = ColorStateList.valueOf(Color.GREEN)
         } else {
-            button.setBackgroundColor(Color.WHITE) // Change to the default color
-        }
-
-        // Set a click listener for the button
-
-        // Set a click listener for the button
-        button.setOnClickListener {
-            val currentState = buttonStateArray[position, false]
-            buttonStateArray.put(position, !currentState)
-
-            // Set the background color based on the new state
-            if (!currentState) {
-                button.setBackgroundColor(Color.GREEN) // Change to the color you want when clicked
-            } else {
-                button.setBackgroundColor(Color.WHITE) // Change to the default color
-            }
+            button.backgroundTintList = ColorStateList.valueOf(Color.WHITE)
         }
         return button
     }
