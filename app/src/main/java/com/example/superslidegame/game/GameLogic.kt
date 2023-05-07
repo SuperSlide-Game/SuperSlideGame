@@ -1,7 +1,6 @@
 package com.example.superslidegame.game
 
 import android.content.Context
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.fragments.PopUpFragment
 import com.example.superslidegame.game.elements.Direction
@@ -569,15 +568,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
     }
 
     private fun moveYellowPiece(piece : GamePiece, moveTo: Int) {
-        val pieces = adapter.getPiecesState()
-
-        Toast.makeText(context,
-            "State of the moving position: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
-
         adapter.swapPositions(adapter.getPositionOfPiece(piece), moveTo)
-
-        Toast.makeText(context,
-            "State of that position after move: " + pieces[moveTo].type, Toast.LENGTH_SHORT).show()
     }
 
     fun move2Cells(
