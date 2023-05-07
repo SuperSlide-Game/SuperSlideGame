@@ -73,6 +73,8 @@ class SelectLevel : AppCompatActivity() {
 
         selectedLevel = selectedLevel?.plus(1)
 
+        Logger.lastLevelMoves = 0
+
         val gameStateBundle : Bundle = GameState(
             binding.nicknameEditText.text.toString(),
             binding.difficultySpinner.selectedItem.toString(),
