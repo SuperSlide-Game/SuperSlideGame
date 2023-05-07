@@ -39,7 +39,11 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
             imageButton.scaleType = ImageView.ScaleType.FIT_CENTER
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
-            //
+            // If the device is in landscape mode, the width of the buttons is reduced in size
+            if (screenActivity.resources.configuration.orientation == 2) {
+                imageButton.layoutParams = ViewGroup.LayoutParams(150, 150)
+                imageButton.adjustViewBounds = false
+            }
 
         } else {
             imageButton = convertView as ImageButton
