@@ -1,6 +1,8 @@
 package com.example.superslidegame.game.screen
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
@@ -28,6 +30,8 @@ class GameScreen : AppCompatActivity() {
     private lateinit var adapter: ImageAdapter
     private lateinit var timer: StoppableCountDownTimer
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
+    private val levelText : TextView by lazy { findViewById(R.id.levelTextView) }
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -57,7 +61,7 @@ class GameScreen : AppCompatActivity() {
         binding.gridTiles.adapter = adapter
 
         timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
-
+        levelText.text = "Level: "+ gameState.level.toString()
         timer.start()
 
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS

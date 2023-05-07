@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
     <TextView
-        android:id="@+id/timerTextView"
+        android:id="@+id/levelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:padding="5dp"
         android:shadowColor="@color/neon_purple"
         android:shadowDx="0"
@@ -28,8 +28,30 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/gridTiles"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/timerTextView"
+        app:layout_constraintTop_toTopOf="@+id/timerTextView" />
+
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="83dp"
+        android:padding="5dp"
+        android:shadowColor="@color/neon_purple"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/neon_purple"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/gridTiles"
+        app:layout_constraintEnd_toStartOf="@+id/levelTextView"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
     <GridView
         android:id="@+id/gridTiles"
         android:layout_width="0dp"
