@@ -7,7 +7,6 @@ import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.fragments.TimeUpFragment
 import com.example.superslidegame.game.GameLogic
-import com.example.superslidegame.game.animations.AnimationHelper
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.StoppableCountDownTimer
@@ -55,9 +54,7 @@ class GameScreen : AppCompatActivity() {
             }
         }
 
-        val animationHelper = AnimationHelper(this)
-
-        adapter = ImageAdapter(this, level, animationHelper)
+        adapter = ImageAdapter(this, level)
         binding.gridTiles.adapter = adapter
 
         timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
