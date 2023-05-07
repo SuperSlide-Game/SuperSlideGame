@@ -1,18 +1,14 @@
 package com.example.superslidegame.game.screen
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.superslidegame.R
 import com.example.superslidegame.databinding.HelpScreenBinding
-import com.example.superslidegame.game.elements.GameState
-import com.example.superslidegame.game.elements.LevelListAdapter
-import com.example.superslidegame.log.Logger
 
 /**
- * GameScreen is the level selector screen of the game
+ * This class is the help screen of the game.
+ * It displays the rules of the game and the controls.
+ * It also has a button to go back to the main menu.
  */
 
 class HelpScreen : AppCompatActivity() {
@@ -21,7 +17,7 @@ class HelpScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val goBackButton: Button = findViewById(R.id.go_back_button)
+        val goBackButton: Button = binding.goBackButton
         goBackButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
