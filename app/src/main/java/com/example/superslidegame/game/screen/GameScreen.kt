@@ -118,6 +118,9 @@ class GameScreen : AppCompatActivity() {
         return gameState.level
     }
 
+    /**
+     * isLastLevel returns true if the game is in the last level.
+     */
     fun isLastLevel() : Boolean {
         return gameState.level == GameLevel.MAX_LEVEL
     }
