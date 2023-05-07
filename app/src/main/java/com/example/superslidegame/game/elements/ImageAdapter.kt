@@ -102,4 +102,8 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level, val
     fun getLevelNumber() : Int {
         return screenActivity.getPlayingLevel()
     }
+
+    fun updateMoves(moves: Int) {
+        screenActivity.updateMoves(moves)
+    }
 }

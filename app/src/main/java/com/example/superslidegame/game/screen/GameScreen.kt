@@ -62,6 +62,7 @@ class GameScreen : AppCompatActivity() {
 
         timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
         levelText.text = "Level: "+ gameState.level.toString()
+        binding.moveCounterTextView?.text = String.format("Moves: 0")
         timer.start()
 
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
@@ -88,5 +89,9 @@ class GameScreen : AppCompatActivity() {
 
     fun getPlayingLevel() : Int {
         return gameState.level
+    }
+
+    fun updateMoves(moves: Int) {
+        binding.moveCounterTextView?.text = String.format("Moves: %d", moves)
     }
 }

@@ -49,6 +49,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     fun move(positionClicked: Int, positionToMove: Any, actualState: List<GamePiece>) {
         Logger.moves++
+        adapter.updateMoves(Logger.moves)
         when (actualState[positionClicked].type) {
             PieceType.YELLOW -> {
                 moveYellowPiece(actualState[positionClicked], positionToMove as Int)
