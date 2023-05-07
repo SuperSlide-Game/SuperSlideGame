@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingsScreen::class.java)
             startActivity(intent)
         }
-        binding.helpButton?.setOnClickListener {
+        binding.helpButton.setOnClickListener {
             val intent = Intent(this, HelpScreen::class.java)
             startActivity(intent)
         }

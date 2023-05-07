@@ -11,6 +11,12 @@ import android.widget.Button
 import com.example.superslidegame.game.levels.GameLevel
 import com.example.superslidegame.game.screen.SelectLevel
 
+/**
+ * Adapter for the level list displayed in the level selection screen.
+ * @param activity The activity that contains the level list.
+ * @constructor Creates a new adapter for the level list.
+ * @property maxLevel The maximum level that can be selected.
+ */
 class LevelListAdapter(private val activity: SelectLevel) : BaseAdapter() {
     private val maxLevel = GameLevel.MAX_LEVEL
 
@@ -39,7 +45,6 @@ class LevelListAdapter(private val activity: SelectLevel) : BaseAdapter() {
         }
         button.text = String.format("Level %d", position + 1)
 
-        // Set a click listener for the button
         button.setOnClickListener(LevelSelectorClickListener(
             position,
             activity,

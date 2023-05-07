@@ -11,6 +11,10 @@ import com.example.superslidegame.log.Logger
 
 /**
  * SelectLevel is the level selector screen of the game
+ * It is the first screen the user sees when they click on the play button
+ * It contains a list of levels, a nickname field and a difficulty spinner
+ * The user can select a level, enter a nickname and select a difficulty
+ * When the user clicks on the play button, the game screen is launched
  */
 
 class SelectLevel : AppCompatActivity() {

@@ -16,13 +16,12 @@ import com.example.superslidegame.log.Logger
 /**
  * GameScreen is the main screen of the game.
  * It contains the grid of tiles and the buttons to control the game.
+ * It also contains the timer and the level text.
+ * It is responsible for saving the state of the game and restoring it.
+ * It is also responsible for showing the dialog when the game is finished.
  */
 
 class GameScreen : AppCompatActivity() {
-    /**
-     * onCreate is called when the activity is starting.
-     * It inflates the layout and sets the adapter for the grid of tiles.
-     */
 
     private lateinit var gameState : GameState
     private lateinit var level : GameLevel
@@ -30,6 +29,14 @@ class GameScreen : AppCompatActivity() {
     private lateinit var timer: StoppableCountDownTimer
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
     private val levelText : TextView by lazy { findViewById(R.id.levelTextView) }
+
+    /**
+     * onCreate is called when the activity is starting.
+     * It inflates the layout and sets the adapter for the grid of tiles.
+     * It also sets the timer and the level text.
+     * If the activity is recreated, it restores the state of the game.
+     * @param savedInstanceState Bundle?
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
