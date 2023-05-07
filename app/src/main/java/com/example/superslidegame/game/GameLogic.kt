@@ -433,7 +433,8 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     fun move(positionClicked: Int, positionToMove: Any, actualState: List<GamePiece>) {
         Logger.moves++
-        adapter.updateMoves(Logger.moves)
+        Logger.lastLevelMoves++
+        adapter.updateMoves(Logger.lastLevelMoves)
         if (adapter.isExtremeModeGame() && Logger.moves > EXTREME_MAX_MOVES) {
             adapter.onGameFinished()
             return
@@ -584,6 +585,13 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         whereToMove: Any,
         actualState: MutableList<GamePiece>
     ) {
+        Logger.moves+=2
+        Logger.lastLevelMoves+=2
+        adapter.updateMoves(Logger.lastLevelMoves)
+        if (adapter.isExtremeModeGame() && Logger.moves > EXTREME_MAX_MOVES) {
+            adapter.onGameFinished()
+            return
+        }
         val pieceClicked = actualState[positionClicked]
         when (pieceClicked.type) {
             PieceType.YELLOW -> {

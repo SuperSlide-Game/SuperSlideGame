@@ -16,6 +16,7 @@ class Logger(initialState: GameState) {
 
     companion object {
         var moves : Int = 0
+        var lastLevelMoves : Int = 0
         lateinit var instance : Logger
 
         fun getLogger() : Logger {
@@ -37,9 +38,9 @@ class Logger(initialState: GameState) {
 
     fun getLog() : String {
         return if (result) {
-            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on last level: $time seconds\nResult: Win !!"
+            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nTotal moves: $moves\nMoves on last level: $lastLevelMoves\nTime left on last level: $time seconds\nResult: Win !!"
         } else {
-            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nMoves: $moves\nTime left on last level: $time seconds \nResult: Lose :("
+            "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nTotal moves: $moves\nMoves on last level: $lastLevelMoves\nTime left on last level: $time seconds \nResult: Lose :("
         }
     }
 }
