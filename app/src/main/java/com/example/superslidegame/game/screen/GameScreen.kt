@@ -1,6 +1,5 @@
 package com.example.superslidegame.game.screen
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,7 @@ import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.StoppableCountDownTimer
 import com.example.superslidegame.game.levels.GameLevel
+import com.example.superslidegame.log.Logger
 
 /**
  * GameScreen is the main screen of the game.
@@ -31,7 +31,7 @@ class GameScreen : AppCompatActivity() {
     private lateinit var timer: StoppableCountDownTimer
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
     private val levelText : TextView by lazy { findViewById(R.id.levelTextView) }
-    @SuppressLint("SetTextI18n")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -61,13 +61,17 @@ class GameScreen : AppCompatActivity() {
         binding.gridTiles.adapter = adapter
 
         timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
-        levelText.text = "Level: "+ gameState.level.toString()
-        binding.moveCounterTextView?.text = String.format("Moves: 0")
+        levelText.text = String.format("Level: %d", gameState.level)
+        binding.moveCounterTextView.text = String.format("Moves: %d", Logger.moves)
         timer.start()
 
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
     }
 
+    /**
+     * onSaveInstanceState is called before the activity is destroyed.
+     * It saves the state of the game.
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         gameState.board = adapter.getPiecesState()
@@ -76,6 +80,19 @@ class GameScreen : AppCompatActivity() {
         outState.putBundle("gameState", gameState.toBundle())
     }
 
+    /**
+     * onDestroy is called before the activity is destroyed.
+     * It cancels the timer.
+     */
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.cancel()
+    }
+
+    /**
+     * onGameFinished is called when the game is finished.
+     * It shows a dialog to the user.
+     */
     fun onGameFinished(seconds : Long) {
         binding.timerTextView.text = getString(R.string.time_up)
         val dialogFragment = TimeUpFragment()
@@ -83,18 +100,30 @@ class GameScreen : AppCompatActivity() {
         GameLogic.onLose(seconds)
     }
 
+    /**
+     * getGameTimer returns the timer of the game.
+     */
     fun getGameTimer() : StoppableCountDownTimer {
         return timer
     }
 
+    /**
+     * getPlayingLevel returns the level number of the game.
+     */
     fun getPlayingLevel() : Int {
         return gameState.level
     }
 
+    /**
+     * getPlayingDifficulty returns the difficulty of the game.
+     */
     fun updateMoves(moves: Int) {
-        binding.moveCounterTextView?.text = String.format("Moves: %d", moves)
+        binding.moveCounterTextView.text = String.format("Moves: %d", moves)
     }
 
+    /**
+     * isExtremeModeGame returns true if the game is in extreme mode.
+     */
     fun isExtremeModeGame(): Boolean {
         return gameState.difficulty == getString(R.string.Extreme)
     }
