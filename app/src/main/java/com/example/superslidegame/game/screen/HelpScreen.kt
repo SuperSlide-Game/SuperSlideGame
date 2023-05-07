@@ -2,8 +2,10 @@ package com.example.superslidegame.game.screen
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.superslidegame.R
 import com.example.superslidegame.databinding.HelpScreenBinding
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.LevelListAdapter
@@ -18,6 +20,11 @@ class HelpScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val goBackButton: Button = findViewById(R.id.go_back_button)
+        goBackButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
 }
