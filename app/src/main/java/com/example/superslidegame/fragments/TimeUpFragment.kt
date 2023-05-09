@@ -15,7 +15,7 @@ import com.example.superslidegame.log.screen.LogScreen
  */
 class TimeUpFragment : DialogFragment() {
 
-    private lateinit var binding : FragmentTimeUpBinding
+    private val binding by lazy { FragmentTimeUpBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = false
@@ -25,8 +25,10 @@ class TimeUpFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        return binding.root
+    }
 
-        binding = FragmentTimeUpBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val menuButton : Button = binding.menuButtonLost
         val logButton : Button = binding.logButtonLost
 
@@ -41,8 +43,6 @@ class TimeUpFragment : DialogFragment() {
             activity?.finish()
             dismiss()
         }
-
-        return binding.root
     }
 
 }
