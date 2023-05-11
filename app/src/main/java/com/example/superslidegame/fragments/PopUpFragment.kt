@@ -17,7 +17,7 @@ import com.example.superslidegame.log.screen.LogScreen
  */
 class PopUpFragment : DialogFragment() {
 
-    private lateinit var binding : FragmentPopUpBinding
+    private val binding by lazy { FragmentPopUpBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +28,10 @@ class PopUpFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        return binding.root
+    }
 
-        binding = FragmentPopUpBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val menuButton : Button = binding.menuButtonWin
         val nextLevelButton : Button = binding.nextLevelButtonWin
         val logButton : Button = binding.logButtonWin
@@ -57,7 +59,5 @@ class PopUpFragment : DialogFragment() {
             activity?.finish()
             dismiss()
         }
-
-        return binding.root
     }
 }
