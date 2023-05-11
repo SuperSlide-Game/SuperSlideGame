@@ -32,7 +32,7 @@ class Level5 : Level {
     private var pieces = mutableListOf(piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15, piece16, piece17, piece18, piece19, piece20)
 
     private var groups: MutableList<PieceGroup> = mutableListOf(
-        PieceGroup(1, Orientation.VERTICAL, mutableListOf(piece14, piece15)),
+        PieceGroup(1, Orientation.HORIZONTAL, mutableListOf(piece14, piece15)),
         PieceGroup(3, mutableListOf(piece2, piece3, piece6, piece7))
     )
 

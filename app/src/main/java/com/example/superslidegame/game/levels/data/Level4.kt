@@ -33,7 +33,7 @@ class Level4 : Level {
 
     private var groups: MutableList<PieceGroup> = mutableListOf(
         PieceGroup(1, Orientation.HORIZONTAL, mutableListOf(piece13, piece14)),
-        PieceGroup(2, mutableListOf(piece5, piece6, piece9, piece10))
+        PieceGroup(3, mutableListOf(piece1, piece2, piece5, piece6))
     )
 
 
