@@ -22,7 +22,6 @@ const val EXTREME_MAX_MOVES = 35
  * @param adapter is the adapter of the game screen
  */
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
-
     companion object {
         var GAME_STATE : GameState.Type = GameState.Type.IN_PROGRESS
         private val logger = Logger.getLogger()
