@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
+        android:id="@+id/logFrag"
         android:name="com.example.superslidegame.fragments.LogFrag"
         android:layout_width="0dp"
         android:layout_height="match_parent"
