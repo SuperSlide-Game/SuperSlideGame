@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
+import com.example.superslidegame.fragments.GridFrag
 import com.example.superslidegame.fragments.TimeUpFragment
 import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.elements.GameState
@@ -28,7 +29,8 @@ class GameScreen : AppCompatActivity() {
     private lateinit var adapter: ImageAdapter
     private lateinit var timer: StoppableCountDownTimer
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
-    private val levelText : TextView by lazy { findViewById(R.id.levelTextView) }
+    private lateinit var timerTextView: TextView
+    private lateinit var gridFragment : GridFrag
 
     /**
      * onCreate is called when the activity is starting.
@@ -41,6 +43,9 @@ class GameScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        gridFragment = supportFragmentManager.findFragmentById(R.id.gridFrag) as GridFrag
+        timerTextView = gridFragment.getTimerTextView()
 
         var timerTime : Long = 0
 
@@ -62,11 +67,11 @@ class GameScreen : AppCompatActivity() {
         }
 
         adapter = ImageAdapter(this, level)
-        binding.gridTiles.adapter = adapter
+        gridFragment.setGridViewAdapter(adapter)
 
-        timer = StoppableCountDownTimer(timerTime, 1000, this, binding.timerTextView)
-        levelText.text = String.format("Level: %d", gameState.level)
-        binding.moveCounterTextView.text = String.format("Moves: %d", Logger.moves)
+        timer = StoppableCountDownTimer(timerTime, 1000, this, timerTextView)
+        gridFragment.setLevelTextText(String.format("Level: %d", gameState.level))
+        updateMoves(Logger.moves)
         timer.start()
 
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
@@ -98,7 +103,7 @@ class GameScreen : AppCompatActivity() {
      * It shows a dialog to the user.
      */
     fun onGameFinished(seconds : Long) {
-        binding.timerTextView.text = getString(R.string.time_up)
+        gridFragment.setTimerTextText(getString(R.string.time_up))
         val dialogFragment = TimeUpFragment()
         dialogFragment.show(supportFragmentManager, "My  Fragment")
         GameLogic.onLose(seconds)
@@ -126,10 +131,10 @@ class GameScreen : AppCompatActivity() {
     }
 
     /**
-     * getPlayingDifficulty returns the difficulty of the game.
+     * updateMoves updates the number of moves in the grid fragment.
      */
     fun updateMoves(moves: Int) {
-        binding.moveCounterTextView.text = String.format("Moves: %d", moves)
+        gridFragment.updateMoves(moves)
     }
 
     /**
