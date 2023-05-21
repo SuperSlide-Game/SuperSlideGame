@@ -33,6 +33,6 @@ class LogFrag : Fragment() {
     }
 
     fun updateLog(text : String) {
-        binding.log.text = String.format("%s\n%s", binding.log.text, text)
+        binding.log.text = String.format("%s%s", binding.log.text, text)
     }
 }

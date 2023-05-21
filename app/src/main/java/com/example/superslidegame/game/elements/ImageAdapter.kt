@@ -117,6 +117,7 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
         screenActivity.runOnUiThread {
             notifyDataSetChanged()
         }
+        screenActivity.updateLogFragment()
     }
 
     fun getGameTimer() : StoppableCountDownTimer {
