@@ -32,7 +32,6 @@ class GameScreen : AppCompatActivity() {
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
     private lateinit var timerTextView: TextView
     private lateinit var gridFragment : GridFrag
-    private lateinit var logFragment : LogFrag
 
     /**
      * onCreate is called when the activity is starting.
@@ -47,7 +46,6 @@ class GameScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         gridFragment = supportFragmentManager.findFragmentById(R.id.gridFrag) as GridFrag
-        logFragment = supportFragmentManager.findFragmentById(R.id.logFrag) as LogFrag
 
         timerTextView = gridFragment.getTimerTextView()
 
@@ -146,5 +144,11 @@ class GameScreen : AppCompatActivity() {
      */
     fun isExtremeModeGame(): Boolean {
         return gameState.difficulty == getString(R.string.Extreme)
+    }
+
+    fun updateLogFragment() {
+        val logFragment = supportFragmentManager.findFragmentById(R.id.logFrag) as LogFrag?
+        val text = "Move number " + Logger.moves + ", time remaining: " + timer.getTimeLeft() + "s, level: " + gameState.level + "\n"
+        logFragment?.updateLog(text)
     }
 }

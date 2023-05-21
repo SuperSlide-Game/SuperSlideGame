@@ -21,6 +21,8 @@ class GridFrag : Fragment() {
         return binding.root
     }
 
+    // Auxiliary functions to access the views of the fragment
+
     fun updateMoves(moves: Int) {
         binding.moveCounterTextView.text = String.format("Moves: %d", moves)
     }
