@@ -18,7 +18,7 @@
         android:id="@+id/gridFrag"
         android:name="com.example.superslidegame.fragments.GridFrag"
         android:layout_width="0dp"
-        android:layout_height="1150dp"
+        android:layout_height="1000dp"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"

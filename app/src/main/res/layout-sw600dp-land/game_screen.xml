@@ -17,7 +17,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/gridFrag"
         android:name="com.example.superslidegame.fragments.GridFrag"
-        android:layout_width="1000dp"
+        android:layout_width="950dp"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
