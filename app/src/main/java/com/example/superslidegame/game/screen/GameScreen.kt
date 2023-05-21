@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.superslidegame.R
 import com.example.superslidegame.databinding.GameScreenBinding
 import com.example.superslidegame.fragments.GridFrag
+import com.example.superslidegame.fragments.LogFrag
 import com.example.superslidegame.fragments.TimeUpFragment
 import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.elements.GameState
@@ -31,6 +32,7 @@ class GameScreen : AppCompatActivity() {
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
     private lateinit var timerTextView: TextView
     private lateinit var gridFragment : GridFrag
+    private lateinit var logFragment : LogFrag
 
     /**
      * onCreate is called when the activity is starting.
@@ -45,6 +47,8 @@ class GameScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         gridFragment = supportFragmentManager.findFragmentById(R.id.gridFrag) as GridFrag
+        logFragment = supportFragmentManager.findFragmentById(R.id.logFrag) as LogFrag
+
         timerTextView = gridFragment.getTimerTextView()
 
         var timerTime : Long = 0
