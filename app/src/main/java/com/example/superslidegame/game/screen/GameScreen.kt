@@ -9,6 +9,7 @@ import com.example.superslidegame.fragments.GridFrag
 import com.example.superslidegame.fragments.LogFrag
 import com.example.superslidegame.fragments.TimeUpFragment
 import com.example.superslidegame.game.GameLogic
+import com.example.superslidegame.game.elements.GamePiece
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.StoppableCountDownTimer
@@ -146,9 +147,9 @@ class GameScreen : AppCompatActivity() {
         return gameState.difficulty == getString(R.string.Extreme)
     }
 
-    fun updateLogFragment() {
+    fun updateLogFragment(positionClicked: Int, pieceClicked: GamePiece, positionToMove: Any, ) {
         val logFragment = supportFragmentManager.findFragmentById(R.id.logFrag) as LogFrag?
-        val text = "Move number " + Logger.moves + ", time remaining: " + timer.getTimeLeft() + "s, level: " + gameState.level + "\n"
+        val text = "You clicked to position " + positionClicked + " which corresponds to a " + pieceClicked.type + " piece, and it has move to "+ positionToMove +". Move number " + Logger.moves + ", time remaining: " + timer.getTimeLeft() + "s, level: " + gameState.level + "\n"
         logFragment?.updateLog(text)
     }
 }

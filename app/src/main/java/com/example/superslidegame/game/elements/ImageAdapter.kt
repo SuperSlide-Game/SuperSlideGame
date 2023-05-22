@@ -117,7 +117,6 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
         screenActivity.runOnUiThread {
             notifyDataSetChanged()
         }
-        screenActivity.updateLogFragment()
     }
 
     fun getGameTimer() : StoppableCountDownTimer {
@@ -139,5 +138,9 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
 
     fun isExtremeModeGame(): Boolean {
         return screenActivity.isExtremeModeGame()
+    }
+
+    fun updateScreenLog(positionClicked: Int, pieceClicked: GamePiece, positionToMove: Any) {
+        screenActivity.updateLogFragment(positionClicked, pieceClicked, positionToMove)
     }
 }

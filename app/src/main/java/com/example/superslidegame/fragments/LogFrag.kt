@@ -24,7 +24,7 @@ class LogFrag : Fragment() {
         if (savedInstanceState != null) {
             binding.log.text = savedInstanceState.getString("log")
         } else {
-            binding.log.text = Logger.getLogger().getBasicInformation()
+            String.format("%s\n", Logger.getLogger().getBasicInformation())
         }
     }
 
