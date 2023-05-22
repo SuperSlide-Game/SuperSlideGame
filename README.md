@@ -17,6 +17,8 @@ In summary, this Kotlin-based game app offers a stimulating and entertaining puz
 
 ## Improvments from Delivery 1
 - [x] Added Log to landscape results screen
+## Extras done
+- [x] Settings menu
 ## Team:
 * Faysal Badaoui Mahdad: [<img src="https://github.com/faysalbadaoui.png" width="50" height="50" />](https://github.com/faysalbadaoui)
 * Pere Muñoz Figuerol: [<img src="https://github.com/peremunoz.png" width="50" height="50" />](https://github.com/peremunoz)
