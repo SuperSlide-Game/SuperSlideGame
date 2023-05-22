@@ -28,7 +28,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".settings.SettingsScreen" />
+        <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".game.screen.HelpScreen" />
         <activity android:name=".game.screen.SelectLevel" />
         <activity android:name=".game.screen.GameScreen" />
