@@ -14,9 +14,6 @@ Each level presents a new arrangement of pieces, increasing in difficulty as pla
 Additionally, the app features an intuitive user interface and appealing graphics, making it easy for players to navigate and enjoy the game. Players can track their progress, view their best scores, and even challenge their friends to beat their completion times.
 
 In summary, this Kotlin-based game app offers a stimulating and entertaining puzzle experience. With its unique gameplay mechanics, diverse levels, and engaging design, players will be captivated as they strategically slide pieces to move the red piece into the central lower position on the board.
-
-## Improvments from Delivery 1
-- [x] Added Log to landscape results screen
 ## Team:
 * Faysal Badaoui Mahdad: [<img src="https://github.com/faysalbadaoui.png" width="50" height="50" />](https://github.com/faysalbadaoui)
 * Pere Muñoz Figuerol: [<img src="https://github.com/peremunoz.png" width="50" height="50" />](https://github.com/peremunoz)
