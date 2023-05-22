@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.example.superslidegame.databinding.SelLevelBinding
 import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.LevelListAdapter
@@ -21,6 +22,7 @@ class SelectLevel : AppCompatActivity() {
 
     var selectedLevel : Int? = null
     private val binding by lazy { SelLevelBinding.inflate(layoutInflater) }
+    var showSelectScreen : Boolean = false
 
     companion object {
         var instance : SelectLevel? = null
@@ -38,25 +40,52 @@ class SelectLevel : AppCompatActivity() {
 
         val intent = Intent(this, GameScreen::class.java)
 
-        binding.playButtonLevelSelector.setOnClickListener {
+        // Get the shared preferences
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        showSelectScreen = sharedPreferences.getBoolean("show_select_screen", false)
 
-            if (allNecessaryInfoFilled()) {
+        if (!showSelectScreen) {
+            val nickname = sharedPreferences.getString("nickname", "")
+            val level = sharedPreferences.getString("level", "1")!!.toInt()
+            selectedLevel = level
+            val difficulty = sharedPreferences.getString("difficulty", "Easy")
+            val gameStateBundle : Bundle = GameState(
+                nickname!!,
+                difficulty!!,
+                level
+            ).toBundle()
+            Logger(GameState.fromBundle(gameStateBundle))
+            Logger.moves = 0
+            intent.putExtras(gameStateBundle)
+            startActivity(intent)
+        } else {
+            binding.playButtonLevelSelector.setOnClickListener {
 
-                val gameStateBundle : Bundle = GameState(
-                    binding.nicknameEditText.text.toString(),
-                    binding.difficultySpinner.selectedItem.toString(),
-                    selectedLevel!!
-                ).toBundle()
-                Logger(GameState.fromBundle(gameStateBundle))
-                Logger.moves = 0
-                intent.putExtras(gameStateBundle)
-                startActivity(intent)
+                if (allNecessaryInfoFilled()) {
 
-            } else {
-                Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
-                if (binding.nicknameEditText.text.isBlank())
-                    binding.nicknameEditText.error = "Please enter a nickname"
+                    val gameStateBundle : Bundle = GameState(
+                        binding.nicknameEditText.text.toString(),
+                        binding.difficultySpinner.selectedItem.toString(),
+                        selectedLevel!!
+                    ).toBundle()
+                    Logger(GameState.fromBundle(gameStateBundle))
+                    Logger.moves = 0
+                    intent.putExtras(gameStateBundle)
+                    startActivity(intent)
+
+                } else {
+                    Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
+                    if (binding.nicknameEditText.text.isBlank())
+                        binding.nicknameEditText.error = "Please enter a nickname"
+                }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!showSelectScreen) {
+            finish()
         }
     }
 
