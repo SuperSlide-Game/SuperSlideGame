@@ -74,7 +74,7 @@ class GameScreen : AppCompatActivity() {
 
         timer = StoppableCountDownTimer(timerTime, 1000, this, timerTextView)
         gridFragment.setLevelTextText(String.format("Level: %d", gameState.level))
-        updateMoves(Logger.moves)
+        updateMoves(Logger.lastLevelMoves)
         timer.start()
 
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS

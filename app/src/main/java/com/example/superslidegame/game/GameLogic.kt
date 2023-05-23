@@ -433,7 +433,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         Logger.moves++
         Logger.lastLevelMoves++
         adapter.updateMoves(Logger.lastLevelMoves)
-        if (adapter.isExtremeModeGame() && Logger.moves > EXTREME_MAX_MOVES) {
+        if (adapter.isExtremeModeGame() && Logger.lastLevelMoves > EXTREME_MAX_MOVES) {
             adapter.onGameFinished()
             return
         }

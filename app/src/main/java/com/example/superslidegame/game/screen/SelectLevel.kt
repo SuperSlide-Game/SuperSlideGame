@@ -44,8 +44,10 @@ class SelectLevel : AppCompatActivity() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         showSelectScreen = sharedPreferences.getBoolean("show_select_screen", false)
 
+        Logger.lastLevelMoves = 0
+
         if (!showSelectScreen) {
-            val nickname = sharedPreferences.getString("nickname", "")
+            val nickname = sharedPreferences.getString("nickname", "Bob The Builder")
             val level = sharedPreferences.getString("level", "1")!!.toInt()
             selectedLevel = level
             val difficulty = sharedPreferences.getString("difficulty", "Easy")
@@ -55,9 +57,9 @@ class SelectLevel : AppCompatActivity() {
                 level
             ).toBundle()
             Logger(GameState.fromBundle(gameStateBundle))
-            Logger.moves = 0
             intent.putExtras(gameStateBundle)
             startActivity(intent)
+
         } else {
             binding.playButtonLevelSelector.setOnClickListener {
 
@@ -69,7 +71,6 @@ class SelectLevel : AppCompatActivity() {
                         selectedLevel!!
                     ).toBundle()
                     Logger(GameState.fromBundle(gameStateBundle))
-                    Logger.moves = 0
                     intent.putExtras(gameStateBundle)
                     startActivity(intent)
 
