@@ -2,16 +2,41 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.superslidegame.database.GameDao
 import com.example.superslidegame.game.entities.Game
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlin.reflect.KParameter
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = [Game::class], version = 1, exportSchema = false)
+
 abstract class GameRoomDatabase : RoomDatabase() {
 
     abstract fun gameDao(): GameDao
+    private class GameDatabaseCallback(private val scope: CoroutineScope)
+        : RoomDatabase.Callback() {
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            INSTANCE?.let { database ->
+                scope.launch {
+                    populateDatabase(database.gameDao())
+                }
+            }
+        }
 
+        suspend fun populateDatabase(gameDao: GameDao) {
+            // Delete all content here.
+            gameDao.deleteAll()
+
+            // Add sample words.
+            var game = Game(0, "Hello")
+            gameDao.insert(game)
+            game = Game(0, "World!")
+            gameDao.insert(game)
+        }
+    }
     companion object {
         // Singleton prevents multiple instances of database opening at the
         // same time.
@@ -27,7 +52,8 @@ abstract class GameRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     GameRoomDatabase::class.java,
                     "game_database"
-                ).build()
+                )
+                .addCallback(GameDatabaseCallback(scope)).build()
                 INSTANCE = instance
                 // return instance
                 instance
