@@ -36,6 +36,7 @@
         <activity android:name=".game.screen.HelpScreen" />
         <activity android:name=".game.screen.SelectLevel" />
         <activity android:name=".game.screen.GameScreen" />
+        <activity android:name=".database.NewGameActivity" />
     </application>
 
 </manifest>
