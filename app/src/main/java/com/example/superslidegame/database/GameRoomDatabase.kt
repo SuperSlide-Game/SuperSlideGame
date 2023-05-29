@@ -9,7 +9,7 @@ import com.example.superslidegame.game.entities.Game
 @Database(entities = [Game::class], version = 1, exportSchema = false)
 public abstract class GameRoomDatabase : RoomDatabase() {
 
-    abstract fun wordDao(): GameDao
+    abstract fun gameDao(): GameDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -24,7 +24,7 @@ public abstract class GameRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     GameRoomDatabase::class.java,
-                    "word_database"
+                    "game_database"
                 ).build()
                 INSTANCE = instance
                 // return instance

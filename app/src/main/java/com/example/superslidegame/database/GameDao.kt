@@ -10,7 +10,7 @@ import com.example.superslidegame.game.entities.Game
 interface GameDao {
 
     @Query("SELECT * FROM game_table ORDER BY level ASC")
-    fun getAlphabetizedWords(): List<Game>
+    fun getGameHistory(): List<Game>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Game)

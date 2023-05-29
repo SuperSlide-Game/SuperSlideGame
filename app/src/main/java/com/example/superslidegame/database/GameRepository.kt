@@ -3,11 +3,11 @@ import com.example.superslidegame.database.GameDao
 
 import com.example.superslidegame.game.entities.Game
 
-class WordRepository(private val gameDao: GameDao) {
+class GameRepository(private val gameDao: GameDao) {
 
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.
-    val allWords: List<Game> = gameDao.getAlphabetizedWords()
+    val allGames: List<Game> = gameDao.getGameHistory()
 
     // By default Room runs suspend queries off the main thread, therefore, we don't need to
     // implement anything else to ensure we're not doing long running database work
