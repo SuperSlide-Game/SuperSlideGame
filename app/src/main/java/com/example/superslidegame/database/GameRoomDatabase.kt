@@ -7,7 +7,7 @@ import com.example.superslidegame.game.entities.Game
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = [Game::class], version = 1, exportSchema = false)
-public abstract class GameRoomDatabase : RoomDatabase() {
+abstract class GameRoomDatabase : RoomDatabase() {
 
     abstract fun gameDao(): GameDao
 
