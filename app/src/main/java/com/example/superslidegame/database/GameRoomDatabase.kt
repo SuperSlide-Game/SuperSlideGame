@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.superslidegame.database.GameDao
 import com.example.superslidegame.game.entities.Game
+import kotlinx.coroutines.CoroutineScope
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = [Game::class], version = 1, exportSchema = false)
@@ -17,7 +18,8 @@ abstract class GameRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: GameRoomDatabase? = null
 
-        fun getDatabase(context: Context): GameRoomDatabase {
+        fun getDatabase(context: Context,
+                        scope: CoroutineScope): GameRoomDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
