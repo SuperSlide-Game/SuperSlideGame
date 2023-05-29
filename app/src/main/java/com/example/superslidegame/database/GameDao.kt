@@ -5,12 +5,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.superslidegame.game.entities.Game
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GameDao {
 
     @Query("SELECT * FROM game_table ORDER BY id DESC")
-    fun getGameHistory(): List<Game>
+    fun getGameHistory(): Flow<List<Game>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(game: Game)
