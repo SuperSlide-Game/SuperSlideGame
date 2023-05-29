@@ -1,13 +1,27 @@
 package com.example.superslidegame.main
 
+import NewGameActivity
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.superslidegame.R
+import com.example.superslidegame.database.GameListAdapter
+import com.example.superslidegame.database.GameViewModel
+import com.example.superslidegame.database.GameViewModelFactory
+import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.databinding.ActivityMainBinding
+import com.example.superslidegame.game.entities.Game
 import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.game.screen.HelpScreen
 import com.example.superslidegame.game.screen.SelectLevel
 import com.example.superslidegame.settings.SettingsActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * Main activity of the application.
@@ -28,12 +42,32 @@ class MainActivity : AppCompatActivity() {
      * It also sets the on click listeners for the buttons.
      * @param savedInstanceState The saved instance state.
      */
+    private val gameViewModel: GameViewModel by viewModels {
+        GameViewModelFactory((application as GamesApplication).repository)
+    }
+    private val newGameActivityRequestCode = 1
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+        val adapter = GameListAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        gameViewModel.allGames.observe(this, Observer { games ->
+            // Update the cached copy of the words in the adapter.
+            games?.let { adapter.submitList(it) }
+        })
+
+        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
+            val intent = Intent(this@MainActivity, NewGameActivity::class.java)
+            startActivityForResult(intent, newGameActivityRequestCode)
+        }
 
         binding.playButton.setOnClickListener {
             val intent = Intent(this, SelectLevel::class.java)
@@ -49,4 +83,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intentData)
+
+        if (requestCode == newGameActivityRequestCode && resultCode == Activity.RESULT_OK) {
+            intentData?.getStringExtra(NewGameActivity.EXTRA_REPLY)?.let { reply ->
+                val word = Game(4,"repy",2,true,3,4)
+                gameViewModel.insert(word)
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                R.string.empty_not_saved,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
 }
