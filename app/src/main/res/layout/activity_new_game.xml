@@ -11,16 +11,16 @@
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_word"
         android:inputType="textAutoComplete"
-        android:layout_margin="@dimen/big_padding"
+        android:layout_margin="@dimen/min_height"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/background_color_dark"
         android:text="@string/button_save"
-        android:layout_margin="@dimen/big_padding"
+        android:layout_margin="@dimen/min_height"
         android:textColor="@color/buttonLabel" />
 
 </LinearLayout>

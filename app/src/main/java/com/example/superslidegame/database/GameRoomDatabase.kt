@@ -31,9 +31,9 @@ abstract class GameRoomDatabase : RoomDatabase() {
             gameDao.deleteAll()
 
             // Add sample words.
-            var game = Game(0, "Hello")
+            var game = Game(0, "Hello", 1, true, 10, 1)
             gameDao.insert(game)
-            game = Game(0, "World!")
+            game = Game(0, "World", 1, true, 10, 1)
             gameDao.insert(game)
         }
     }
