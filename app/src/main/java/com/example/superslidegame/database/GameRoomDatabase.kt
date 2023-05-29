@@ -2,6 +2,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.superslidegame.database.GameDao
 import com.example.superslidegame.game.entities.Game
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
