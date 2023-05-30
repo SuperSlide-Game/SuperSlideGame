@@ -1,5 +1,6 @@
 package com.example.superslidegame.database
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -27,8 +28,9 @@ class GameListAdapter : ListAdapter<Game, GameListAdapter.GameViewHolder>(GameCo
     class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val levelTextView: TextView = itemView.findViewById(R.id.levelTextView)
 
+        @SuppressLint("SetTextI18n")
         fun bind(game: Game?) {
-            levelTextView.text = game?.level.toString()
+            levelTextView.text = "Game: " + game?.id + "\n" + "Level: " + game?.level.toString()
             game?.won?.let {
                 if (it) {
                     // If the game was won, set the background to green

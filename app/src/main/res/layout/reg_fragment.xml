@@ -11,20 +11,30 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textColor="#21DF00"
+        android:padding="5dp"
+        android:shadowColor="#21DF00"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textSize="28sp"
+        android:textStyle="bold"
         android:text="@string/details_of_the_game" />
 
     <TextView
         android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="225dp"
+        android:layout_height="159dp"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/metalic_bckg"
+        android:gravity="center"
+        android:padding="15sp"
         android:textColor="@color/light_white"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="22sp"
+        android:textStyle="bold" /> <!-- Set gravity to center horizontally and vertically -->
+
+
 
 </LinearLayout>
