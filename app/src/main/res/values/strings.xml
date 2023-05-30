@@ -44,5 +44,6 @@
     <string name="empty_not_saved">Game not saved because it is empty.</string>
     <string name="add_word">Add game</string>
     <string name="infinite_time">Infinite time!</string>
+    <string name="details_of_the_game">Details of the game</string>
 
 </resources>

@@ -19,12 +19,12 @@ class AccessDBActivity : AppCompatActivity() {
 
     fun launchDetailsActivity(game: Game?) {
         val regFragment = supportFragmentManager.findFragmentById(R.id.register_fragment) as RegFrag?
-        if (regFragment != null) {
-            regFragment.update(game)
-        } else {
+        if (regFragment == null) {
             val intent = Intent(this, DetailRegActivity::class.java)
             intent.putExtra("game", game)
             startActivity(intent)
+        } else {
+            regFragment.update(game)
         }
     }
 
