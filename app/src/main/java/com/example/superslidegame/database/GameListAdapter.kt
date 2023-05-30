@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.superslidegame.R
 import com.example.superslidegame.game.entities.Game
+import com.example.superslidegame.history.AccessDBActivity
 
 class GameListAdapter : ListAdapter<Game, GameListAdapter.GameViewHolder>(GameComparator()) {
 
@@ -37,7 +38,11 @@ class GameListAdapter : ListAdapter<Game, GameListAdapter.GameViewHolder>(GameCo
                     levelTextView.backgroundTintList = ColorStateList.valueOf(Color.RED)
                 }
             }
-            levelTextView.background
+            itemView.setOnClickListener {launchDetailsActivity(game)}
+        }
+
+        private fun launchDetailsActivity(game: Game?) {
+            AccessDBActivity.INSTANCE?.launchDetailsActivity(game)
         }
 
         companion object {
