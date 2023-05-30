@@ -39,9 +39,10 @@
     <string name="help_screen_desc_img2">Three cells, the rightest two are empty and the leftest one is containing a piece</string>
     <string name="help_screen_desc_img3">Three cells, the leftest two are empty and the rightest one is containing a piece</string>
 
-    <string name="hint_word">Game...</string>
+    <string name="hint_word">Game…</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Game not saved because it is empty.</string>
     <string name="add_word">Add game</string>
+    <string name="infinite_time">Infinite time!</string>
 
 </resources>

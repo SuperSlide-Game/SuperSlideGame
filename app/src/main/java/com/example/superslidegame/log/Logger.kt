@@ -24,8 +24,10 @@ class Logger(initialState: GameState) {
         }
     }
 
-    fun setTime(time: Long) {
-        this.time = time
+    fun setTime(time: Long?) {
+        if (time != null) {
+            this.time = time
+        }
     }
 
     fun setResult(result: Boolean) {
@@ -46,9 +48,7 @@ class Logger(initialState: GameState) {
     fun getNickname() : String {
         return nickname
     }
-    fun getMoves() : Int {
-        return moves
-    }
+
     fun getBasicInformation() : String {
         return "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nTotal moves: $moves\nMoves on last level: $lastLevelMoves\nTime left on last level: $time seconds"
     }

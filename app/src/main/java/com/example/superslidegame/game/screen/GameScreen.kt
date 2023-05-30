@@ -122,7 +122,9 @@ class GameScreen : AppCompatActivity() {
     /**
      * getGameTimer returns the timer of the game.
      */
-    fun getGameTimer() : StoppableCountDownTimer {
+    fun getGameTimer() : StoppableCountDownTimer? {
+        if (infiniteTime)
+            return null
         return timer
     }
 
