@@ -2,7 +2,11 @@ package com.example.superslidegame.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.superslidegame.database.GameViewModel
+import com.example.superslidegame.database.GameViewModelFactory
+import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.databinding.ActivityMainBinding
 import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.game.screen.HelpScreen
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity() {
      * It also sets the on click listeners for the buttons.
      * @param savedInstanceState The saved instance state.
      */
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)

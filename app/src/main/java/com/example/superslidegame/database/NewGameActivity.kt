@@ -9,20 +9,20 @@ import com.example.superslidegame.R
 
 class NewGameActivity : AppCompatActivity() {
 
-    private lateinit var editWordView: EditText
+    private lateinit var editGameView: EditText
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_game)
-        editWordView = findViewById(R.id.edit_word)
+        editGameView = findViewById(R.id.edit_word)
 
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(editWordView.text)) {
+            if (TextUtils.isEmpty(editGameView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val word = editWordView.text.toString()
+                val word = editGameView.text.toString()
                 replyIntent.putExtra(EXTRA_REPLY, word)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
