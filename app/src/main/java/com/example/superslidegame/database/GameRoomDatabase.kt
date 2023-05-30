@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 
 @Database(
     entities = [Game::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 
 abstract class GameRoomDatabase: RoomDatabase() {
@@ -25,7 +26,6 @@ abstract class GameRoomDatabase: RoomDatabase() {
             INSTANCE?.let {database ->
                 scope.launch {
                     val gameDao = database.gameDao()
-
                     // Delete all content here.
                     gameDao.deleteAll()
                 }
@@ -53,6 +53,5 @@ abstract class GameRoomDatabase: RoomDatabase() {
                 instance
             }
         }
-
     }
 }
