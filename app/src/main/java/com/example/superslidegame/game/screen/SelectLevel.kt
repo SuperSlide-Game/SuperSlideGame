@@ -58,6 +58,7 @@ class SelectLevel : AppCompatActivity() {
             ).toBundle()
             Logger(GameState.fromBundle(gameStateBundle))
             intent.putExtras(gameStateBundle)
+            intent.putExtra("infinite_time", sharedPreferences.getBoolean("infinite_time", false))
             startActivity(intent)
 
         } else {
