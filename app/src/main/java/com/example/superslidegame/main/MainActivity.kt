@@ -2,15 +2,12 @@ package com.example.superslidegame.main
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.superslidegame.database.GameViewModel
-import com.example.superslidegame.database.GameViewModelFactory
-import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.databinding.ActivityMainBinding
 import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.game.screen.HelpScreen
 import com.example.superslidegame.game.screen.SelectLevel
+import com.example.superslidegame.history.AccessDBActivity
 import com.example.superslidegame.settings.SettingsActivity
 
 /**
@@ -49,8 +46,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
+
         binding.helpButton.setOnClickListener {
             val intent = Intent(this, HelpScreen::class.java)
+            startActivity(intent)
+        }
+
+        binding.historyButton.setOnClickListener {
+            val intent = Intent(this, AccessDBActivity::class.java)
             startActivity(intent)
         }
     }
