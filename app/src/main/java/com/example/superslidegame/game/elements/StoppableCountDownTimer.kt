@@ -28,4 +28,8 @@ class StoppableCountDownTimer(millisInFuture : Long, countDownInterval : Long, p
         cancel()
         return secondsRemaining
     }
+
+    fun getTimeLeft() : Long {
+        return secondsRemaining
+    }
 }

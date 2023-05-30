@@ -43,4 +43,21 @@ class Logger(initialState: GameState) {
             "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nTotal moves: $moves\nMoves on last level: $lastLevelMoves\nTime left on last level: $time seconds \nResult: Lose :("
         }
     }
+    fun getNickname() : String {
+        return nickname
+    }
+    fun getMoves() : Int {
+        return moves
+    }
+    fun getBasicInformation() : String {
+        return "Nickname: $nickname\nDifficulty: $difficulty\nStarting level: $level\nLevels won: $wonLevels\nTotal moves: $moves\nMoves on last level: $lastLevelMoves\nTime left on last level: $time seconds"
+    }
+
+    fun getTimeLeft() : Long {
+        return time
+    }
+    fun getWonLevels() : MutableList<Int> {
+        return wonLevels
+    }
+
 }

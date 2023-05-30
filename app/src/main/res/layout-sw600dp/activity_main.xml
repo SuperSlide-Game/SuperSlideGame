@@ -10,51 +10,21 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="125dp"
+        android:layout_width="339dp"
+        android:layout_height="283dp"
+        android:layout_marginTop="264dp"
         android:contentDescription="@string/logo_image_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_ss_cyberpunk" />
 
     <ImageButton
-        android:id="@+id/play_button"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="175dp"
-        android:layout_marginEnd="106dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/play_button_description"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:srcCompat="@drawable/play_button" />
-
-    <ImageButton
-        android:id="@+id/settings_button"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="105dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/settings_button_description"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play_button"
-        app:srcCompat="@drawable/settings_button" />
-    <ImageButton
         android:id="@+id/help_button"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:layout_width="249dp"
+        android:layout_height="103dp"
         android:layout_marginStart="106dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="105dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/settings_button_description"
@@ -64,13 +34,35 @@
         app:layout_constraintTop_toBottomOf="@+id/settings_button"
         app:srcCompat="@drawable/help_button" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageButton
+        android:id="@+id/settings_button"
+        android:layout_width="278dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="105dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/settings_button_description"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/add_word"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play_button"
+        app:srcCompat="@drawable/settings_button" />
+
+    <ImageButton
+        android:id="@+id/play_button"
+        android:layout_width="278dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="336dp"
+        android:layout_marginEnd="106dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/play_button_description"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:srcCompat="@drawable/play_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

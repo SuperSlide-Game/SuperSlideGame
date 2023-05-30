@@ -28,6 +28,7 @@ class ClickListener(context: Context, private val positionClicked: Int, private 
                 if (positionToMove != null && GameLogic.GAME_STATE == GameState.Type.IN_PROGRESS) {
                     gameLogic.move(positionClicked, positionToMove, actualState)
                     adapter.updateBoard()
+                    adapter.updateScreenLog(positionClicked, pieceClicked, positionToMove)
                     gameLogic.checkWin(actualState)
                 } else {
                     // Do nothing

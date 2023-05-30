@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="nickname"
+        android:title="Nickname"
+        android:summary="Enter your nickname"
+        android:dialogTitle="Enter your nickname"
+        android:defaultValue="Bob The Builder"
+        android:inputType="textCapWords"
+        android:singleLine="true"
+        android:selectAllOnFocus="true" />
+    <ListPreference
+        android:key="level"
+        android:title="Level"
+        android:summary="Select your starting level"
+        android:dialogTitle="Select your starting level"
+        android:entries="@array/levels"
+        android:entryValues="@array/levels_values"
+        android:defaultValue="1" />
+    <ListPreference
+        android:key="difficulty"
+        android:title="Difficulty"
+        android:summary="Select your difficulty"
+        android:dialogTitle="Select your difficulty"
+        android:entries="@array/difficulties"
+        android:entryValues="@array/difficulties"
+        android:defaultValue="@string/Easy" />
+
+    <CheckBoxPreference
+        android:key="show_select_screen"
+        android:title="Show level selection screen"
+        android:summary="Show level selection screen before starting a game"
+        android:defaultValue="false" />
+
+</PreferenceScreen>

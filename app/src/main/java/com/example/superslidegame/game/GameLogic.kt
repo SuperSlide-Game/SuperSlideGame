@@ -2,6 +2,9 @@ package com.example.superslidegame.game
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
+import com.example.superslidegame.database.GameViewModel
+import com.example.superslidegame.database.GameViewModelFactory
+import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.fragments.PopUpFragment
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
@@ -9,6 +12,7 @@ import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
+import com.example.superslidegame.game.entities.Game
 import com.example.superslidegame.log.Logger
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
@@ -22,7 +26,6 @@ const val EXTREME_MAX_MOVES = 35
  * @param adapter is the adapter of the game screen
  */
 class GameLogic(private val context: Context, private val adapter: ImageAdapter) {
-
     companion object {
         var GAME_STATE : GameState.Type = GameState.Type.IN_PROGRESS
         private val logger = Logger.getLogger()
@@ -434,7 +437,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         Logger.moves++
         Logger.lastLevelMoves++
         adapter.updateMoves(Logger.lastLevelMoves)
-        if (adapter.isExtremeModeGame() && Logger.moves > EXTREME_MAX_MOVES) {
+        if (adapter.isExtremeModeGame() && Logger.lastLevelMoves > EXTREME_MAX_MOVES) {
             adapter.onGameFinished()
             return
         }
@@ -683,12 +686,15 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
         }
     }
 
+
     private fun gameWon() {
         val timer = adapter.getGameTimer()
         logger.setResult(true); logger.setTime(timer.cancelAndGetTimeLeft()); logger.addWonLevel(adapter.getLevelNumber())
         GAME_STATE = GameState.Type.WIN
+
         val dialogFragment = PopUpFragment()
         dialogFragment.show((context as AppCompatActivity).supportFragmentManager, "My  Fragment")
+
     }
 
 }

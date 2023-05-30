@@ -31,6 +31,7 @@ class LongClickListener(context: Context, private val positionClicked: Int, priv
                 if (whereToMove != null && GameLogic.GAME_STATE == GameState.Type.IN_PROGRESS) {
                     gameLogic.move2Cells(positionClicked, whereToMove, actualState)
                     adapter.updateBoard()
+                    adapter.updateScreenLog(positionClicked, pieceClicked, whereToMove)
                     gameLogic.checkWin(actualState)
                 } else {
                     // Do nothing

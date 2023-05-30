@@ -49,9 +49,19 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
             imageButton.adjustViewBounds = true
             imageButton.setPadding(0, 0, 0, 0)
             // If the device is in landscape mode, the width of the buttons is reduced in size
-            if (screenActivity.resources.configuration.orientation == 2) {
+            if (screenActivity.resources.configuration.smallestScreenWidthDp < 600 && screenActivity.resources.configuration.orientation == 2) {
                 imageButton.layoutParams = ViewGroup.LayoutParams(150, 150)
                 imageButton.adjustViewBounds = false
+            }
+            // If the device is a tablet, the width of the buttons is reduced in size
+            if (screenActivity.resources.configuration.smallestScreenWidthDp >= 600) {
+                imageButton.layoutParams = ViewGroup.LayoutParams(290, 290)
+                imageButton.adjustViewBounds = false
+                // If the device is a tablet and is in landscape mode, the width of the buttons is reduced in size
+                if (screenActivity.resources.configuration.orientation == 2) {
+                    imageButton.layoutParams = ViewGroup.LayoutParams(190, 190)
+                    imageButton.adjustViewBounds = false
+                }
             }
 
         } else {
@@ -128,5 +138,9 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
 
     fun isExtremeModeGame(): Boolean {
         return screenActivity.isExtremeModeGame()
+    }
+
+    fun updateScreenLog(positionClicked: Int, pieceClicked: GamePiece, positionToMove: Any) {
+        screenActivity.updateLogFragment(positionClicked, pieceClicked, positionToMove)
     }
 }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".database.GamesApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperSlideGame"
         tools:targetApi="31">
+        <activity
+            android:name=".history.AccessDBActivity"
+            android:exported="false" />
         <activity
             android:name=".log.screen.LogScreen"
             android:exported="false" />
@@ -28,10 +32,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".settings.SettingsScreen" />
+        <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".game.screen.HelpScreen" />
         <activity android:name=".game.screen.SelectLevel" />
         <activity android:name=".game.screen.GameScreen" />
+        <activity android:name=".database.NewGameActivity" />
     </application>
 
 </manifest>
