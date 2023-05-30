@@ -27,6 +27,12 @@
         android:defaultValue="@string/Easy" />
 
     <CheckBoxPreference
+        android:key="infinite_time"
+        android:title="Infinite time"
+        android:summary="Infinite time for completing a level"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
         android:key="show_select_screen"
         android:title="Show level selection screen"
         android:summary="Show level selection screen before starting a game"
