@@ -7,7 +7,6 @@ import com.example.superslidegame.database.GameDao
 import com.example.superslidegame.game.entities.Game
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlin.reflect.KParameter
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
 @Database(entities = [Game::class], version = 1, exportSchema = false)
@@ -16,7 +15,7 @@ abstract class GameRoomDatabase : RoomDatabase() {
 
     abstract fun gameDao(): GameDao
     private class GameDatabaseCallback(private val scope: CoroutineScope)
-        : RoomDatabase.Callback() {
+        : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCE?.let { database ->
@@ -33,7 +32,7 @@ abstract class GameRoomDatabase : RoomDatabase() {
             // Add sample words.
             var game = Game(0, "Hello", 1, true, 10, 1)
             gameDao.insert(game)
-            game = Game(0, "World", 1, true, 10, 1)
+            game = Game(0, "World", 1, false, 10, 1)
             gameDao.insert(game)
         }
     }
