@@ -73,9 +73,11 @@ class GameScreen : AppCompatActivity() {
 
         adapter = ImageAdapter(this, level)
         gridFragment.setGridViewAdapter(adapter)
+
         infiniteTime = intent.getBooleanExtra("infinite_time", false)
+        timer = StoppableCountDownTimer(timerTime, 1000, this, timerTextView)
+
         if (!infiniteTime) {
-            timer = StoppableCountDownTimer(timerTime, 1000, this, timerTextView)
             timer.start()
         } else {
             timerTextView.text = getString(R.string.infinite_time)
