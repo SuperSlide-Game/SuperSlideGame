@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.activity.viewModels
 import com.example.superslidegame.database.GameViewModel
 import com.example.superslidegame.database.GameViewModelFactory
 import com.example.superslidegame.database.GamesApplication
@@ -44,16 +43,9 @@ class TimeUpFragment : DialogFragment() {
         isCancelable = false
         CoroutineScope(Dispatchers.IO).launch {
             val logger = Logger.getLogger()
-            val game = if(logger.getWonLevels().isNotEmpty() == true) {
-                Game(2, logger.getNickname(), logger.getWonLevels()[0], false, logger.getTimeLeft().toInt(), logger.getMoves())
-            } else {
-                // Default or fallback game creation here, if logger.getWonLevels() is null or empty
-                // Just as an example, we create the game with an empty list, you should adjust this to your needs
-                Game(2, logger.getNickname(), 0, false, logger.getTimeLeft().toInt(), logger.getMoves())
-            }
+            val game = Game(0, logger.getNickname(), 0, false, logger.getTimeLeft().toInt(), Logger.lastLevelMoves)
             gameViewModel.insert(game)
         }
-
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val menuButton : Button = binding.menuButtonLost
