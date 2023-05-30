@@ -21,6 +21,17 @@ class RegFrag : Fragment() {
     }
 
     fun update(game: Game?) {
-        // Update UI with game details
+        val nickname = game?.nickname
+        val level = game?.level
+        val won = game?.won
+        val time = game?.time
+        val moves = game?.moves
+        binding.register.text = String.format(
+            "Nickname: %s\nLevel: %s\nWon: %s\nTime: %s\nMoves: %s",
+            nickname,
+            level,
+            won,
+            time,
+            moves)
     }
 }
