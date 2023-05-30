@@ -31,8 +31,10 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/play_button"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.405"
         app:srcCompat="@drawable/help_button" />
 
     <ImageButton
@@ -40,7 +42,7 @@
         android:layout_width="211dp"
         android:layout_height="92dp"
         android:layout_marginStart="105dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="106dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/play_button_description"
@@ -67,11 +69,17 @@
         app:layout_constraintTop_toBottomOf="@+id/play_button"
         app:srcCompat="@drawable/settings_button" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="711dp" />
+    <ImageButton
+        android:id="@+id/history_button"
+        android:layout_width="79dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="336dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/settings_button_description"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/help_button"
+        app:srcCompat="@drawable/history_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
