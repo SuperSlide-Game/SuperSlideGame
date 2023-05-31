@@ -28,6 +28,10 @@ class AccessDBActivity : AppCompatActivity() {
         }
     }
 
+    fun onDeleteAll() {
+        (supportFragmentManager.findFragmentById(R.id.register_fragment) as RegFrag?)?.removeText()
+    }
+
     companion object {
         var INSTANCE: AccessDBActivity? = null
     }

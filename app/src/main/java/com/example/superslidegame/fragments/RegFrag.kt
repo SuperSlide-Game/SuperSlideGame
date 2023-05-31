@@ -46,4 +46,8 @@ class RegFrag : Fragment() {
             time,
             moves)
     }
+
+    fun removeText() {
+        binding.register.text = ""
+    }
 }

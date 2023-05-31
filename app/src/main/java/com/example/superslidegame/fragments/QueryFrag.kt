@@ -12,6 +12,7 @@ import com.example.superslidegame.database.GameViewModel
 import com.example.superslidegame.database.GameViewModelFactory
 import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.databinding.QueryFragmentBinding
+import com.example.superslidegame.history.AccessDBActivity
 
 class QueryFrag : Fragment() {
 
@@ -42,6 +43,7 @@ class QueryFrag : Fragment() {
 
         binding.fab.setOnClickListener {
             gameViewModel.deleteAll()
+            (activity as AccessDBActivity).onDeleteAll()
         }
     }
 }
