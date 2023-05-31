@@ -38,7 +38,7 @@ class PopUpFragment : DialogFragment() {
         isCancelable = false
         CoroutineScope(Dispatchers.IO).launch {
             val logger : Logger = getLogger()
-            val game = Game(0, logger.getNickname(), logger.getWonLevels()[logger.getWonLevels().size-1], true, logger.getTimeLeft().toInt(), Logger.lastLevelMoves)
+            val game = Game(0, logger.getNickname(), (activity as GameScreen).getPlayingLevel(), true, logger.getTimeLeft().toInt(), Logger.lastLevelMoves)
             gameViewModel.insert(game)
         }
 

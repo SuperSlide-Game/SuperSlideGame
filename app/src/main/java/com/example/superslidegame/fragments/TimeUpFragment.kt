@@ -13,6 +13,7 @@ import com.example.superslidegame.database.GameViewModelFactory
 import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.databinding.FragmentTimeUpBinding
 import com.example.superslidegame.game.entities.Game
+import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.log.Logger
 import com.example.superslidegame.log.screen.LogScreen
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +44,7 @@ class TimeUpFragment : DialogFragment() {
         isCancelable = false
         CoroutineScope(Dispatchers.IO).launch {
             val logger = Logger.getLogger()
-            val game = Game(0, logger.getNickname(), 0, false, logger.getTimeLeft().toInt(), Logger.lastLevelMoves)
+            val game = Game(0, logger.getNickname(), (activity as GameScreen).getPlayingLevel(), false, logger.getTimeLeft().toInt(), Logger.lastLevelMoves)
             gameViewModel.insert(game)
         }
     }
