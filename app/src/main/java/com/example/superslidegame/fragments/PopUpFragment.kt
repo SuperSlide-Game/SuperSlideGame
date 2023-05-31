@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.activity.viewModels
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.superslidegame.database.GameViewModel
 import com.example.superslidegame.database.GameViewModelFactory
 import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.databinding.FragmentPopUpBinding
-import com.example.superslidegame.game.GameLogic
 import com.example.superslidegame.game.entities.Game
 import com.example.superslidegame.game.screen.GameScreen
 import com.example.superslidegame.game.screen.SelectLevel
@@ -39,8 +37,8 @@ class PopUpFragment : DialogFragment() {
         super.onCreate(savedInstanceState)
         isCancelable = false
         CoroutineScope(Dispatchers.IO).launch {
-            val logger = Logger.getLogger()
-            val game = Game(1,logger.getNickname(), logger.getWonLevels()[0], true, logger.getTimeLeft().toInt(), logger.getMoves())
+            val logger : Logger = getLogger()
+            val game = Game(0, logger.getNickname(), (activity as GameScreen).getPlayingLevel(), true, logger.getTimeLeft().toInt(), Logger.lastLevelMoves)
             gameViewModel.insert(game)
         }
 

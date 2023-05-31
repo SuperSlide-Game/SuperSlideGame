@@ -15,6 +15,7 @@ import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.StoppableCountDownTimer
 import com.example.superslidegame.game.levels.GameLevel
 import com.example.superslidegame.log.Logger
+import kotlin.properties.Delegates
 
 /**
  * GameScreen is the main screen of the game.
@@ -33,6 +34,7 @@ class GameScreen : AppCompatActivity() {
     private val binding by lazy { GameScreenBinding.inflate(layoutInflater) }
     private lateinit var timerTextView: TextView
     private lateinit var gridFragment : GridFrag
+    private var infiniteTime by Delegates.notNull<Boolean>()
 
     /**
      * onCreate is called when the activity is starting.
@@ -72,10 +74,17 @@ class GameScreen : AppCompatActivity() {
         adapter = ImageAdapter(this, level)
         gridFragment.setGridViewAdapter(adapter)
 
+        infiniteTime = intent.getBooleanExtra("infinite_time", false)
         timer = StoppableCountDownTimer(timerTime, 1000, this, timerTextView)
+
+        if (!infiniteTime) {
+            timer.start()
+        } else {
+            timerTextView.text = getString(R.string.infinite_time)
+        }
+
         gridFragment.setLevelTextText(String.format("Level: %d", gameState.level))
         updateMoves(Logger.lastLevelMoves)
-        timer.start()
 
         GameLogic.GAME_STATE = GameState.Type.IN_PROGRESS
     }
@@ -115,7 +124,9 @@ class GameScreen : AppCompatActivity() {
     /**
      * getGameTimer returns the timer of the game.
      */
-    fun getGameTimer() : StoppableCountDownTimer {
+    fun getGameTimer() : StoppableCountDownTimer? {
+        if (infiniteTime)
+            return null
         return timer
     }
 
@@ -149,7 +160,12 @@ class GameScreen : AppCompatActivity() {
 
     fun updateLogFragment(positionClicked: Int, pieceClicked: GamePiece, positionToMove: Any, ) {
         val logFragment = supportFragmentManager.findFragmentById(R.id.logFrag) as LogFrag?
-        val text = "You clicked to position " + positionClicked + " which corresponds to a " + pieceClicked.type + " piece, and it has move to "+ positionToMove +". Move number " + Logger.moves + ", time remaining: " + timer.getTimeLeft() + "s, level: " + gameState.level + "\n"
+        val text : String = if (infiniteTime) {
+            "You clicked to position " + positionClicked + " which corresponds to a " + pieceClicked.type + " piece, and it has move to "+ positionToMove +". Move number " + Logger.moves + ", level: " + gameState.level + "\n"
+
+        } else {
+            "You clicked to position " + positionClicked + " which corresponds to a " + pieceClicked.type + " piece, and it has move to "+ positionToMove +". Move number " + Logger.moves + ", time remaining: " + timer.getTimeLeft() + "s, level: " + gameState.level + "\n"
+        }
         logFragment?.updateLog(text)
     }
 }

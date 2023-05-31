@@ -2,9 +2,6 @@ package com.example.superslidegame.game
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.example.superslidegame.database.GameViewModel
-import com.example.superslidegame.database.GameViewModelFactory
-import com.example.superslidegame.database.GamesApplication
 import com.example.superslidegame.fragments.PopUpFragment
 import com.example.superslidegame.game.elements.Direction
 import com.example.superslidegame.game.elements.GamePiece
@@ -12,7 +9,6 @@ import com.example.superslidegame.game.elements.GameState
 import com.example.superslidegame.game.elements.ImageAdapter
 import com.example.superslidegame.game.elements.Orientation
 import com.example.superslidegame.game.elements.PieceType
-import com.example.superslidegame.game.entities.Game
 import com.example.superslidegame.log.Logger
 
 val WINNING_POSITIONS = arrayOf(13, 14, 17, 18)
@@ -689,7 +685,7 @@ class GameLogic(private val context: Context, private val adapter: ImageAdapter)
 
     private fun gameWon() {
         val timer = adapter.getGameTimer()
-        logger.setResult(true); logger.setTime(timer.cancelAndGetTimeLeft()); logger.addWonLevel(adapter.getLevelNumber())
+        logger.setResult(true); logger.setTime(timer?.cancelAndGetTimeLeft()); logger.addWonLevel(adapter.getLevelNumber())
         GAME_STATE = GameState.Type.WIN
 
         val dialogFragment = PopUpFragment()

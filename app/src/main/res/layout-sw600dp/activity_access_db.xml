@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".history.AccessDBActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/query_fragment"
+        android:name="com.example.superslidegame.fragments.QueryFrag"
+        android:layout_width="0dp"
+        android:layout_height="700dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/register_fragment"
+        android:name="com.example.superslidegame.fragments.RegFrag"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:fadeScrollbars="true"
+        android:isScrollContainer="true"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/query_fragment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

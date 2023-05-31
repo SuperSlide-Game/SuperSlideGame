@@ -7,10 +7,15 @@
     <TextView
         android:id="@+id/levelTextView"
         android:layout_marginBottom="8dp"
-        android:paddingStart="8dp"
+        android:paddingVertical="8dp"
+        android:paddingStart="12dp"
         android:paddingEnd="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
+        android:background="@drawable/neon_border"
+        android:gravity="center_vertical"
+        android:layout_margin="6dp"
+        /> <!-- Use the neon_border drawable -->
+
 </LinearLayout>

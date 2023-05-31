@@ -119,7 +119,7 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
         }
     }
 
-    fun getGameTimer() : StoppableCountDownTimer {
+    fun getGameTimer() : StoppableCountDownTimer? {
         return screenActivity.getGameTimer()
     }
 
@@ -132,7 +132,7 @@ class ImageAdapter(private val screenActivity: GameScreen, val level: Level) : B
     }
 
     fun onGameFinished() {
-        val seconds = screenActivity.getGameTimer().cancelAndGetTimeLeft()
+        val seconds = screenActivity.getGameTimer()!!.cancelAndGetTimeLeft()
         screenActivity.onGameFinished(seconds)
     }
 

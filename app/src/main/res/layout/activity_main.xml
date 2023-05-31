@@ -49,28 +49,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play_button"
         app:srcCompat="@drawable/settings_button" />
+
     <ImageButton
         android:id="@+id/help_button"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="105dp"
+        android:layout_width="80dp"
+        android:layout_height="72dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/settings_button_description"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/history_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_button"
         app:srcCompat="@drawable/help_button" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageButton
+        android:id="@+id/history_button"
+        android:layout_width="89dp"
+        android:layout_height="76dp"
+        android:layout_marginEnd="104dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/settings_button_description"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/add_word"/>
+        app:layout_constraintTop_toBottomOf="@+id/settings_button"
+        app:srcCompat="@drawable/history_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
