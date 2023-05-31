@@ -16,9 +16,13 @@ Additionally, the app features an intuitive user interface and appealing graphic
 In summary, this Kotlin-based game app offers a stimulating and entertaining puzzle experience. With its unique gameplay mechanics, diverse levels, and engaging design, players will be captivated as they strategically slide pieces to move the red piece into the central lower position on the board.
 
 ## Improvments from Delivery 1
-- [x] Added Log to landscape results screen
+- [x] Solved Log screen in landscape mode
+- [x] Added an option for playing without time
+- [x] Number of movements showing correctly
 ## Extras done
 - [x] Settings menu
+- [x] Usage of a RecyclerView for the game history
+- [x] Usage of ViewModel and LiveData for saving and representing the game's saved.
 ## Team:
 * Faysal Badaoui Mahdad: [<img src="https://github.com/faysalbadaoui.png" width="50" height="50" />](https://github.com/faysalbadaoui)
 * Pere Muñoz Figuerol: [<img src="https://github.com/peremunoz.png" width="50" height="50" />](https://github.com/peremunoz)
