@@ -39,5 +39,9 @@ class QueryFrag : Fragment() {
             // Update the cached copy of the games in the adapter.
             games.let { adapter.submitList(it) }
         }
+
+        binding.fab.setOnClickListener {
+            gameViewModel.deleteAll()
+        }
     }
 }
