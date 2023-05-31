@@ -45,5 +45,7 @@
     <string name="add_word">Add game</string>
     <string name="infinite_time">Infinite time!</string>
     <string name="details_of_the_game">Details of the game</string>
+    <string name="last_games">Last games:</string>
+    <string name="delete_button_desc">Button for deleting all the games</string>
 
 </resources>
