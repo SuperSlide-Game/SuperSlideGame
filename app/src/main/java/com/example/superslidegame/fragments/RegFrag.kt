@@ -20,6 +20,18 @@ class RegFrag : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (!savedInstanceState?.getString("register").isNullOrEmpty()) {
+            binding.register.text = savedInstanceState?.getString("register")
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("register", binding.register.text.toString())
+    }
+
     fun update(game: Game?) {
         val nickname = game?.nickname
         val level = game?.level
